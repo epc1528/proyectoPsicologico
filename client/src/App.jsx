@@ -1,0 +1,622 @@
+import React, { useState, useEffect, useContext } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useParams, useNavigate } from 'react-router-dom';
+import { AuthContext } from './AuthContext';
+import { ThemeContext } from './ThemeContext';
+import Auth from './Auth';
+import AdminDashboard from './AdminDashboard';
+
+function Home() {
+  return (
+    <div className="bg-white dark:bg-slate-950 transition-colors duration-300">
+      {/* Hero Section Premium */}
+      <header className="relative pt-24 pb-32 lg:pt-36 lg:pb-40 overflow-hidden">
+        {/* Background Gradients */}
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/50 via-white to-teal-50/50 dark:from-slate-900 dark:via-slate-950 dark:to-teal-900/20 -z-10"></div>
+        <div className="absolute top-0 right-0 -mr-32 -mt-32 w-[600px] h-[600px] rounded-full bg-teal-200/30 dark:bg-teal-900/20 opacity-50 blur-3xl -z-10 animate-pulse-slow"></div>
+        <div className="absolute bottom-0 left-0 -ml-32 -mb-32 w-[600px] h-[600px] rounded-full bg-indigo-200/30 dark:bg-indigo-900/20 opacity-50 blur-3xl -z-10"></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative flex flex-col lg:flex-row items-center gap-16">
+          <div className="flex-1 space-y-8 text-center lg:text-left z-10 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-teal-50 dark:bg-teal-900/30 border border-teal-100 dark:border-teal-800/50 text-teal-700 dark:text-teal-400 text-sm font-semibold mb-4 shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-teal-500 animate-ping"></span>
+              <span className="w-2 h-2 rounded-full bg-teal-500 absolute"></span>
+              Plataforma #1 en Salud Mental Digital
+            </div>
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.15]">
+              Tu paz mental,<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-indigo-600 dark:from-teal-400 dark:to-indigo-400">
+                donde y cuando quieras.
+              </span>
+            </h1>
+            <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
+              Inicia tu proceso de sanación a través de cartillas interactivas diseñadas por psicólogos clínicos. Una metodología paso a paso para abrazar tus emociones.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+              <Link to="/cartillas" className="bg-indigo-600 dark:bg-teal-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-indigo-700 dark:hover:bg-teal-600 transition-all shadow-[0_8px_30px_rgb(79,70,229,0.3)] dark:shadow-[0_8px_30px_rgb(20,184,166,0.25)] hover:-translate-y-1">
+                Explorar Cartillas
+              </Link>
+              <Link to="/login" className="bg-white dark:bg-slate-800 text-indigo-900 dark:text-white border border-slate-200 dark:border-slate-700 px-8 py-4 rounded-xl font-bold text-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shadow-sm hover:shadow-md">
+                Ingresar a mi espacio
+              </Link>
+            </div>
+          </div>
+          
+          <div className="flex-1 w-full max-w-lg mx-auto lg:max-w-none relative z-10 animate-in fade-in slide-in-from-right-8 duration-1000 delay-200">
+            <div className="relative group perspective-1000">
+              <div className="absolute -inset-2 bg-gradient-to-r from-teal-400 to-indigo-500 rounded-[2.5rem] blur opacity-30 group-hover:opacity-50 transition duration-1000 -z-10"></div>
+              <div className="relative bg-white dark:bg-slate-900 p-2 sm:p-4 rounded-[2.5rem] shadow-2xl border border-white/50 dark:border-slate-800/50 backdrop-blur-sm transform transition-transform duration-500 group-hover:scale-[1.02]">
+                <img 
+                  src="/psicologa.jpg" 
+                  alt="Terapia Digital" 
+                  className="rounded-[2rem] w-full object-cover h-[400px] sm:h-[500px] shadow-inner"
+                  onError={(e) => {e.target.src = 'https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}}
+                />
+                
+                {/* Floating Elements */}
+                <div className="absolute -left-6 sm:-left-12 top-20 bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 flex items-center gap-4 animate-bounce-slow">
+                  <div className="w-12 h-12 rounded-full bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center text-teal-600 dark:text-teal-400 text-2xl">🌿</div>
+                  <div>
+                    <p className="text-sm font-bold text-slate-900 dark:text-white">Ansiedad Controlada</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">Progreso 85%</p>
+                  </div>
+                </div>
+                
+                <div className="absolute -right-6 sm:-right-8 bottom-20 bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 flex items-center gap-4 animate-bounce-slow" style={{animationDelay: '1s'}}>
+                  <div className="w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 text-2xl">✨</div>
+                  <div>
+                    <p className="text-sm font-bold text-slate-900 dark:text-white">Autoestima</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">Nuevos ejercicios</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Trust Indicators / Stats */}
+      <div className="border-y border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-slate-200 dark:divide-slate-800">
+            <div className="px-4">
+              <div className="text-4xl font-extrabold text-indigo-900 dark:text-teal-400 mb-2">+10k</div>
+              <div className="text-sm font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Pacientes Felices</div>
+            </div>
+            <div className="px-4">
+              <div className="text-4xl font-extrabold text-indigo-900 dark:text-teal-400 mb-2">3</div>
+              <div className="text-sm font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Programas Especializados</div>
+            </div>
+            <div className="px-4">
+              <div className="text-4xl font-extrabold text-indigo-900 dark:text-teal-400 mb-2">100%</div>
+              <div className="text-sm font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Privacidad Garantizada</div>
+            </div>
+            <div className="px-4">
+              <div className="text-4xl font-extrabold text-indigo-900 dark:text-teal-400 mb-2">24/7</div>
+              <div className="text-sm font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Acceso a tu material</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Como Funciona Section */}
+      <section className="py-24 relative z-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">¿Cómo funciona?</h2>
+            <p className="mt-4 text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-light">Un método comprobado de tres pasos para trabajar en ti mismo.</p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-12 relative">
+            {/* Connecting line for desktop */}
+            <div className="hidden md:block absolute top-12 left-[15%] right-[15%] h-0.5 bg-gradient-to-r from-teal-200 via-indigo-200 to-teal-200 dark:from-teal-900 dark:via-indigo-900 dark:to-teal-900 z-0"></div>
+            
+            {[
+              { num: '1', title: 'Elige tu enfoque', desc: 'Explora nuestro catálogo y selecciona la cartilla que mejor resuene con tu momento actual (Ansiedad, Autoestima o Emociones).', icon: '🔍' },
+              { num: '2', title: 'Interactúa y Reflexiona', desc: 'Responde ejercicios, evalúa tu nivel de energía diario y guarda tus reflexiones directamente en nuestra plataforma segura.', icon: '✍️' },
+              { num: '3', title: 'Sana a tu ritmo', desc: 'Retoma donde lo dejaste en cualquier momento. Tu psicóloga podrá ver tu progreso para acompañarte mejor.', icon: '🌱' }
+            ].map((step, idx) => (
+              <div key={idx} className="relative z-10 flex flex-col items-center text-center group">
+                <div className="w-24 h-24 rounded-full bg-white dark:bg-slate-900 border-4 border-slate-50 dark:border-slate-950 shadow-xl flex items-center justify-center text-4xl mb-8 relative group-hover:-translate-y-2 transition-transform duration-300">
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-teal-400 to-indigo-600 opacity-10 dark:opacity-20"></div>
+                  {step.icon}
+                  <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-indigo-600 dark:bg-teal-500 text-white font-bold flex items-center justify-center text-sm shadow-lg">{step.num}</div>
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">{step.title}</h3>
+                <p className="text-slate-600 dark:text-slate-400 leading-relaxed font-light">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function Cartillas() {
+  const [cartillas, setCartillas] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/cartillas')
+      .then(res => res.json())
+      .then(data => setCartillas(data))
+      .catch(err => console.error(err));
+  }, []);
+
+  return (
+    <div className="bg-slate-50 dark:bg-slate-950 min-h-screen py-20 transition-colors duration-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
+          <div className="inline-block px-4 py-1.5 rounded-full bg-teal-50 dark:bg-teal-900/30 border border-teal-100 dark:border-teal-800/50 text-teal-600 dark:text-teal-400 text-sm font-semibold mb-6">
+            Catálogo Oficial
+          </div>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6">Nuestras Cartillas</h2>
+          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-light leading-relaxed">
+            Herramientas diseñadas clínicamente para acompañarte en tu proceso. Selecciona la cartilla que mejor resuene con tus necesidades actuales.
+          </p>
+        </div>
+        
+        {cartillas.length === 0 ? (
+          <div className="text-center py-20 text-slate-500 dark:text-slate-400 flex flex-col items-center">
+             <div className="w-16 h-16 border-4 border-teal-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+             Cargando cartillas...
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {cartillas.map((cartilla, index) => (
+              <div 
+                key={cartilla.id} 
+                className="bg-white dark:bg-slate-900 rounded-[2rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-slate-100 dark:border-slate-800 hover:-translate-y-2 transition-all duration-300 flex flex-col group relative overflow-hidden"
+                style={{ animationDelay: `${index * 150}ms` }}
+              >
+                <div className="absolute top-0 right-0 w-32 h-32 bg-teal-400/10 dark:bg-teal-400/5 rounded-full blur-2xl -mr-16 -mt-16 transition-transform group-hover:scale-150 duration-700"></div>
+                
+                <div className="w-full h-56 bg-gradient-to-br from-indigo-50 to-teal-50 dark:from-slate-800 dark:to-slate-800/50 rounded-2xl mb-8 flex items-center justify-center relative overflow-hidden border border-white/50 dark:border-slate-700/50">
+                  <div className="absolute inset-0 bg-teal-400/10 mix-blend-overlay"></div>
+                  <span className="text-7xl opacity-90 drop-shadow-lg transition-transform group-hover:scale-110 group-hover:rotate-3 duration-500">
+                    {cartilla.id === 1 ? '🍃' : cartilla.id === 2 ? '✨' : '🧘'}
+                  </span>
+                </div>
+                
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 line-clamp-1">{cartilla.titulo}</h3>
+                <p className="text-slate-600 dark:text-slate-400 mb-8 flex-grow font-light leading-relaxed line-clamp-3">
+                  {cartilla.descripcion}
+                </p>
+                
+                <div className="flex items-center justify-between mt-auto pt-6 border-t border-slate-100 dark:border-slate-800 relative z-10">
+                  <div>
+                    <p className="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1 font-semibold">Inversión</p>
+                    <div className="text-indigo-600 dark:text-teal-400 font-extrabold text-2xl">
+                      ${cartilla.precio.toLocaleString('es-CO')} <span className="text-sm font-medium opacity-70">COP</span>
+                    </div>
+                  </div>
+                  <Link 
+                    to={`/cartilla/${cartilla.id}`} 
+                    className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-3 rounded-xl font-bold hover:bg-teal-600 dark:hover:bg-teal-50 transition-colors shadow-md hover:shadow-lg flex items-center gap-2"
+                  >
+                    Ingresar <span className="text-lg">→</span>
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function CartillaDetail() {
+  const { id } = useParams();
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [reflexion, setReflexion] = useState('');
+  const [energia, setEnergia] = useState('5');
+  const [guardado, setGuardado] = useState(false);
+  const [hasAccess, setHasAccess] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [taller, setTaller] = useState(null);
+
+  useEffect(() => {
+    if (user === null) {
+      setTimeout(() => navigate('/login'), 100);
+    }
+  }, [user, navigate]);
+
+  useEffect(() => {
+    if (!user) return;
+    const token = localStorage.getItem('token');
+    
+    // Primero, comprobar si tiene acceso a los talleres de esta cartilla
+    fetch(`http://localhost:5000/api/cartillas/${id}/talleres`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+      .then(res => {
+        if (res.status === 403) {
+          setHasAccess(false);
+          setLoading(false);
+          return null;
+        }
+        return res.json();
+      })
+      .then(data => {
+        if (data && data.length > 0) {
+          setHasAccess(true);
+          const currentTaller = data[0];
+          setTaller(currentTaller);
+          // Si tiene acceso, cargar sus respuestas previas
+          fetch('http://localhost:5000/api/mis-respuestas', {
+            headers: { 'Authorization': `Bearer ${token}` }
+          })
+            .then(res => res.json())
+            .then(respData => {
+              const myRes = respData.find(r => r.taller_id === currentTaller.id);
+              if (myRes) {
+                setReflexion(myRes.respuesta || '');
+                if (myRes.energia) setEnergia(myRes.energia.toString());
+              }
+              setLoading(false);
+            })
+            .catch(() => setLoading(false));
+        } else if (data && data.length === 0) {
+           // Tiene acceso pero no hay talleres
+           setHasAccess(true);
+           setLoading(false);
+        }
+      })
+      .catch(() => setLoading(false));
+  }, [id, user]);
+
+  const handleComprar = () => {
+    const token = localStorage.getItem('token');
+    fetch('http://localhost:5000/api/compras', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ cartilla_id: parseInt(id) })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.error) {
+        alert(data.error);
+      } else {
+        alert('¡Compra exitosa! Ahora tienes acceso.');
+        window.location.reload();
+      }
+    })
+    .catch(console.error);
+  };
+
+  const handleGuardar = () => {
+    if (!user || !taller) return;
+    const token = localStorage.getItem('token');
+    fetch('http://localhost:5000/api/respuestas', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ taller_id: taller.id, respuesta: reflexion, energia: parseInt(energia) })
+    })
+    .then(res => res.json())
+    .then(() => {
+      setGuardado(true);
+      setTimeout(() => setGuardado(false), 2000);
+    })
+    .catch(console.error);
+  };
+
+  if (!user) return null;
+  if (loading) return <div className="min-h-screen flex items-center justify-center">Cargando...</div>;
+
+  if (!hasAccess && user.role !== 'admin') {
+    return (
+      <div className="bg-slate-50 min-h-screen py-20">
+        <div className="max-w-xl mx-auto bg-white p-10 rounded-3xl shadow-xl text-center">
+          <div className="text-6xl mb-6">🔒</div>
+          <h2 className="text-3xl font-bold text-indigo-950 mb-4">Acceso Restringido</h2>
+          <p className="text-slate-600 mb-8">Para acceder a los talleres interactivos de esta cartilla, necesitas adquirirla primero.</p>
+          <button 
+            onClick={handleComprar}
+            className="w-full bg-gradient-to-r from-teal-500 to-teal-400 text-white font-bold text-lg p-4 rounded-xl hover:from-teal-600 hover:to-teal-500 transition-all shadow-lg"
+          >
+            Adquirir por $12.000 COP
+          </button>
+          <div className="mt-4 text-sm text-slate-400">
+            * Simulación de pasarela de pago para el proyecto
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-slate-50 min-h-screen py-12">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Link to="/cartillas" className="text-indigo-600 hover:text-indigo-800 font-medium mb-8 inline-flex items-center">
+          ← Volver al catálogo
+        </Link>
+        
+        <div className="bg-white rounded-3xl p-10 shadow-lg border border-slate-100 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-teal-50 rounded-bl-full -z-10"></div>
+          
+          <h2 className="text-3xl font-bold text-indigo-950 mb-2">Taller Interactivo</h2>
+          <p className="text-slate-500 mb-10">{taller ? taller.titulo : `Cartilla de Trabajo #${id}`}</p>
+          
+          <div className="space-y-8">
+            <div>
+              <label className="block text-lg font-medium text-slate-800 mb-3">{taller ? taller.contenido : 'Reflexiona sobre tu día. ¿Cómo te has sentido hoy?'}</label>
+              <textarea 
+                className="w-full border-2 border-slate-200 rounded-2xl p-5 focus:ring-4 focus:ring-teal-500/20 focus:border-teal-500 outline-none transition-all resize-none text-slate-700 leading-relaxed bg-slate-50 focus:bg-white" 
+                rows="6" 
+                placeholder="Escribe aquí tu reflexión con total libertad..."
+                value={reflexion}
+                onChange={(e) => setReflexion(e.target.value)}
+              ></textarea>
+            </div>
+            
+            <div className="bg-indigo-50/50 p-6 rounded-2xl border border-indigo-100/50">
+              <label className="flex justify-between items-center mb-4 font-medium text-slate-800">
+                <span>Nivel de Energía:</span>
+                <span className="bg-white px-4 py-1 rounded-full text-indigo-600 font-bold shadow-sm">{energia} / 10</span>
+              </label>
+              <input 
+                type="range" 
+                min="1" max="10" 
+                className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-teal-500" 
+                value={energia}
+                onChange={(e) => setEnergia(e.target.value)}
+              />
+              <div className="flex justify-between text-xs text-slate-400 mt-2 font-medium">
+                <span>Agotado(a)</span>
+                <span>Lleno(a) de energía</span>
+              </div>
+            </div>
+            
+            <div className="pt-4 flex items-center justify-between">
+              <button 
+                onClick={handleGuardar}
+                className="bg-teal-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-teal-600 transition-colors shadow-[0_8px_20px_rgb(20,184,166,0.3)] hover:-translate-y-0.5"
+              >
+                Guardar Progreso
+              </button>
+              
+              <div className={`transition-opacity duration-300 ${guardado ? 'opacity-100' : 'opacity-0'}`}>
+                <span className="bg-emerald-100 text-emerald-800 px-4 py-2 rounded-lg font-medium flex items-center gap-2">
+                  <span>✓</span> ¡Progreso guardado!
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MisCartillas() {
+  const [compras, setCompras] = useState([]);
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (user === null) {
+      setTimeout(() => navigate('/login'), 100);
+      return;
+    }
+    const token = localStorage.getItem('token');
+    fetch('http://localhost:5000/api/mis-compras', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+      .then(res => res.json())
+      .then(data => {
+        setCompras(data);
+        setLoading(false);
+      })
+      .catch(console.error);
+  }, [user, navigate]);
+
+  if (loading) return <div className="min-h-screen flex items-center justify-center">Cargando...</div>;
+
+  return (
+    <div className="bg-slate-50 min-h-screen py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-extrabold text-indigo-950 tracking-tight mb-4">Mis Cartillas</h2>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto font-light">Continúa con tu progreso en las cartillas que has adquirido.</p>
+        </div>
+        
+        {compras.length === 0 ? (
+          <div className="text-center bg-white p-10 rounded-3xl shadow-sm border border-slate-100 max-w-2xl mx-auto">
+            <div className="text-5xl mb-4">📚</div>
+            <h3 className="text-2xl font-bold text-indigo-950 mb-4">Aún no tienes cartillas</h3>
+            <p className="text-slate-600 mb-6">Visita nuestro catálogo para encontrar la herramienta ideal para ti.</p>
+            <Link to="/cartillas" className="bg-indigo-600 text-white px-8 py-3 rounded-xl font-medium hover:bg-indigo-700 transition-colors shadow-md inline-block">
+              Ver Catálogo
+            </Link>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-3 gap-8">
+            {compras.map((cartilla) => (
+              <div key={cartilla.id} className="bg-white rounded-3xl p-8 shadow-sm border border-teal-100 hover:shadow-xl transition-all duration-300 flex flex-col group relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-2 h-full bg-teal-400"></div>
+                <div className="w-full h-40 bg-gradient-to-br from-indigo-50 to-teal-50 rounded-2xl mb-6 flex items-center justify-center relative overflow-hidden">
+                   <span className="text-5xl opacity-80 mix-blend-multiply transition-transform group-hover:scale-110 duration-500">
+                    {cartilla.id === 1 ? '🍃' : cartilla.id === 2 ? '✨' : '🧘'}
+                   </span>
+                </div>
+                <h3 className="text-2xl font-bold text-indigo-950 mb-3">{cartilla.titulo}</h3>
+                <p className="text-slate-600 mb-6 flex-grow font-light leading-relaxed">{cartilla.descripcion}</p>
+                <div className="mt-auto pt-6 border-t border-slate-100">
+                  <Link to={`/cartilla/${cartilla.id}`} className="w-full text-center block bg-teal-50 text-teal-700 font-bold px-5 py-3 rounded-xl hover:bg-teal-100 transition-colors">
+                    Continuar Taller →
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function NavBar() {
+  const { user, logout } = useContext(AuthContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  return (
+    <nav className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-slate-100 dark:border-slate-800 sticky top-0 z-50 transition-colors duration-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+        <Link to="/" className="text-2xl font-extrabold text-indigo-950 dark:text-white flex items-center gap-2 z-50">
+          <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-teal-400 to-indigo-600 flex items-center justify-center text-white text-sm">P</span>
+          PsicoCartillas
+        </Link>
+
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center space-x-8">
+          <Link to="/" className="text-slate-600 dark:text-slate-300 font-medium hover:text-indigo-600 dark:hover:text-teal-400 transition-colors">Inicio</Link>
+          <Link to="/cartillas" className="text-slate-600 dark:text-slate-300 font-medium hover:text-indigo-600 dark:hover:text-teal-400 transition-colors">Catálogo</Link>
+          
+          <button onClick={toggleTheme} className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 transition-colors focus:outline-none" aria-label="Toggle Dark Mode">
+            {theme === 'light' ? '🌙' : '☀️'}
+          </button>
+          
+          {user ? (
+            <div className="flex items-center gap-5">
+              <Link to="/mis-cartillas" className="text-slate-600 font-medium hover:text-indigo-600 transition-colors">Mis Cartillas</Link>
+              {user.role === 'admin' && (
+                <Link to="/admin" className="text-teal-600 font-bold hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300 bg-teal-50 dark:bg-teal-900/30 px-4 py-2 rounded-full transition-colors">Panel Doctora</Link>
+              )}
+              <div className="h-8 w-px bg-slate-200 dark:bg-slate-700"></div>
+              <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Hola, <b className="text-indigo-950 dark:text-white">{user.nombre.split(' ')[0]}</b></span>
+              <button onClick={logout} className="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-slate-800 dark:hover:text-white transition-colors">Salir</button>
+            </div>
+          ) : (
+            <div className="flex items-center gap-4">
+              <Link to="/login" className="bg-indigo-600 dark:bg-teal-500 text-white px-6 py-2.5 rounded-full font-medium hover:bg-indigo-700 dark:hover:bg-teal-600 transition-all shadow-md hover:shadow-lg">Comenzar</Link>
+            </div>
+          )}
+        </div>
+
+        {/* Mobile Toggle Button */}
+        <div className="md:hidden flex items-center gap-4 z-50">
+          <button onClick={toggleTheme} className="p-2 rounded-full text-slate-500 dark:text-slate-400" aria-label="Toggle Dark Mode">
+            {theme === 'light' ? '🌙' : '☀️'}
+          </button>
+          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-slate-600 dark:text-slate-300 focus:outline-none">
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {isMobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu Dropdown */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 shadow-xl py-4 px-6 flex flex-col space-y-4 animate-in slide-in-from-top-4">
+          <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-teal-400">Inicio</Link>
+          <Link to="/cartillas" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-teal-400">Catálogo</Link>
+          
+          {user ? (
+            <>
+              <Link to="/mis-cartillas" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-slate-700 dark:text-slate-300 hover:text-indigo-600">Mis Cartillas</Link>
+              {user.role === 'admin' && (
+                <Link to="/admin" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-bold text-teal-600 dark:text-teal-400">Panel Doctora</Link>
+              )}
+              <hr className="border-slate-100 dark:border-slate-800" />
+              <div className="flex justify-between items-center">
+                <span className="text-slate-700 dark:text-slate-300">Hola, <b>{user.nombre}</b></span>
+                <button onClick={() => { logout(); setIsMobileMenuOpen(false); }} className="text-red-500 font-medium">Cerrar Sesión</button>
+              </div>
+            </>
+          ) : (
+            <>
+              <hr className="border-slate-100 dark:border-slate-800" />
+              <Link to="/login" onClick={() => setIsMobileMenuOpen(false)} className="bg-indigo-600 dark:bg-teal-500 text-white text-center py-3 rounded-xl font-bold mt-2">Comenzar Ahora</Link>
+            </>
+          )}
+        </div>
+      )}
+    </nav>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900 font-sans selection:bg-teal-200 selection:text-teal-900 transition-colors duration-300">
+        <NavBar />
+
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/cartillas" element={<Cartillas />} />
+            <Route path="/mis-cartillas" element={<MisCartillas />} />
+            <Route path="/cartilla/:id" element={<CartillaDetail />} />
+            <Route path="/login" element={<Auth />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+          </Routes>
+        </main>
+
+        <footer className="bg-indigo-950 dark:bg-slate-950 text-slate-300 py-16 mt-auto border-t border-indigo-900/50 dark:border-slate-900 transition-colors duration-300">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-8 mb-12 border-b border-indigo-900 dark:border-slate-800 pb-12">
+              <div className="md:col-span-1 lg:col-span-2">
+                <div className="flex items-center gap-2 mb-6">
+                   <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-teal-400 to-indigo-600 flex items-center justify-center text-white text-sm font-bold shadow-lg shadow-teal-500/20">P</span>
+                   <span className="text-2xl font-bold text-white tracking-tight">PsicoCartillas</span>
+                </div>
+                <p className="text-indigo-200/70 dark:text-slate-500 font-light max-w-sm leading-relaxed">
+                  Transformando el acceso a la salud mental mediante herramientas digitales interactivas, seguras y profesionales. Empieza tu proceso hoy mismo.
+                </p>
+                <div className="mt-6 flex space-x-4">
+                  {/* Social placeholders */}
+                  {['📘', '📸', '🐦', '▶️'].map((icon, i) => (
+                    <a key={i} href="#" className="w-10 h-10 rounded-full bg-indigo-900 dark:bg-slate-900 flex items-center justify-center hover:bg-teal-500 hover:text-white transition-colors duration-300">
+                      {icon}
+                    </a>
+                  ))}
+                </div>
+              </div>
+              
+              <div>
+                <h4 className="text-white font-semibold mb-6 uppercase tracking-wider text-sm">Plataforma</h4>
+                <ul className="space-y-4">
+                  <li><Link to="/cartillas" className="text-indigo-200/70 dark:text-slate-500 hover:text-teal-400 dark:hover:text-teal-400 transition-colors">Catálogo de Cartillas</Link></li>
+                  <li><Link to="/login" className="text-indigo-200/70 dark:text-slate-500 hover:text-teal-400 dark:hover:text-teal-400 transition-colors">Inicia Sesión</Link></li>
+                  <li><Link to="/login" className="text-indigo-200/70 dark:text-slate-500 hover:text-teal-400 dark:hover:text-teal-400 transition-colors">Regístrate</Link></li>
+                  <li><a href="#beneficios" className="text-indigo-200/70 dark:text-slate-500 hover:text-teal-400 dark:hover:text-teal-400 transition-colors">¿Cómo Funciona?</a></li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-white font-semibold mb-6 uppercase tracking-wider text-sm">Legal & Soporte</h4>
+                <ul className="space-y-4">
+                  <li><a href="#" className="text-indigo-200/70 dark:text-slate-500 hover:text-teal-400 dark:hover:text-teal-400 transition-colors">Términos y Condiciones</a></li>
+                  <li><a href="#" className="text-indigo-200/70 dark:text-slate-500 hover:text-teal-400 dark:hover:text-teal-400 transition-colors">Política de Privacidad</a></li>
+                  <li><a href="#" className="text-indigo-200/70 dark:text-slate-500 hover:text-teal-400 dark:hover:text-teal-400 transition-colors">Centro de Ayuda</a></li>
+                  <li><a href="#" className="text-indigo-200/70 dark:text-slate-500 hover:text-teal-400 dark:hover:text-teal-400 transition-colors">Contacto</a></li>
+                </ul>
+              </div>
+            </div>
+            
+            <div className="flex flex-col md:flex-row justify-between items-center text-indigo-300/50 dark:text-slate-600 text-sm">
+              <p>&copy; {new Date().getFullYear()} PsicoCartillas. Diseñado para tu bienestar mental.</p>
+              <p className="mt-4 md:mt-0 flex items-center gap-2">Hecho con <span className="text-teal-500">❤️</span> por expertos clínicos.</p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </Router>
+  );
+}
+
+export default App;

@@ -1,0 +1,33 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "nombre": "Doctora (Admin)",
+      "correo": "doctora@psicocartillas.com",
+      "password": "$2b$10$TAFAuDDo6I5Q9Jfe59kOTeUBPaIHt9y4TthZN2MSExyIT2yyiUipa",
+      "role": "admin"
+    }
+  ],
+  "cartillas": [
+    {
+      "id": 1,
+      "titulo": "Manejo de Ansiedad",
+      "descripcion": "Aprende herramientas prácticas para reducir la ansiedad en tu día a día.",
+      "precio": 12000
+    },
+    {
+      "id": 2,
+      "titulo": "Autoestima Positiva",
+      "descripcion": "Ejercicios para fortalecer el amor propio y la autoaceptación.",
+      "precio": 12000
+    },
+    {
+      "id": 3,
+      "titulo": "Gestión Emocional",
+      "descripcion": "Reconoce y gestiona tus emociones para vivir con mayor tranquilidad.",
+      "precio": 12000
+    }
+  ],
+  "compras": [],
+  "respuestas": []
+}
