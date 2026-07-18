@@ -143,14 +143,14 @@ function Cartillas() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/cartillas')
+    fetch('https://proyectopsicologico-production.up.railway.app/api/cartillas')
       .then(res => res.json())
       .then(data => setCartillas(data))
       .catch(err => console.error(err));
       
     if (user) {
       const token = localStorage.getItem('token');
-      fetch('http://localhost:5000/api/mis-compras', {
+      fetch('https://proyectopsicologico-production.up.railway.app/api/mis-compras', {
         headers: { 'Authorization': `Bearer ${token}` }
       })
       .then(res => res.json())
@@ -247,7 +247,7 @@ function MisCartillas() {
       return;
     }
     const token = localStorage.getItem('token');
-    fetch('http://localhost:5000/api/mis-compras', {
+    fetch('https://proyectopsicologico-production.up.railway.app/api/mis-compras', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(res => res.json())
