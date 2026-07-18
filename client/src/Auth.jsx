@@ -32,7 +32,7 @@ export default function Auth() {
       ? { correo: formData.correo, password: formData.password }
       : formData;
 
-    fetch(`http://localhost:5000${endpoint}`, {
+    fetch(`https://proyectopsicologico-production.up.railway.app${endpoint}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -71,7 +71,7 @@ export default function Auth() {
       didOpen: () => Swal.showLoading()
     });
 
-    fetch('http://localhost:5000/api/auth/forgot-password', {
+    fetch('https://proyectopsicologico-production.up.railway.app/api/auth/forgot-password', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ correo: formData.correo })
