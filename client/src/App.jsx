@@ -4,6 +4,7 @@ import { AuthContext } from './AuthContext';
 import { ThemeContext } from './ThemeContext';
 import Auth from './Auth';
 import AdminDashboard from './AdminDashboard';
+import InteractiveWorkbook from './InteractiveWorkbook';
 
 function Home() {
   return (
@@ -132,15 +133,42 @@ function Home() {
   );
 }
 
+import Swal from 'sweetalert2';
+
 function Cartillas() {
   const [cartillas, setCartillas] = useState([]);
+  const [compradas, setCompradas] = useState([]);
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('http://localhost:5000/api/cartillas')
       .then(res => res.json())
       .then(data => setCartillas(data))
       .catch(err => console.error(err));
-  }, []);
+      
+    if (user) {
+      const token = localStorage.getItem('token');
+      fetch('http://localhost:5000/api/mis-compras', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data)) {
+          setCompradas(data.map(c => c.id));
+        }
+      })
+      .catch(err => console.error(err));
+    }
+  }, [user]);
+
+  const handleIngresar = (cartilla) => {
+    if (!user) {
+      navigate('/login');
+      return;
+    }
+    navigate(`/cartilla/${cartilla.id}`);
+  };
 
   return (
     <div className="bg-slate-50 dark:bg-slate-950 min-h-screen py-20 transition-colors duration-300">
@@ -189,12 +217,12 @@ function Cartillas() {
                       ${cartilla.precio.toLocaleString('es-CO')} <span className="text-sm font-medium opacity-70">COP</span>
                     </div>
                   </div>
-                  <Link 
-                    to={`/cartilla/${cartilla.id}`} 
-                    className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-3 rounded-xl font-bold hover:bg-teal-600 dark:hover:bg-teal-50 transition-colors shadow-md hover:shadow-lg flex items-center gap-2"
+                  <button 
+                    onClick={() => handleIngresar(cartilla)}
+                    className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-3 rounded-xl font-bold hover:bg-teal-600 dark:hover:bg-teal-50 transition-colors shadow-md hover:shadow-lg flex items-center gap-2 cursor-pointer"
                   >
-                    Ingresar <span className="text-lg">→</span>
-                  </Link>
+                    Ingresar →
+                  </button>
                 </div>
               </div>
             ))}
@@ -205,195 +233,6 @@ function Cartillas() {
   );
 }
 
-function CartillaDetail() {
-  const { id } = useParams();
-  const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
-  const [reflexion, setReflexion] = useState('');
-  const [energia, setEnergia] = useState('5');
-  const [guardado, setGuardado] = useState(false);
-  const [hasAccess, setHasAccess] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [taller, setTaller] = useState(null);
-
-  useEffect(() => {
-    if (user === null) {
-      setTimeout(() => navigate('/login'), 100);
-    }
-  }, [user, navigate]);
-
-  useEffect(() => {
-    if (!user) return;
-    const token = localStorage.getItem('token');
-    
-    // Primero, comprobar si tiene acceso a los talleres de esta cartilla
-    fetch(`http://localhost:5000/api/cartillas/${id}/talleres`, {
-      headers: { 'Authorization': `Bearer ${token}` }
-    })
-      .then(res => {
-        if (res.status === 403) {
-          setHasAccess(false);
-          setLoading(false);
-          return null;
-        }
-        return res.json();
-      })
-      .then(data => {
-        if (data && data.length > 0) {
-          setHasAccess(true);
-          const currentTaller = data[0];
-          setTaller(currentTaller);
-          // Si tiene acceso, cargar sus respuestas previas
-          fetch('http://localhost:5000/api/mis-respuestas', {
-            headers: { 'Authorization': `Bearer ${token}` }
-          })
-            .then(res => res.json())
-            .then(respData => {
-              const myRes = respData.find(r => r.taller_id === currentTaller.id);
-              if (myRes) {
-                setReflexion(myRes.respuesta || '');
-                if (myRes.energia) setEnergia(myRes.energia.toString());
-              }
-              setLoading(false);
-            })
-            .catch(() => setLoading(false));
-        } else if (data && data.length === 0) {
-           // Tiene acceso pero no hay talleres
-           setHasAccess(true);
-           setLoading(false);
-        }
-      })
-      .catch(() => setLoading(false));
-  }, [id, user]);
-
-  const handleComprar = () => {
-    const token = localStorage.getItem('token');
-    fetch('http://localhost:5000/api/compras', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify({ cartilla_id: parseInt(id) })
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.error) {
-        alert(data.error);
-      } else {
-        alert('¡Compra exitosa! Ahora tienes acceso.');
-        window.location.reload();
-      }
-    })
-    .catch(console.error);
-  };
-
-  const handleGuardar = () => {
-    if (!user || !taller) return;
-    const token = localStorage.getItem('token');
-    fetch('http://localhost:5000/api/respuestas', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify({ taller_id: taller.id, respuesta: reflexion, energia: parseInt(energia) })
-    })
-    .then(res => res.json())
-    .then(() => {
-      setGuardado(true);
-      setTimeout(() => setGuardado(false), 2000);
-    })
-    .catch(console.error);
-  };
-
-  if (!user) return null;
-  if (loading) return <div className="min-h-screen flex items-center justify-center">Cargando...</div>;
-
-  if (!hasAccess && user.role !== 'admin') {
-    return (
-      <div className="bg-slate-50 min-h-screen py-20">
-        <div className="max-w-xl mx-auto bg-white p-10 rounded-3xl shadow-xl text-center">
-          <div className="text-6xl mb-6">🔒</div>
-          <h2 className="text-3xl font-bold text-indigo-950 mb-4">Acceso Restringido</h2>
-          <p className="text-slate-600 mb-8">Para acceder a los talleres interactivos de esta cartilla, necesitas adquirirla primero.</p>
-          <button 
-            onClick={handleComprar}
-            className="w-full bg-gradient-to-r from-teal-500 to-teal-400 text-white font-bold text-lg p-4 rounded-xl hover:from-teal-600 hover:to-teal-500 transition-all shadow-lg"
-          >
-            Adquirir por $12.000 COP
-          </button>
-          <div className="mt-4 text-sm text-slate-400">
-            * Simulación de pasarela de pago para el proyecto
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="bg-slate-50 min-h-screen py-12">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Link to="/cartillas" className="text-indigo-600 hover:text-indigo-800 font-medium mb-8 inline-flex items-center">
-          ← Volver al catálogo
-        </Link>
-        
-        <div className="bg-white rounded-3xl p-10 shadow-lg border border-slate-100 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-teal-50 rounded-bl-full -z-10"></div>
-          
-          <h2 className="text-3xl font-bold text-indigo-950 mb-2">Taller Interactivo</h2>
-          <p className="text-slate-500 mb-10">{taller ? taller.titulo : `Cartilla de Trabajo #${id}`}</p>
-          
-          <div className="space-y-8">
-            <div>
-              <label className="block text-lg font-medium text-slate-800 mb-3">{taller ? taller.contenido : 'Reflexiona sobre tu día. ¿Cómo te has sentido hoy?'}</label>
-              <textarea 
-                className="w-full border-2 border-slate-200 rounded-2xl p-5 focus:ring-4 focus:ring-teal-500/20 focus:border-teal-500 outline-none transition-all resize-none text-slate-700 leading-relaxed bg-slate-50 focus:bg-white" 
-                rows="6" 
-                placeholder="Escribe aquí tu reflexión con total libertad..."
-                value={reflexion}
-                onChange={(e) => setReflexion(e.target.value)}
-              ></textarea>
-            </div>
-            
-            <div className="bg-indigo-50/50 p-6 rounded-2xl border border-indigo-100/50">
-              <label className="flex justify-between items-center mb-4 font-medium text-slate-800">
-                <span>Nivel de Energía:</span>
-                <span className="bg-white px-4 py-1 rounded-full text-indigo-600 font-bold shadow-sm">{energia} / 10</span>
-              </label>
-              <input 
-                type="range" 
-                min="1" max="10" 
-                className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-teal-500" 
-                value={energia}
-                onChange={(e) => setEnergia(e.target.value)}
-              />
-              <div className="flex justify-between text-xs text-slate-400 mt-2 font-medium">
-                <span>Agotado(a)</span>
-                <span>Lleno(a) de energía</span>
-              </div>
-            </div>
-            
-            <div className="pt-4 flex items-center justify-between">
-              <button 
-                onClick={handleGuardar}
-                className="bg-teal-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-teal-600 transition-colors shadow-[0_8px_20px_rgb(20,184,166,0.3)] hover:-translate-y-0.5"
-              >
-                Guardar Progreso
-              </button>
-              
-              <div className={`transition-opacity duration-300 ${guardado ? 'opacity-100' : 'opacity-0'}`}>
-                <span className="bg-emerald-100 text-emerald-800 px-4 py-2 rounded-lg font-medium flex items-center gap-2">
-                  <span>✓</span> ¡Progreso guardado!
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function MisCartillas() {
   const [compras, setCompras] = useState([]);
@@ -560,7 +399,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/cartillas" element={<Cartillas />} />
             <Route path="/mis-cartillas" element={<MisCartillas />} />
-            <Route path="/cartilla/:id" element={<CartillaDetail />} />
+            <Route path="/cartilla/:id" element={<InteractiveWorkbook />} />
             <Route path="/login" element={<Auth />} />
             <Route path="/admin" element={<AdminDashboard />} />
           </Routes>

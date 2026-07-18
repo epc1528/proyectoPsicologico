@@ -4,7 +4,8 @@ import { AuthContext } from './AuthContext';
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
-  const [formData, setFormData] = useState({ nombre: '', correo: '', password: '', telefono: '', fecha_nacimiento: '', motivo_consulta: '' });
+  const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({ nombre: '', correo: '', password: '', telefono: '', fecha_nacimiento: '', motivo_consulta: '', codigoAdmin: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { login, user } = useContext(AuthContext);
@@ -23,32 +24,65 @@ export default function Auth() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
     setLoading(true);
+    setError('');
 
-    const endpoint = isLogin ? 'http://localhost:5000/api/auth/login' : 'http://localhost:5000/api/auth/register';
-    
-    try {
-      const res = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
-      
-      const data = await res.json();
-      
-      if (!res.ok) {
-        setError(data.error || 'Hubo un error');
-        setLoading(false);
-        return;
-      }
+    const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
+    const payload = isLogin 
+      ? { correo: formData.correo, password: formData.password }
+      : formData;
 
-      login(data.user, data.token);
-      navigate('/cartillas');
-    } catch (err) {
-      setError('Error al conectar con el servidor');
-      setLoading(false);
+    fetch(`http://localhost:5000${endpoint}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(async (res) => {
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Error en la solicitud');
+        
+        login(data.user, data.token);
+        
+        // Mostrar bienvenida
+        Swal.fire({
+          title: `¡Bienvenido(a) ${data.user.nombre.split(' ')[0]}!`,
+          text: isLogin ? 'Qué bueno verte de nuevo.' : 'Tu cuenta ha sido creada exitosamente.',
+          icon: 'success',
+          confirmButtonColor: '#14b8a6',
+          timer: 2000,
+          showConfirmButton: false
+        });
+        
+        navigate('/cartillas');
+      })
+      .catch(err => setError(err.message))
+      .finally(() => setLoading(false));
+  };
+
+  const handleForgotPassword = () => {
+    if (!formData.correo) {
+      Swal.fire('Atención', 'Por favor ingresa tu correo electrónico para enviarte las instrucciones.', 'info');
+      return;
     }
+    
+    Swal.fire({
+      title: 'Enviando correo...',
+      allowOutsideClick: false,
+      didOpen: () => Swal.showLoading()
+    });
+
+    fetch('http://localhost:5000/api/auth/forgot-password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ correo: formData.correo })
+    })
+    .then(res => res.json())
+    .then(data => {
+      Swal.fire('Correo enviado', 'Si el correo existe en nuestra base de datos, recibirás un enlace de recuperación pronto.', 'success');
+    })
+    .catch(() => {
+      Swal.fire('Error', 'Hubo un problema al contactar al servidor', 'error');
+    });
   };
 
   return (
@@ -157,6 +191,14 @@ export default function Auth() {
                       <option value="Otro">Otro Motivo</option>
                     </select>
                   </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Código de Administrador (Opcional)</label>
+                    <input 
+                      type="password" name="codigoAdmin" value={formData.codigoAdmin} onChange={handleChange}
+                      className="w-full border border-slate-200 dark:border-slate-700 p-4 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all bg-slate-50 dark:bg-slate-800 dark:text-white text-slate-900" 
+                      placeholder="Solo para personal de la clínica"
+                    />
+                  </div>
                 </>
               )}
               <div>
@@ -170,14 +212,47 @@ export default function Auth() {
               <div>
                 <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 flex justify-between">
                   <span>Contraseña</span>
-                  {isLogin && <a href="#" className="text-indigo-600 dark:text-teal-400 font-normal hover:underline">¿Olvidaste tu contraseña?</a>}
+                  {isLogin && <button type="button" onClick={handleForgotPassword} className="text-indigo-600 dark:text-teal-400 font-normal hover:underline">¿Olvidaste tu contraseña?</button>}
                 </label>
-                <input 
-                  type="password" name="password" value={formData.password} onChange={handleChange} required
-                  className="w-full border border-slate-200 dark:border-slate-700 p-4 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all bg-slate-50 dark:bg-slate-800 dark:text-white text-slate-900" 
-                  placeholder="••••••••"
-                />
+                <div className="relative">
+                  <input 
+                    type={showPassword ? "text" : "password"} 
+                    name="password" value={formData.password} onChange={handleChange} required
+                    className="w-full border border-slate-200 dark:border-slate-700 p-4 pr-12 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all bg-slate-50 dark:bg-slate-800 dark:text-white text-slate-900" 
+                    placeholder="••••••••"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-indigo-600 dark:hover:text-teal-400 transition-colors focus:outline-none"
+                  >
+                    {showPassword ? (
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+                      </svg>
+                    ) : (
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    )}
+                  </button>
+                </div>
               </div>
+              
+              {!isLogin && (
+                <div className="flex items-start gap-3 mt-4">
+                  <input 
+                    type="checkbox" 
+                    id="terminos" 
+                    required 
+                    className="mt-1 w-5 h-5 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                  />
+                  <label htmlFor="terminos" className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Acepto los <a href="#" className="text-indigo-600 dark:text-teal-400 font-bold hover:underline">Términos y Condiciones</a> y autorizo el tratamiento de mis datos sensibles según la <a href="#" className="text-indigo-600 dark:text-teal-400 font-bold hover:underline">Política de Privacidad</a>.
+                  </label>
+                </div>
+              )}
             </div>
             
             <button 

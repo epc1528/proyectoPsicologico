@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from './AuthContext';
+import Swal from 'sweetalert2';
 
 export default function AdminDashboard() {
   const { user } = useContext(AuthContext);
@@ -23,10 +24,41 @@ export default function AdminDashboard() {
       body: JSON.stringify(formData)
     }).then(res => res.json())
       .then(data => {
-        alert('Cartilla creada con éxito (ID: ' + data.id + ')');
+        Swal.fire({
+          title: '¡Éxito!',
+          text: 'Cartilla creada con éxito (ID: ' + data.id + ')',
+          icon: 'success',
+          confirmButtonColor: '#14b8a6'
+        });
         setShowForm(false);
         setFormData({ titulo: '', descripcion: '', precio: 12000, imagen_url: '' });
       }).catch(console.error);
+  };
+
+  const handleDeleteUsuario = (id, nombre) => {
+    Swal.fire({
+      title: '¿Eliminar a ' + nombre + '?',
+      text: "Se borrarán todos sus datos y respuestas permanentemente.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#ef4444',
+      cancelButtonColor: '#94a3b8',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const token = localStorage.getItem('token');
+        fetch(`http://localhost:5000/api/admin/usuarios/${id}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${token}` }
+        }).then(res => res.json())
+          .then(() => {
+            setUsuarios(usuarios.filter(u => u.id !== id));
+            setRespuestas(respuestas.filter(r => r.userId !== id));
+            Swal.fire('Eliminado', 'El paciente ha sido dado de baja de la base de datos.', 'success');
+          }).catch(console.error);
+      }
+    });
   };
 
   useEffect(() => {
@@ -65,6 +97,15 @@ export default function AdminDashboard() {
     </div>
   );
 
+  const getTituloDoctor = (nombre) => {
+    if (!nombre) return 'Dr(a).';
+    const primerNombre = nombre.split(' ')[0].toLowerCase();
+    if (primerNombre.endsWith('a') || nombre.toLowerCase().includes('doctora')) {
+      return 'Dra.';
+    }
+    return 'Dr.';
+  };
+
   return (
     <div className="bg-slate-50 min-h-screen py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -79,7 +120,7 @@ export default function AdminDashboard() {
             <div className="w-10 h-10 rounded-full bg-indigo-200 flex items-center justify-center font-bold text-indigo-700">D</div>
             <div>
               <p className="text-xs text-indigo-500 font-bold uppercase tracking-wider">Sesión Activa</p>
-              <p className="font-bold text-sm">Dra. {user.nombre.replace('Doctora (Admin)', '').trim() || 'Psicóloga'}</p>
+              <p className="font-bold text-sm">{getTituloDoctor(user.nombre)} {user.nombre.replace('Doctora (Admin)', '').replace('Doctor (Admin)', '').trim() || 'Profesional'}</p>
             </div>
           </div>
         </div>
@@ -135,13 +176,25 @@ export default function AdminDashboard() {
               <div className="p-4 max-h-[600px] overflow-y-auto">
                 <div className="space-y-2">
                   {usuarios.filter(u => u.role !== 'admin').map(u => (
-                    <div key={u.id} className="flex justify-between items-center p-4 rounded-2xl hover:bg-slate-50 transition-colors group border border-transparent hover:border-slate-100">
-                      <div>
-                        <p className="font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">{u.nombre}</p>
-                        <p className="text-sm text-slate-500 font-light">{u.correo}</p>
+                    <div key={u.id} className="flex flex-col p-4 rounded-2xl hover:bg-slate-50 transition-colors group border border-transparent hover:border-slate-100 gap-3">
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <p className="font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">{u.nombre}</p>
+                          <p className="text-sm text-slate-500 font-light">{u.correo}</p>
+                        </div>
+                        <div className="flex gap-2 items-center">
+                          <div className="w-8 h-8 rounded-full bg-teal-50 flex items-center justify-center text-teal-600 text-xs font-bold" title="Respuestas Guardadas">
+                            {respuestas.filter(r => r.userId === u.id).length}
+                          </div>
+                          <button onClick={() => handleDeleteUsuario(u.id, u.nombre)} className="text-slate-300 hover:text-red-500 transition-colors p-1" title="Dar de baja">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                          </button>
+                        </div>
                       </div>
-                      <div className="w-8 h-8 rounded-full bg-teal-50 flex items-center justify-center text-teal-600 text-xs font-bold">
-                        {respuestas.filter(r => r.userId === u.id).length}
+                      <div className="text-xs text-slate-400 flex flex-wrap gap-x-4 gap-y-1">
+                        {u.telefono && <span>📞 {u.telefono}</span>}
+                        {u.fecha_nacimiento && <span>🎂 {new Date(u.fecha_nacimiento).toLocaleDateString()}</span>}
+                        {u.motivo_consulta && <span className="text-indigo-500 font-medium">📋 {u.motivo_consulta}</span>}
                       </div>
                     </div>
                   ))}
