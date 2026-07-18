@@ -5,6 +5,7 @@ import { ThemeContext } from './ThemeContext';
 import Auth from './Auth';
 import AdminDashboard from './AdminDashboard';
 import InteractiveWorkbook from './InteractiveWorkbook';
+import logoClick from './assets/logo-click.jpeg';
 
 function Home() {
   return (
@@ -311,8 +312,8 @@ function NavBar() {
     <nav className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-slate-100 dark:border-slate-800 sticky top-0 z-50 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
         <Link to="/" className="text-2xl font-extrabold text-indigo-950 dark:text-white flex items-center gap-2 z-50">
-          <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-teal-400 to-indigo-600 flex items-center justify-center text-white text-sm">P</span>
-          PsicoCartillas
+          <img src={logoClick} alt="Logo" className="w-15 h-15 object-contain" />
+          Dra. Milagro Bolaño R.
         </Link>
 
         {/* Desktop Menu */}
