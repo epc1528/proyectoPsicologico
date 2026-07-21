@@ -6,7 +6,7 @@ import Auth from './Auth';
 import AdminDashboard from './AdminDashboard';
 import InteractiveWorkbook from './InteractiveWorkbook';
 import logoClick from './assets/logo-click.jpeg';
-import fotoperfil1 from "./assets/perfil1.jpg"
+import fotoperfil1 from './assets/perfil1.jpg';
 
 function Home() {
   return (
