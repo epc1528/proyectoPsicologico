@@ -106,7 +106,7 @@ export default function Auth() {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-indigo-200">paz interior</span>
           </h1>
           <p className="text-xl font-light text-indigo-100/90 leading-relaxed mb-8">
-            Nuestras cartillas psicológicas interactivas están diseñadas para acompañarte en tu proceso de crecimiento personal, a tu propio ritmo.
+            Nuestras bitacoras psicológicas interactivas están diseñadas para acompañarte en tu proceso de crecimiento personal, a tu propio ritmo.
           </p>
           
           <div className="flex gap-4">
@@ -116,7 +116,7 @@ export default function Auth() {
             </div>
             <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 flex-1">
                <div className="text-teal-300 font-bold text-2xl mb-1">3</div>
-               <div className="text-sm text-indigo-100">Cartillas Especializadas</div>
+               <div className="text-sm text-indigo-100">Bitacoras Especializadas</div>
             </div>
           </div>
         </div>

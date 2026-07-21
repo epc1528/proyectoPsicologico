@@ -6,6 +6,7 @@ import Auth from './Auth';
 import AdminDashboard from './AdminDashboard';
 import InteractiveWorkbook from './InteractiveWorkbook';
 import logoClick from './assets/logo-click.jpeg';
+import fotoperfil1 from "./assets/perfil1.jpg"
 
 function Home() {
   return (
@@ -31,11 +32,11 @@ function Home() {
               </span>
             </h1>
             <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
-              Inicia tu proceso de sanación a través de cartillas interactivas diseñadas por psicólogos clínicos. Una metodología paso a paso para abrazar tus emociones.
+              Inicia tu proceso de sanación a través de bitacoras interactivas diseñadas por psicólogos clínicos. Una metodología paso a paso para abrazar tus emociones.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
               <Link to="/cartillas" className="bg-indigo-600 dark:bg-teal-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-indigo-700 dark:hover:bg-teal-600 transition-all shadow-[0_8px_30px_rgb(79,70,229,0.3)] dark:shadow-[0_8px_30px_rgb(20,184,166,0.25)] hover:-translate-y-1">
-                Explorar Cartillas
+                Explorar Bitacoras
               </Link>
               <Link to="/login" className="bg-white dark:bg-slate-800 text-indigo-900 dark:text-white border border-slate-200 dark:border-slate-700 px-8 py-4 rounded-xl font-bold text-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shadow-sm hover:shadow-md">
                 Ingresar a mi espacio
@@ -130,6 +131,125 @@ function Home() {
           </div>
         </div>
       </section>
+
+      {/*colaborador*/}
+
+      {/* Sección de Colaboradores Premium (Carrusel Dinámico Corregido) */}
+<section className="py-24 bg-slate-50/50 dark:bg-slate-900/30 border-t border-slate-200 dark:border-slate-800 relative z-20 overflow-hidden">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    {/* Encabezado de la Sección */}
+    <div className="text-center mb-16">
+      <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Nuestro Equipo de Colaboradores
+      </h2>
+      <p className="mt-4 text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-light">
+        Profesionales calificados en tecnología y salud mental dedicados a proteger y optimizar tu espacio de sanación.
+      </p>
+    </div>
+
+    {/* Lógica y Estructura del Carrusel */}
+    {(() => {
+      const colaboradores = [
+        {
+          nombre: "Dra. Milagro Bolaño Romero",
+          cargo: "Psicóloga Clínica - Psicoterapeuta",
+          desc: "Especialista en psicoterapia psicoanalítica y desarrollo de metodologías cognitivas interactivas para el bienestar emocional continuo.",
+          foto: fotoperfil1
+        },
+        {
+          nombre: "Ing. Andrea Mendoza Castro",
+          cargo: "Directora de Infraestructura y Datos",
+          desc: "Especialista en seguridad en la nube y arquitectura de servidores redundantes. Garantiza que la privacidad y disponibilidad de tu historial psicológico esté activa 24/7.",
+          foto: "https://unsplash.com"
+        },
+        {
+          nombre: "Dr. Carlos Valencia Ruiz",
+          cargo: "Neuropsicólogo Clínico",
+          desc: "Investigador en estimulación cognitiva para adultos mayores y diseñador de las dinámicas ágiles integradas en nuestras bitacoras digitales.",
+          foto: "https://unsplash.com"
+        }
+      ];
+
+      const [currentIndex, setCurrentIndex] = React.useState(0);
+
+      const nextSlide = () => {
+        setCurrentIndex((prev) => (prev + 1) % colaboradores.length);
+      };
+
+      const prevSlide = () => {
+        setCurrentIndex((prev) => (prev - 1 + colaboradores.length) % colaboradores.length);
+      };
+
+      return (
+        <div className="relative max-w-4xl mx-auto px-4 md:px-12">
+          {/* Tarjeta Central */}
+          <div className="bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 rounded-3xl p-6 md:p-10 shadow-xl flex flex-col md:flex-row items-center gap-8 md:gap-12 min-h-[320px] transition-all duration-300">
+            
+            {/* Foto */}
+            <div className="w-32 h-32 md:w-48 md:h-48 rounded-2xl overflow-hidden shadow-md flex-shrink-0 relative group">
+              <div className="absolute inset-0 bg-gradient-to-tr from-teal-500/20 to-indigo-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+              <img 
+                src={colaboradores[currentIndex].foto} 
+                alt={colaboradores[currentIndex].nombre} 
+                className="w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+
+            {/* Información */}
+            <div className="flex-1 flex flex-col justify-center text-center md:text-left space-y-4">
+              <div>
+                <h3 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                  {colaboradores[currentIndex].nombre}
+                </h3>
+                <p className="text-sm font-semibold tracking-wide uppercase text-teal-600 dark:text-teal-400 mt-1">
+                  {colaboradores[currentIndex].cargo}
+                </p>
+              </div>
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed font-light text-base md:text-lg">
+                "{colaboradores[currentIndex].desc}"
+              </p>
+            </div>
+          </div>
+
+          {/* Flecha Izquierda */}
+          <button 
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-6 w-12 h-12 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-md flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-teal-400 hover:shadow-lg transition-all active:scale-95 cursor-pointer z-30"
+          >
+            ←
+          </button>
+
+          {/* Flecha Derecha */}
+          <button 
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-6 w-12 h-12 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-md flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-teal-400 hover:shadow-lg transition-all active:scale-95 cursor-pointer z-30"
+          >
+            →
+          </button>
+
+          {/* Puntos de Navegación */}
+          <div className="flex justify-center items-center gap-2 mt-8">
+            {colaboradores.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                  currentIndex === index 
+                    ? 'w-8 bg-indigo-600 dark:bg-teal-500' 
+                    : 'w-2.5 bg-slate-300 dark:bg-slate-700 hover:bg-slate-400'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+      );
+    })()}
+
+  </div> {/* <-- Aquí se cerró el div de max-w-7xl que faltaba */}
+</section>
+
+      
     </div>
   );
 }
@@ -178,7 +298,7 @@ function Cartillas() {
           <div className="inline-block px-4 py-1.5 rounded-full bg-teal-50 dark:bg-teal-900/30 border border-teal-100 dark:border-teal-800/50 text-teal-600 dark:text-teal-400 text-sm font-semibold mb-6">
             Catálogo Oficial
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6">Nuestras Cartillas</h2>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6">Nuestras Bitacoras</h2>
           <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-light leading-relaxed">
             Herramientas diseñadas clínicamente para acompañarte en tu proceso. Selecciona la cartilla que mejor resuene con tus necesidades actuales.
           </p>
@@ -187,7 +307,7 @@ function Cartillas() {
         {cartillas.length === 0 ? (
           <div className="text-center py-20 text-slate-500 dark:text-slate-400 flex flex-col items-center">
              <div className="w-16 h-16 border-4 border-teal-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-             Cargando cartillas...
+             Cargando bitacoras...
           </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -264,14 +384,14 @@ function MisCartillas() {
     <div className="bg-slate-50 min-h-screen py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-extrabold text-indigo-950 tracking-tight mb-4">Mis Cartillas</h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto font-light">Continúa con tu progreso en las cartillas que has adquirido.</p>
+          <h2 className="text-4xl font-extrabold text-indigo-950 tracking-tight mb-4">Mis Bitacoras</h2>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto font-light">Continúa con tu progreso en las bitacoras que has adquirido.</p>
         </div>
         
         {compras.length === 0 ? (
           <div className="text-center bg-white p-10 rounded-3xl shadow-sm border border-slate-100 max-w-2xl mx-auto">
             <div className="text-5xl mb-4">📚</div>
-            <h3 className="text-2xl font-bold text-indigo-950 mb-4">Aún no tienes cartillas</h3>
+            <h3 className="text-2xl font-bold text-indigo-950 mb-4">Aún no tienes bitacoras</h3>
             <p className="text-slate-600 mb-6">Visita nuestro catálogo para encontrar la herramienta ideal para ti.</p>
             <Link to="/cartillas" className="bg-indigo-600 text-white px-8 py-3 rounded-xl font-medium hover:bg-indigo-700 transition-colors shadow-md inline-block">
               Ver Catálogo
@@ -327,7 +447,7 @@ function NavBar() {
           
           {user ? (
             <div className="flex items-center gap-5">
-              <Link to="/mis-cartillas" className="text-slate-600 font-medium hover:text-indigo-600 transition-colors">Mis Cartillas</Link>
+              <Link to="/mis-cartillas" className="text-slate-600 font-medium hover:text-indigo-600 transition-colors">Mis Bitacoras</Link>
               {user.role === 'admin' && (
                 <Link to="/admin" className="text-teal-600 font-bold hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300 bg-teal-50 dark:bg-teal-900/30 px-4 py-2 rounded-full transition-colors">Panel Doctora</Link>
               )}
@@ -367,7 +487,7 @@ function NavBar() {
           
           {user ? (
             <>
-              <Link to="/mis-cartillas" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-slate-700 dark:text-slate-300 hover:text-indigo-600">Mis Cartillas</Link>
+              <Link to="/mis-cartillas" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-slate-700 dark:text-slate-300 hover:text-indigo-600">Mis Bitacoras</Link>
               {user.role === 'admin' && (
                 <Link to="/admin" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-bold text-teal-600 dark:text-teal-400">Panel Doctora</Link>
               )}
@@ -412,7 +532,7 @@ function App() {
               <div className="md:col-span-1 lg:col-span-2">
                 <div className="flex items-center gap-2 mb-6">
                    <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-teal-400 to-indigo-600 flex items-center justify-center text-white text-sm font-bold shadow-lg shadow-teal-500/20">P</span>
-                   <span className="text-2xl font-bold text-white tracking-tight">PsicoCartillas</span>
+                   <span className="text-2xl font-bold text-white tracking-tight">PsicoBitacoras</span>
                 </div>
                 <p className="text-indigo-200/70 dark:text-slate-500 font-light max-w-sm leading-relaxed">
                   Transformando el acceso a la salud mental mediante herramientas digitales interactivas, seguras y profesionales. Empieza tu proceso hoy mismo.
@@ -430,7 +550,7 @@ function App() {
               <div>
                 <h4 className="text-white font-semibold mb-6 uppercase tracking-wider text-sm">Plataforma</h4>
                 <ul className="space-y-4">
-                  <li><Link to="/cartillas" className="text-indigo-200/70 dark:text-slate-500 hover:text-teal-400 dark:hover:text-teal-400 transition-colors">Catálogo de Cartillas</Link></li>
+                  <li><Link to="/cartillas" className="text-indigo-200/70 dark:text-slate-500 hover:text-teal-400 dark:hover:text-teal-400 transition-colors">Catálogo de Bitacoras</Link></li>
                   <li><Link to="/login" className="text-indigo-200/70 dark:text-slate-500 hover:text-teal-400 dark:hover:text-teal-400 transition-colors">Inicia Sesión</Link></li>
                   <li><Link to="/login" className="text-indigo-200/70 dark:text-slate-500 hover:text-teal-400 dark:hover:text-teal-400 transition-colors">Regístrate</Link></li>
                   <li><a href="#beneficios" className="text-indigo-200/70 dark:text-slate-500 hover:text-teal-400 dark:hover:text-teal-400 transition-colors">¿Cómo Funciona?</a></li>
@@ -449,7 +569,7 @@ function App() {
             </div>
             
             <div className="flex flex-col md:flex-row justify-between items-center text-indigo-300/50 dark:text-slate-600 text-sm">
-              <p>&copy; {new Date().getFullYear()} PsicoCartillas. Diseñado para tu bienestar mental.</p>
+              <p>&copy; {new Date().getFullYear()} PsicoBitacoras. Diseñado para tu bienestar mental.</p>
               <p className="mt-4 md:mt-0 flex items-center gap-2">Hecho con <span className="text-teal-500">❤️</span> por expertos clínicos.</p>
             </div>
           </div>
