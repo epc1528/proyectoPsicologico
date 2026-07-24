@@ -6,7 +6,7 @@ import Auth from './Auth';
 import AdminDashboard from './AdminDashboard';
 import InteractiveWorkbook from './InteractiveWorkbook';
 import logoClick from './assets/logo-click.jpeg';
-import fotoperfil1 from './assets/perfil1.jpg';
+import fotoperfil1 from './assets/perfil2.png';
 
 function Home() {
   return (
@@ -153,14 +153,8 @@ function Home() {
         {
           nombre: "Dra. Milagro Bolaño Romero",
           cargo: "Psicóloga Clínica - Psicoterapeuta",
-          desc: "Especialista en psicoterapia psicoanalítica y desarrollo de metodologías cognitivas interactivas para el bienestar emocional continuo.",
+          desc: "Psicóloga y Magíster en Administración y Dirección de Empresas (MBA) con una sólida trayectoria en atención psicoterapéutica individual y grupal, así como en la gestión estratégica del talento humano. Mi enfoque combina la rigurosidad de la psicología clínica de orientación psicoanalítica con herramientas avanzadas de Coaching y PNL, lo que me permite potenciar el bienestar emocional de las personas y optimizar el clima organizacional dentro de las empresas. Con amplia experiencia liderando programas de bienestar social, dirección de recursos humanos y consultoría clínica en el sector público y privado.",
           foto: fotoperfil1
-        },
-        {
-          nombre: "Ing. Andrea Mendoza Castro",
-          cargo: "Directora de Infraestructura y Datos",
-          desc: "Especialista en seguridad en la nube y arquitectura de servidores redundantes. Garantiza que la privacidad y disponibilidad de tu historial psicológico esté activa 24/7.",
-          foto: "https://unsplash.com"
         },
         {
           nombre: "Dr. Carlos Valencia Ruiz",
