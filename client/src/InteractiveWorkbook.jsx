@@ -105,9 +105,9 @@ export default function InteractiveWorkbook() {
           </div>
           <button 
             onClick={handleGuardar}
-            className={`px-4 py-2 rounded-full font-bold text-sm transition-all shadow-sm ${guardado ? 'bg-emerald-100 text-emerald-700' : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:shadow-md'}`}
+            className={`px-4 py-2 rounded-full font-bold text-sm transition-all shadow-sm flex items-center gap-2 ${guardado ? 'bg-emerald-100 text-emerald-700' : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:shadow-md border border-slate-200 dark:border-slate-700 hover:-translate-y-0.5'}`}
           >
-            {guardado ? '✓ Guardado' : 'Guardar Progreso'}
+            {guardado ? '✓ Guardado' : '💾 Guardar Progreso'}
           </button>
         </div>
 
@@ -125,7 +125,7 @@ export default function InteractiveWorkbook() {
                 <div className={`w-32 h-32 mx-auto rounded-full bg-gradient-to-br ${cartilla.colorTema} flex items-center justify-center text-6xl shadow-xl shadow-current/20`}>
                   {pagina.imagen}
                 </div>
-                <h1 className="text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                <h1 className="text-5xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
                   {pagina.titulo}
                 </h1>
                 <div className={`inline-block px-6 py-2 rounded-full bg-gradient-to-r ${cartilla.colorTema} text-white font-black tracking-widest text-lg shadow-lg`}>
@@ -139,7 +139,7 @@ export default function InteractiveWorkbook() {
 
             {pagina.tipo === 'teoria' && (
               <div className="max-w-2xl mx-auto space-y-8 animate-in slide-in-from-right-8 duration-500">
-                <h2 className={`text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${cartilla.colorTema}`}>
+                <h2 className={`text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${cartilla.colorTema}`} style={{ fontFamily: "'Playfair Display', serif" }}>
                   {pagina.titulo}
                 </h2>
                 <div className="prose prose-lg dark:prose-invert prose-slate">
@@ -157,7 +157,7 @@ export default function InteractiveWorkbook() {
               <div className="max-w-2xl mx-auto w-full space-y-8 animate-in slide-in-from-right-8 duration-500">
                 <div className="inline-flex items-center gap-3">
                   <span className={`w-10 h-10 rounded-xl bg-gradient-to-br ${cartilla.colorTema} text-white flex items-center justify-center font-bold shadow-lg`}>✍️</span>
-                  <h2 className="text-3xl font-bold text-slate-900 dark:text-white">{pagina.titulo}</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white" style={{ fontFamily: "'Playfair Display', serif" }}>{pagina.titulo}</h2>
                 </div>
                 
                 <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed font-light">
@@ -167,7 +167,8 @@ export default function InteractiveWorkbook() {
                 <div className="relative group">
                   <div className={`absolute -inset-1 bg-gradient-to-r ${cartilla.colorTema} rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-500`}></div>
                   <textarea 
-                    className="relative w-full h-64 border-0 rounded-2xl p-8 outline-none resize-none text-slate-700 dark:text-slate-200 leading-relaxed bg-slate-50/90 dark:bg-slate-900/90 backdrop-blur-sm shadow-inner text-lg font-medium" 
+                    className="relative w-full h-64 border border-slate-200 dark:border-slate-700 rounded-2xl p-8 outline-none resize-none text-slate-700 dark:text-slate-200 leading-relaxed bg-white dark:bg-slate-900 shadow-inner text-lg font-medium focus:ring-2 focus:border-transparent transition-all" 
+                    style={{ '--tw-ring-color': 'var(--tw-gradient-from, #f472b6)' }}
                     placeholder={pagina.placeholder}
                     value={respuestas[paginaActual] || ''}
                     onChange={(e) => handleRespuestaChange(e.target.value)}
