@@ -14,7 +14,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'secret_psicocartillas_123';
 
 const app = express();
 app.use(helmet());
-app.use(cors({ origin: 'https://stellar-vision-production.up.railway.app' }));
+app.use(cors({ origin: ['https://stellar-vision-production.up.railway.app', 'http://localhost:5173'] }));
 app.use(express.json());
 
 // Middlewares
