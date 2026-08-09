@@ -113,7 +113,7 @@ export default function AdminDashboard() {
         {/* Header del Panel */}
         <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 mb-10 flex flex-col sm:flex-row justify-between items-center gap-6">
           <div>
-            <h2 className="text-3xl font-extrabold text-indigo-950">Panel de Control Clínico</h2>
+            <h2 className="text-3xl font-extrabold text-slate-900" style={{ fontFamily: "'Playfair Display', serif" }}>Panel de Control Clínico</h2>
             <p className="text-slate-500 mt-1 font-light">Monitorea el progreso de tus pacientes de forma segura.</p>
           </div>
           <div className="bg-indigo-50 border border-indigo-100 text-indigo-800 px-6 py-3 rounded-2xl flex items-center gap-3">
@@ -129,7 +129,7 @@ export default function AdminDashboard() {
         <div className="mb-10">
           <button 
             onClick={() => setShowForm(!showForm)}
-            className="bg-indigo-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-indigo-700 transition-colors shadow-md"
+            className="bg-rose-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-rose-700 transition-colors shadow-md"
           >
             {showForm ? 'Cancelar' : '+ Crear Nueva Cartilla'}
           </button>
@@ -156,7 +156,7 @@ export default function AdminDashboard() {
                     <input type="text" className="w-full border border-slate-200 p-3 rounded-xl outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" value={formData.imagen_url} onChange={e => setFormData({...formData, imagen_url: e.target.value})} />
                   </div>
                 </div>
-                <button type="submit" className="bg-teal-500 text-white px-8 py-3 rounded-xl font-bold hover:bg-teal-600 transition-colors shadow-md">
+                <button type="submit" className="bg-pink-500 text-white px-8 py-3 rounded-xl font-bold hover:bg-pink-600 transition-colors shadow-md">
                   Guardar Cartilla
                 </button>
               </form>
@@ -170,7 +170,7 @@ export default function AdminDashboard() {
             <div className="bg-white rounded-[2rem] shadow-sm border border-slate-100 overflow-hidden sticky top-24">
               <div className="bg-slate-50/50 px-8 py-6 border-b border-slate-100">
                 <h3 className="font-bold text-xl text-indigo-950 flex items-center gap-2">
-                  <span className="text-teal-500">👥</span> Pacientes
+                  <span className="text-pink-500">👥</span> Pacientes
                 </h3>
               </div>
               <div className="p-4 max-h-[600px] overflow-y-auto">
@@ -179,7 +179,7 @@ export default function AdminDashboard() {
                     <div key={u.id} className="flex flex-col p-4 rounded-2xl hover:bg-slate-50 transition-colors group border border-transparent hover:border-slate-100 gap-3">
                       <div className="flex justify-between items-start">
                         <div>
-                          <p className="font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">{u.nombre}</p>
+                          <p className="font-bold text-slate-800 group-hover:text-rose-600 transition-colors">{u.nombre}</p>
                           <p className="text-sm text-slate-500 font-light">{u.correo}</p>
                         </div>
                         <div className="flex gap-2 items-center">
@@ -214,7 +214,7 @@ export default function AdminDashboard() {
             <div className="bg-white rounded-[2rem] shadow-sm border border-slate-100 overflow-hidden">
               <div className="bg-slate-50/50 px-8 py-6 border-b border-slate-100 flex justify-between items-center">
                 <h3 className="font-bold text-xl text-indigo-950 flex items-center gap-2">
-                  <span className="text-teal-500">📝</span> Actividad Reciente
+                  <span className="text-pink-500">📝</span> Actividad Reciente
                 </h3>
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-400 bg-white px-3 py-1 rounded-full border border-slate-100 shadow-sm">
                   {respuestas.length} Registros

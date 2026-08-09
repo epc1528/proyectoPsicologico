@@ -32,7 +32,7 @@ export default function Auth() {
       ? { correo: formData.correo, password: formData.password }
       : formData;
 
-    fetch(`https://proyectopsicologico-production.up.railway.app${endpoint}`, {
+    fetch(`http://localhost:5000${endpoint}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -71,7 +71,7 @@ export default function Auth() {
       didOpen: () => Swal.showLoading()
     });
 
-    fetch('https://proyectopsicologico-production.up.railway.app/api/auth/forgot-password', {
+    fetch('http://localhost:5000/api/auth/forgot-password', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ correo: formData.correo })
@@ -89,34 +89,34 @@ export default function Auth() {
     <div className="min-h-screen flex bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
       
       {/* Columna Izquierda: Imagen / Branding */}
-      <div className="hidden lg:flex lg:w-1/2 relative bg-indigo-900 overflow-hidden items-center justify-center">
+      <div className="hidden lg:flex lg:w-1/2 relative bg-rose-900 overflow-hidden items-center justify-center">
         <img 
           src="/auth-bg.png" 
           alt="Salud Mental" 
           className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-teal-500/40 to-indigo-900/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-pink-500/40 to-rose-900/80"></div>
         
         <div className="relative z-10 max-w-lg px-12 text-white">
           <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-3xl font-bold mb-8 border border-white/30 shadow-2xl">
             P
           </div>
-          <h1 className="text-5xl font-extrabold tracking-tight mb-6 leading-tight">
+          <h1 className="text-5xl font-extrabold tracking-tight mb-6 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
             Descubre tu <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-indigo-200">paz interior</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-rose-200">paz interior</span>
           </h1>
-          <p className="text-xl font-light text-indigo-100/90 leading-relaxed mb-8">
-            Nuestras bitacoras psicológicas interactivas están diseñadas para acompañarte en tu proceso de crecimiento personal, a tu propio ritmo.
+          <p className="text-xl font-light text-pink-100/90 leading-relaxed mb-8">
+            Nuestras bitácoras emocionales interactivas están diseñadas para acompañarte en tu proceso de crecimiento personal, a tu propio ritmo.
           </p>
           
           <div className="flex gap-4">
             <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 flex-1">
-               <div className="text-teal-300 font-bold text-2xl mb-1">100%</div>
-               <div className="text-sm text-indigo-100">Seguro y Privado</div>
+               <div className="text-pink-300 font-bold text-2xl mb-1">100%</div>
+               <div className="text-sm text-pink-100">Seguro y Privado</div>
             </div>
             <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 flex-1">
-               <div className="text-teal-300 font-bold text-2xl mb-1">3</div>
-               <div className="text-sm text-indigo-100">Bitacoras Especializadas</div>
+               <div className="text-pink-300 font-bold text-2xl mb-1">3</div>
+               <div className="text-sm text-pink-100">Bitácoras Especializadas</div>
             </div>
           </div>
         </div>
@@ -125,14 +125,14 @@ export default function Auth() {
       {/* Columna Derecha: Formulario */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 sm:p-12 lg:p-24 bg-white dark:bg-slate-900 relative">
         <div className="absolute top-8 right-8">
-           <Link to="/" className="text-sm font-medium text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-teal-400 transition-colors">
+           <Link to="/" className="text-sm font-medium text-slate-500 hover:text-rose-600 dark:text-slate-400 dark:hover:text-pink-400 transition-colors">
              Volver al inicio
            </Link>
         </div>
 
         <div className="max-w-md w-full space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
           <div>
-            <h2 className="text-3xl font-extrabold text-indigo-950 dark:text-white mb-2">
+            <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>
               {isLogin ? 'Bienvenido de nuevo' : 'Comienza tu viaje'}
             </h2>
             <p className="text-slate-500 dark:text-slate-400 font-light">
@@ -155,7 +155,7 @@ export default function Auth() {
                     <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Nombre Completo</label>
                     <input 
                       type="text" name="nombre" value={formData.nombre} onChange={handleChange} required={!isLogin}
-                      className="w-full border border-slate-200 dark:border-slate-700 p-4 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all bg-slate-50 dark:bg-slate-800 dark:text-white text-slate-900" 
+                      className="w-full border border-slate-200 dark:border-slate-700 p-4 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none transition-all bg-slate-50 dark:bg-slate-800 dark:text-white text-slate-900" 
                       placeholder="Tu nombre completo"
                     />
                   </div>
@@ -164,7 +164,7 @@ export default function Auth() {
                       <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Teléfono</label>
                       <input 
                         type="tel" name="telefono" value={formData.telefono} onChange={handleChange} required={!isLogin}
-                        className="w-full border border-slate-200 dark:border-slate-700 p-4 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all bg-slate-50 dark:bg-slate-800 dark:text-white text-slate-900" 
+                        className="w-full border border-slate-200 dark:border-slate-700 p-4 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none transition-all bg-slate-50 dark:bg-slate-800 dark:text-white text-slate-900" 
                         placeholder="+57 300 000 0000"
                       />
                     </div>
@@ -172,7 +172,7 @@ export default function Auth() {
                       <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Fecha de Nacimiento</label>
                       <input 
                         type="date" name="fecha_nacimiento" value={formData.fecha_nacimiento} onChange={handleChange} required={!isLogin}
-                        className="w-full border border-slate-200 dark:border-slate-700 p-4 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all bg-slate-50 dark:bg-slate-800 dark:text-white text-slate-900" 
+                        className="w-full border border-slate-200 dark:border-slate-700 p-4 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none transition-all bg-slate-50 dark:bg-slate-800 dark:text-white text-slate-900" 
                       />
                     </div>
                   </div>
@@ -180,7 +180,7 @@ export default function Auth() {
                     <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Motivo Principal de Consulta (Opcional)</label>
                     <select 
                       name="motivo_consulta" value={formData.motivo_consulta} onChange={handleChange}
-                      className="w-full border border-slate-200 dark:border-slate-700 p-4 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all bg-slate-50 dark:bg-slate-800 dark:text-white text-slate-900 appearance-none"
+                      className="w-full border border-slate-200 dark:border-slate-700 p-4 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none transition-all bg-slate-50 dark:bg-slate-800 dark:text-white text-slate-900 appearance-none"
                     >
                       <option value="">Selecciona un motivo...</option>
                       <option value="Ansiedad/Estrés">Ansiedad o Estrés</option>
@@ -195,7 +195,7 @@ export default function Auth() {
                     <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Código de Administrador (Opcional)</label>
                     <input 
                       type="password" name="codigoAdmin" value={formData.codigoAdmin} onChange={handleChange}
-                      className="w-full border border-slate-200 dark:border-slate-700 p-4 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all bg-slate-50 dark:bg-slate-800 dark:text-white text-slate-900" 
+                      className="w-full border border-slate-200 dark:border-slate-700 p-4 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none transition-all bg-slate-50 dark:bg-slate-800 dark:text-white text-slate-900" 
                       placeholder="Solo para personal de la clínica"
                     />
                   </div>
@@ -205,26 +205,26 @@ export default function Auth() {
                 <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Correo Electrónico</label>
                 <input 
                   type="email" name="correo" value={formData.correo} onChange={handleChange} required
-                  className="w-full border border-slate-200 dark:border-slate-700 p-4 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all bg-slate-50 dark:bg-slate-800 dark:text-white text-slate-900" 
+                  className="w-full border border-slate-200 dark:border-slate-700 p-4 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none transition-all bg-slate-50 dark:bg-slate-800 dark:text-white text-slate-900" 
                   placeholder="tu@correo.com"
                 />
               </div>
               <div>
                 <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 flex justify-between">
                   <span>Contraseña</span>
-                  {isLogin && <button type="button" onClick={handleForgotPassword} className="text-indigo-600 dark:text-teal-400 font-normal hover:underline">¿Olvidaste tu contraseña?</button>}
+                  {isLogin && <button type="button" onClick={handleForgotPassword} className="text-rose-600 dark:text-pink-400 font-normal hover:underline">¿Olvidaste tu contraseña?</button>}
                 </label>
                 <div className="relative">
                   <input 
                     type={showPassword ? "text" : "password"} 
                     name="password" value={formData.password} onChange={handleChange} required
-                    className="w-full border border-slate-200 dark:border-slate-700 p-4 pr-12 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all bg-slate-50 dark:bg-slate-800 dark:text-white text-slate-900" 
+                    className="w-full border border-slate-200 dark:border-slate-700 p-4 pr-12 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none transition-all bg-slate-50 dark:bg-slate-800 dark:text-white text-slate-900" 
                     placeholder="••••••••"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-indigo-600 dark:hover:text-teal-400 transition-colors focus:outline-none"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-rose-600 dark:hover:text-pink-400 transition-colors focus:outline-none"
                   >
                     {showPassword ? (
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -246,10 +246,10 @@ export default function Auth() {
                     type="checkbox" 
                     id="terminos" 
                     required 
-                    className="mt-1 w-5 h-5 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                    className="mt-1 w-5 h-5 rounded border-slate-300 text-rose-600 focus:ring-rose-500"
                   />
                   <label htmlFor="terminos" className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Acepto los <a href="#" className="text-indigo-600 dark:text-teal-400 font-bold hover:underline">Términos y Condiciones</a> y autorizo el tratamiento de mis datos sensibles según la <a href="#" className="text-indigo-600 dark:text-teal-400 font-bold hover:underline">Política de Privacidad</a>.
+                    Acepto los <a href="#" className="text-rose-600 dark:text-pink-400 font-bold hover:underline">Términos y Condiciones</a> y autorizo el tratamiento de mis datos sensibles según la <a href="#" className="text-rose-600 dark:text-pink-400 font-bold hover:underline">Política de Privacidad</a>.
                   </label>
                 </div>
               )}
@@ -258,7 +258,7 @@ export default function Auth() {
             <button 
               type="submit" 
               disabled={loading}
-              className="w-full flex justify-center items-center gap-2 bg-indigo-600 dark:bg-teal-500 text-white font-bold text-lg py-4 px-8 rounded-xl hover:bg-indigo-700 dark:hover:bg-teal-600 transition-all shadow-[0_8px_20px_rgb(79,70,229,0.25)] dark:shadow-[0_8px_20px_rgb(20,184,166,0.25)] hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0"
+              className="w-full flex justify-center items-center gap-2 bg-rose-600 dark:bg-pink-600 text-white font-bold text-lg py-4 px-8 rounded-xl hover:bg-rose-700 dark:hover:bg-pink-700 transition-all shadow-[0_8px_20px_rgb(225,29,72,0.25)] dark:shadow-[0_8px_20px_rgb(244,114,182,0.25)] hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0"
             >
               {loading ? (
                 <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
@@ -272,7 +272,7 @@ export default function Auth() {
             {isLogin ? '¿Aún no tienes cuenta? ' : '¿Ya eres parte de la comunidad? '}
             <button 
               onClick={() => { setIsLogin(!isLogin); setError(''); }} 
-              className="text-indigo-600 dark:text-teal-400 font-bold hover:underline transition-colors"
+              className="text-rose-600 dark:text-pink-400 font-bold hover:underline transition-colors"
             >
               {isLogin ? 'Regístrate aquí' : 'Inicia Sesión'}
             </button>

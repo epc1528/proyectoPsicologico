@@ -14,9 +14,9 @@ INSERT INTO usuarios (nombre, correo, password, role) VALUES
 
 -- Insertar Cartillas
 INSERT INTO cartillas (id, titulo, descripcion, precio, imagen_url) VALUES
-(1, 'Ansiedad Bajo Control', 'Aprende a identificar y gestionar tus ataques de ansiedad con ejercicios prácticos cognitivo-conductuales.', 12000.00, 'ansiedad.jpg'),
-(2, 'Autoestima y Amor Propio', 'Un viaje hacia tu interior para perdonarte, valorarte y construir una autoestima inquebrantable.', 12000.00, 'autoestima.jpg'),
-(3, 'Gestión de Emociones', 'Aprende a surfear las olas emocionales sin dejarte arrastrar por ellas. Inteligencia emocional práctica.', 12000.00, 'emociones.jpg');
+(1, 'Bitácora Adultos', 'Ejercicios profundos para sanar heridas, establecer límites sanos, reducir el estrés y cultivar el amor propio.', 12000.00, '/covers/adulto.png'),
+(2, 'Bitácora Adolescentes', 'Herramientas para manejar la ansiedad, fortalecer la identidad, mejorar las relaciones y construir autoconfianza.', 12000.00, '/covers/adolescentes.png'),
+(3, 'Bitácora Infantil', 'Actividades lúdicas para desarrollar inteligencia emocional, autoestima, empatía y habilidades para expresar sentimientos.', 12000.00, '/covers/infancia.png');
 
 -- Insertar Talleres para cada Cartilla
 INSERT INTO talleres (id, cartilla_id, titulo, contenido, tipo_ejercicio) VALUES

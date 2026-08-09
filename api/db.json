@@ -11,20 +11,20 @@
   "cartillas": [
     {
       "id": 1,
-      "titulo": "Manejo de Ansiedad",
-      "descripcion": "Aprende herramientas prácticas para reducir la ansiedad en tu día a día.",
+      "titulo": "Bitácora Adultos",
+      "descripcion": "Ejercicios profundos para sanar heridas, establecer límites sanos, reducir el estrés y cultivar el amor propio.",
       "precio": 12000
     },
     {
       "id": 2,
-      "titulo": "Autoestima Positiva",
-      "descripcion": "Ejercicios para fortalecer el amor propio y la autoaceptación.",
+      "titulo": "Bitácora Adolescentes",
+      "descripcion": "Herramientas para manejar la ansiedad, fortalecer la identidad, mejorar las relaciones y construir autoconfianza.",
       "precio": 12000
     },
     {
       "id": 3,
-      "titulo": "Gestión Emocional",
-      "descripcion": "Reconoce y gestiona tus emociones para vivir con mayor tranquilidad.",
+      "titulo": "Bitácora Infantil",
+      "descripcion": "Actividades lúdicas para desarrollar inteligencia emocional, autoestima, empatía y habilidades para expresar sentimientos.",
       "precio": 12000
     }
   ],
