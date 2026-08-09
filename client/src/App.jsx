@@ -209,7 +209,7 @@ function Home() {
             {/* Bitácora Infantil */}
             <div className="bg-slate-50 dark:bg-slate-900 rounded-[2rem] p-6 md:p-10 shadow-sm border border-pink-100 dark:border-slate-800 flex flex-col group hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
               <div className="w-full h-48 bg-slate-100 dark:bg-slate-800 rounded-2xl mb-6 flex items-center justify-center relative overflow-hidden border border-slate-200 dark:border-slate-700/50 p-2 transform group-hover:-translate-y-1 transition-transform duration-500">
-                <img src="/covers/infancia.png" alt="Bitácora Infantil" className="w-full h-full object-cover rounded-xl shadow-md" />
+                <img src="/covers/infancia.jpeg" alt="Bitácora Infantil" className="w-full h-full object-cover rounded-xl shadow-md" />
               </div>
               <h3 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>Bitácora Infantil</h3>
               <p className="text-rose-600 dark:text-pink-400 text-lg font-bold italic mb-6">"Aprendo a conocer lo que siento"</p>
@@ -225,7 +225,7 @@ function Home() {
             {/* Bitácora Adolescentes */}
             <div className="bg-slate-50 dark:bg-slate-900 rounded-[2rem] p-6 md:p-10 shadow-sm border border-pink-100 dark:border-slate-800 flex flex-col group hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
               <div className="w-full h-48 bg-slate-100 dark:bg-slate-800 rounded-2xl mb-6 flex items-center justify-center relative overflow-hidden border border-slate-200 dark:border-slate-700/50 p-2 transform group-hover:-translate-y-1 transition-transform duration-500">
-                <img src="/covers/adolescentes.png" alt="Bitácora Adolescentes" className="w-full h-full object-cover rounded-xl shadow-md" />
+                <img src="/covers/adolescente.jpeg" alt="Bitácora Adolescentes" className="w-full h-full object-cover rounded-xl shadow-md" />
               </div>
               <h3 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>Bitácora Adolescentes</h3>
               <p className="text-rose-600 dark:text-pink-400 text-lg font-bold italic mb-6">"Descubriendo mi propio camino"</p>
@@ -241,7 +241,7 @@ function Home() {
             {/* Bitácora Adultos */}
             <div className="bg-slate-50 dark:bg-slate-900 rounded-[2rem] p-6 md:p-10 shadow-sm border border-pink-100 dark:border-slate-800 flex flex-col group hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
               <div className="w-full h-48 bg-slate-100 dark:bg-slate-800 rounded-2xl mb-6 flex items-center justify-center relative overflow-hidden border border-slate-200 dark:border-slate-700/50 p-2 transform group-hover:-translate-y-1 transition-transform duration-500">
-                <img src="/covers/adulto.png" alt="Bitácora Adultos" className="w-full h-full object-cover rounded-xl shadow-md" />
+                <img src="/covers/adulto.jpeg" alt="Bitácora Adultos" className="w-full h-full object-cover rounded-xl shadow-md" />
               </div>
               <h3 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>Bitácora Adultos</h3>
               <p className="text-rose-600 dark:text-pink-400 text-lg font-bold italic mb-6">"Reconectando con mi esencia"</p>
