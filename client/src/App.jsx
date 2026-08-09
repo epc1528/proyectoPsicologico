@@ -16,7 +16,7 @@ function Home() {
         {/* Background Gradients */}
         <div className="absolute inset-0 bg-gradient-to-br from-rose-50/50 via-white to-pink-50/50 dark:from-slate-900 dark:via-slate-950 dark:to-pink-900/20 -z-10"></div>
         <div className="absolute top-0 right-0 -mr-32 -mt-32 w-[600px] h-[600px] rounded-full bg-pink-200/30 dark:bg-pink-900/20 opacity-50 blur-3xl -z-10 animate-pulse-slow"></div>
-        <div className="absolute bottom-0 left-0 -ml-32 -mb-32 w-[600px] h-[600px] rounded-full bg-rose-200/30 dark:bg-rose-900/20 opacity-50 blur-3xl -z-10"></div>
+        <div className="absolute bottom-0 left-0 -ml-32 -mb-32 w-[600px] h-[600px] rounded-full bg-pink-200/30 dark:bg-pink-900/20 opacity-50 blur-3xl -z-10"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative flex flex-col lg:flex-row items-center gap-16">
           <div className="flex-1 space-y-8 text-center lg:text-left z-10 animate-in fade-in slide-in-from-bottom-8 duration-1000">
@@ -35,7 +35,7 @@ function Home() {
               Bitácoras emocionales para transformar tus pensamientos, fortalecer tu bienestar y construir una vida con mayor equilibrio.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
-              <Link to="/cartillas" className="bg-rose-600 dark:bg-pink-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-rose-700 dark:hover:bg-pink-600 transition-all shadow-[0_8px_30px_rgb(225,29,72,0.3)] hover:-translate-y-1 text-center">
+              <Link to="/cartillas" className="bg-pink-600 dark:bg-pink-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-pink-700 dark:hover:bg-pink-600 transition-all shadow-[0_8px_30px_rgb(225,29,72,0.3)] hover:-translate-y-1 text-center">
                 Quiero comenzar mi transformación
               </Link>
             </div>
@@ -99,7 +99,7 @@ function Home() {
                     });
                   }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-rose-100 dark:bg-rose-900/50 flex items-center justify-center text-rose-600 dark:text-rose-400 text-2xl flex-shrink-0">🎀</div>
+                  <div className="w-12 h-12 rounded-full bg-pink-100 dark:bg-pink-900/50 flex items-center justify-center text-rose-600 dark:text-rose-400 text-2xl flex-shrink-0">🎀</div>
                   <div>
                     <p className="text-sm font-bold text-slate-900 dark:text-white line-clamp-1">Autoestima Sana</p>
                     <p className="text-xs text-slate-500 dark:text-slate-400">Progreso 85%</p>
@@ -145,7 +145,7 @@ function Home() {
       </header>
 
       {/* Nuestra Esencia Section */}
-      <section className="py-16 md:py-24 bg-rose-50/30 dark:bg-slate-900/50 relative z-20">
+      <section className="py-16 md:py-24 bg-pink-50/30 dark:bg-slate-900/50 relative z-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
           <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-pink-400 italic" style={{ fontFamily: "'Playfair Display', serif" }}>
             "No todas las heridas se ven, pero todas merecen ser escuchadas."
@@ -160,7 +160,7 @@ function Home() {
       </section>
 
       {/* Sello de Confianza */}
-      <div className="bg-rose-600 dark:bg-pink-700 py-12 px-4 sm:px-6 lg:px-8 text-white relative z-20 shadow-inner">
+      <div className="bg-pink-500 dark:bg-pink-500 py-12 px-4 sm:px-6 lg:px-8 text-white relative z-20 shadow-inner">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
           <div className="md:w-1/3 text-center md:text-left">
             <h2 className="text-3xl font-extrabold tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
@@ -217,7 +217,7 @@ function Home() {
               <p className="text-slate-600 dark:text-slate-400 flex-grow font-light mb-10 text-base leading-relaxed">
                 Actividades lúdicas para desarrollar inteligencia emocional, autoestima, empatía y habilidades para expresar sentimientos.
               </p>
-              <Link to="/cartillas" className="w-full text-center bg-white dark:bg-slate-800 text-rose-600 dark:text-pink-400 border-2 border-rose-100 dark:border-pink-900 px-6 py-4 rounded-xl font-bold hover:bg-rose-50 dark:hover:bg-slate-700 transition-colors shadow-sm">
+              <Link to="/cartillas" className="w-full text-center bg-white dark:bg-slate-800 text-rose-600 dark:text-pink-400 border-2 border-rose-100 dark:border-pink-900 px-6 py-4 rounded-xl font-bold hover:bg-pink-50 dark:hover:bg-slate-700 transition-colors shadow-sm">
                 Conocer la bitácora
               </Link>
             </div>
@@ -233,7 +233,7 @@ function Home() {
               <p className="text-slate-600 dark:text-slate-400 flex-grow font-light mb-10 text-base leading-relaxed">
                 Herramientas para manejar la ansiedad, fortalecer la identidad, mejorar las relaciones y construir autoconfianza.
               </p>
-              <Link to="/cartillas" className="w-full text-center bg-white dark:bg-slate-800 text-rose-600 dark:text-pink-400 border-2 border-rose-100 dark:border-pink-900 px-6 py-4 rounded-xl font-bold hover:bg-rose-50 dark:hover:bg-slate-700 transition-colors shadow-sm">
+              <Link to="/cartillas" className="w-full text-center bg-white dark:bg-slate-800 text-rose-600 dark:text-pink-400 border-2 border-rose-100 dark:border-pink-900 px-6 py-4 rounded-xl font-bold hover:bg-pink-50 dark:hover:bg-slate-700 transition-colors shadow-sm">
                 Conocer la bitácora
               </Link>
             </div>
@@ -249,7 +249,7 @@ function Home() {
               <p className="text-slate-600 dark:text-slate-400 flex-grow font-light mb-10 text-base leading-relaxed">
                 Ejercicios profundos para sanar heridas, establecer límites sanos, reducir el estrés y cultivar el amor propio.
               </p>
-              <Link to="/cartillas" className="w-full text-center bg-white dark:bg-slate-800 text-rose-600 dark:text-pink-400 border-2 border-rose-100 dark:border-pink-900 px-6 py-4 rounded-xl font-bold hover:bg-rose-50 dark:hover:bg-slate-700 transition-colors shadow-sm">
+              <Link to="/cartillas" className="w-full text-center bg-white dark:bg-slate-800 text-rose-600 dark:text-pink-400 border-2 border-rose-100 dark:border-pink-900 px-6 py-4 rounded-xl font-bold hover:bg-pink-50 dark:hover:bg-slate-700 transition-colors shadow-sm">
                 Conocer la bitácora
               </Link>
             </div>
@@ -329,7 +329,7 @@ function Home() {
       </section>
 
       {/* Call to Action Final */}
-      <section className="py-16 md:py-24 relative z-20 bg-gradient-to-br from-rose-600 to-pink-500">
+      <section className="py-16 md:py-24 relative z-20 bg-gradient-to-br from-rose-400 to-pink-400">
         <div className="absolute inset-0 bg-white/10 mix-blend-overlay"></div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white space-y-10 relative z-10">
           <h2 className="text-3xl md:text-5xl font-extrabold leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
@@ -364,7 +364,7 @@ function Home() {
     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
       {/* Autora 1: Milagro Bolaños (Coordinadora) */}
       <div className="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-[2rem] shadow-lg border border-pink-100/50 dark:border-slate-800 flex flex-col items-center text-center group hover:-translate-y-2 transition-transform duration-500 relative">
-        <span className="absolute top-4 right-4 bg-rose-100 text-rose-700 text-xs font-bold px-2 py-1 rounded-full uppercase tracking-wider">Coordinadora</span>
+        <span className="absolute top-4 right-4 bg-pink-100 text-rose-700 text-xs font-bold px-2 py-1 rounded-full uppercase tracking-wider">Coordinadora</span>
         <div className="w-32 h-32 rounded-full overflow-hidden mb-6 shadow-md border-4 border-white dark:border-slate-800 mt-4">
           <img src={fotoperfil1} alt="Milagro Bolaños" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
         </div>
@@ -429,12 +429,12 @@ function Home() {
     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {/* Psicología Clínica */}
       <div className="bg-slate-50 dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col items-center text-center hover:shadow-md transition-shadow">
-        <div className="w-16 h-16 rounded-full bg-rose-100 dark:bg-rose-900/50 flex items-center justify-center text-2xl mb-6">🛋️</div>
+        <div className="w-16 h-16 rounded-full bg-pink-100 dark:bg-pink-900/50 flex items-center justify-center text-2xl mb-6">🛋️</div>
         <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Psicología Clínica</h4>
         <p className="text-slate-600 dark:text-slate-400 text-sm font-light mb-6 flex-grow">
           Terapia individual y herramientas psicoterapéuticas para gestionar emociones, ansiedad y crecimiento personal.
         </p>
-        <a href="#" className="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-4 rounded-xl transition-colors shadow-sm">
+        <a href="#" className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-xl transition-colors shadow-sm">
           Solicitar Cita
         </a>
       </div>
@@ -446,7 +446,7 @@ function Home() {
         <p className="text-slate-600 dark:text-slate-400 text-sm font-light mb-6 flex-grow">
           Evaluación, estimulación y rehabilitación cognitiva basada en el funcionamiento del cerebro y la conducta.
         </p>
-        <a href="#" className="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-4 rounded-xl transition-colors shadow-sm">
+        <a href="#" className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-xl transition-colors shadow-sm">
           Solicitar Cita
         </a>
       </div>
@@ -458,7 +458,7 @@ function Home() {
         <p className="text-slate-600 dark:text-slate-400 text-sm font-light mb-6 flex-grow">
           Acompañamiento médico especializado para el diagnóstico y tratamiento integral de los trastornos emocionales.
         </p>
-        <a href="#" className="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-4 rounded-xl transition-colors shadow-sm">
+        <a href="#" className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-xl transition-colors shadow-sm">
           Solicitar Cita
         </a>
       </div>
@@ -470,7 +470,7 @@ function Home() {
         <p className="text-slate-600 dark:text-slate-400 text-sm font-light mb-6 flex-grow">
           Planes de alimentación personalizados para fortalecer el bienestar físico y potenciar la salud mental integral.
         </p>
-        <a href="#" className="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-4 rounded-xl transition-colors shadow-sm">
+        <a href="#" className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-xl transition-colors shadow-sm">
           Solicitar Cita
         </a>
       </div>
@@ -550,7 +550,7 @@ function Cartillas() {
                 
                 <div className="w-full h-56 bg-slate-100 dark:bg-slate-800 rounded-2xl mb-8 flex items-center justify-center relative overflow-hidden border border-slate-200 dark:border-slate-700/50 p-2">
                   <img 
-                    src={cartilla.id === 1 ? '/covers/adulto.png' : cartilla.id === 2 ? '/covers/adolescentes.png' : '/covers/infancia.png'} 
+                    src={cartilla.id === 1 ? '/covers/adulto.jpeg' : cartilla.id === 2 ? '/covers/adolescente.jpeg' : '/covers/infancia.jpeg'} 
                     alt={`Portada ${cartilla.titulo}`}
                     className="w-full h-full object-cover rounded-xl shadow-md transition-transform group-hover:scale-105 duration-700"
                   />
@@ -623,7 +623,7 @@ function MisCartillas() {
             <div className="text-5xl mb-4">📚</div>
             <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>Aún no tienes bitácoras</h3>
             <p className="text-slate-600 dark:text-slate-400 mb-6">Visita nuestro catálogo para encontrar la herramienta ideal para ti.</p>
-            <Link to="/cartillas" className="bg-rose-600 dark:bg-pink-600 text-white px-8 py-3 rounded-xl font-medium hover:bg-rose-700 dark:hover:bg-pink-700 transition-colors shadow-md inline-block">
+            <Link to="/cartillas" className="bg-pink-600 dark:bg-pink-600 text-white px-8 py-3 rounded-xl font-medium hover:bg-pink-700 dark:hover:bg-pink-700 transition-colors shadow-md inline-block">
               Ver Catálogo
             </Link>
           </div>
@@ -634,7 +634,7 @@ function MisCartillas() {
                 <div className="absolute top-0 right-0 w-2 h-full bg-pink-400 dark:bg-pink-600"></div>
                 <div className="w-full h-40 bg-slate-100 dark:bg-slate-800 rounded-2xl mb-6 flex items-center justify-center relative overflow-hidden shadow-sm p-2 border border-slate-200 dark:border-slate-700/50">
                    <img 
-                    src={cartilla.id === 1 ? '/covers/adulto.png' : cartilla.id === 2 ? '/covers/adolescentes.png' : '/covers/infancia.png'} 
+                    src={cartilla.id === 1 ? '/covers/adulto.jpeg' : cartilla.id === 2 ? '/covers/adolescentes.jpeg' : '/covers/infancia.jpeg'} 
                     alt={`Portada ${cartilla.titulo}`}
                     className="w-full h-full object-cover rounded-xl shadow-sm transition-transform group-hover:scale-105 duration-700"
                   />
@@ -689,7 +689,7 @@ function NavBar() {
             </div>
           ) : (
             <div className="flex items-center gap-4">
-              <Link to="/login" className="bg-rose-600 dark:bg-pink-500 text-white px-6 py-2.5 rounded-full font-medium hover:bg-rose-700 dark:hover:bg-pink-600 transition-all shadow-md hover:shadow-lg">Comenzar</Link>
+              <Link to="/login" className="bg-pink-600 dark:bg-pink-500 text-white px-6 py-2.5 rounded-full font-medium hover:bg-pink-700 dark:hover:bg-pink-600 transition-all shadow-md hover:shadow-lg">Comenzar</Link>
             </div>
           )}
         </div>
@@ -732,7 +732,7 @@ function NavBar() {
           ) : (
             <>
               <hr className="border-slate-100 dark:border-slate-800" />
-              <Link to="/login" onClick={() => setIsMobileMenuOpen(false)} className="bg-rose-600 dark:bg-pink-500 text-white text-center py-3 rounded-xl font-bold mt-2">Comenzar Ahora</Link>
+              <Link to="/login" onClick={() => setIsMobileMenuOpen(false)} className="bg-pink-600 dark:bg-pink-500 text-white text-center py-3 rounded-xl font-bold mt-2">Comenzar Ahora</Link>
             </>
           )}
         </div>
@@ -758,7 +758,7 @@ function App() {
           </Routes>
         </main>
 
-        <footer className="bg-rose-950 dark:bg-slate-950 text-slate-300 py-16 mt-auto border-t border-rose-900/50 dark:border-slate-900 transition-colors duration-300">
+        <footer className="bg-pink-950 dark:bg-slate-950 text-slate-300 py-16 mt-auto border-t border-rose-900/50 dark:border-slate-900 transition-colors duration-300">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-8 mb-12 border-b border-rose-900 dark:border-slate-800 pb-12">
               <div className="md:col-span-1 lg:col-span-2">
@@ -772,7 +772,7 @@ function App() {
                 <div className="mt-6 flex space-x-4">
                   {/* Social placeholders */}
                   {['📘', '📸', '🐦', '▶️'].map((icon, i) => (
-                    <a key={i} href="#" className="w-10 h-10 rounded-full bg-rose-900 dark:bg-slate-900 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors duration-300">
+                    <a key={i} href="#" className="w-10 h-10 rounded-full bg-pink-900 dark:bg-slate-900 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors duration-300">
                       {icon}
                     </a>
                   ))}

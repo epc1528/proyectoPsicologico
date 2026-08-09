@@ -89,7 +89,7 @@ export default function Auth() {
     <div className="min-h-screen flex bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
       
       {/* Columna Izquierda: Imagen / Branding */}
-      <div className="hidden lg:flex lg:w-1/2 relative bg-rose-900 overflow-hidden items-center justify-center">
+      <div className="hidden lg:flex lg:w-1/2 relative bg-pink-900 overflow-hidden items-center justify-center">
         <img 
           src="/auth-bg.png" 
           alt="Salud Mental" 
@@ -258,7 +258,7 @@ export default function Auth() {
             <button 
               type="submit" 
               disabled={loading}
-              className="w-full flex justify-center items-center gap-2 bg-rose-600 dark:bg-pink-600 text-white font-bold text-lg py-4 px-8 rounded-xl hover:bg-rose-700 dark:hover:bg-pink-700 transition-all shadow-[0_8px_20px_rgb(225,29,72,0.25)] dark:shadow-[0_8px_20px_rgb(244,114,182,0.25)] hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0"
+              className="w-full flex justify-center items-center gap-2 bg-pink-600 dark:bg-pink-600 text-white font-bold text-lg py-4 px-8 rounded-xl hover:bg-pink-700 dark:hover:bg-pink-700 transition-all shadow-[0_8px_20px_rgb(225,29,72,0.25)] dark:shadow-[0_8px_20px_rgb(244,114,182,0.25)] hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0"
             >
               {loading ? (
                 <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>

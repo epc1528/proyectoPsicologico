@@ -129,7 +129,7 @@ export default function AdminDashboard() {
         <div className="mb-10">
           <button 
             onClick={() => setShowForm(!showForm)}
-            className="bg-rose-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-rose-700 transition-colors shadow-md"
+            className="bg-pink-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-pink-700 transition-colors shadow-md"
           >
             {showForm ? 'Cancelar' : '+ Crear Nueva Cartilla'}
           </button>
@@ -179,7 +179,7 @@ export default function AdminDashboard() {
                     <div key={u.id} className="flex flex-col p-4 rounded-2xl hover:bg-slate-50 transition-colors group border border-transparent hover:border-slate-100 gap-3">
                       <div className="flex justify-between items-start">
                         <div>
-                          <p className="font-bold text-slate-800 group-hover:text-rose-600 transition-colors">{u.nombre}</p>
+                          <p className="font-bold text-slate-800 group-hover:text-pink-600 transition-colors">{u.nombre}</p>
                           <p className="text-sm text-slate-500 font-light">{u.correo}</p>
                         </div>
                         <div className="flex gap-2 items-center">
