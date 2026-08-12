@@ -14,9 +14,9 @@ INSERT INTO usuarios (nombre, correo, password, role) VALUES
 
 -- Insertar Cartillas
 INSERT INTO cartillas (id, titulo, descripcion, precio, imagen_url) VALUES
-(1, 'Bitácora Adultos', 'Ejercicios profundos para sanar heridas, establecer límites sanos, reducir el estrés y cultivar el amor propio.', 12000.00, '/covers/adulto.png'),
-(2, 'Bitácora Adolescentes', 'Herramientas para manejar la ansiedad, fortalecer la identidad, mejorar las relaciones y construir autoconfianza.', 12000.00, '/covers/adolescentes.png'),
-(3, 'Bitácora Infantil', 'Actividades lúdicas para desarrollar inteligencia emocional, autoestima, empatía y habilidades para expresar sentimientos.', 12000.00, '/covers/infancia.png');
+(1, 'Bitácora Adultos', 'Ejercicios creativos que conectan para el amor propio, sanar heridas, establecer limites sanos y reducir el estres propio de la edad.', 12000.00, '/covers/adulto.jpeg'),
+(2, 'Bitácora Adolescentes', 'Herramientas para manejar la ansiedad, fortalecer la identidad, mejorar las relaciones y construir autoconfianza.', 12000.00, '/covers/adolescente.jpeg'),
+(3, 'Bitácora Infantil', 'Actividades lúdicas para desarrollar inteligencia emocional, autoestima, empatía y habilidades para expresar sentimientos.', 12000.00, '/covers/infancia.jpeg');
 
 -- Insertar Talleres para cada Cartilla
 INSERT INTO talleres (id, cartilla_id, titulo, contenido, tipo_ejercicio) VALUES

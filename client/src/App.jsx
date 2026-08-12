@@ -665,7 +665,7 @@ function NavBar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
         <Link to="/" className="text-2xl font-extrabold text-indigo-950 dark:text-white flex items-center gap-2 z-50">
           <img src={logoClick} alt="Logo" className="w-15 h-15 object-contain" />
-          <span style={{ fontFamily: "'Playfair Display', serif" }}>Dra. Milagros Bolaños</span>
+          <span style={{ fontFamily: "'Playfair Display', serif" }}>Dra. Milagros Bolaño Romero</span>
         </Link>
 
         {/* Desktop Menu */}
