@@ -247,7 +247,7 @@ function Home() {
               <p className="text-rose-600 dark:text-pink-400 text-lg font-bold italic mb-6">"Reconectando con mi esencia"</p>
               <p className="font-semibold text-slate-800 dark:text-slate-200 mb-3 text-lg">Nunca es tarde para sanar.</p>
               <p className="text-slate-600 dark:text-slate-400 flex-grow font-light mb-10 text-base leading-relaxed">
-                Ejercicios profundos para sanar heridas, establecer límites sanos, reducir el estrés y cultivar el amor propio.
+                Ejercicios creativos que conecten con el amor propio, para sanar heridas, establecer límites sanos y reducir el estrés propio de la edad
               </p>
               <Link to="/cartillas" className="w-full text-center bg-white dark:bg-slate-800 text-rose-600 dark:text-pink-400 border-2 border-rose-100 dark:border-pink-900 px-6 py-4 rounded-xl font-bold hover:bg-pink-50 dark:hover:bg-slate-700 transition-colors shadow-sm">
                 Conocer la bitácora
