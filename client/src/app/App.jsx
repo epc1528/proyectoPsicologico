@@ -1,0 +1,31 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import NavBar from '../components/NavBar/NavBar';
+import Footer from '../components/Footer/Footer';
+import Home from '../pages/Home/Home';
+import Cartillas from '../pages/Cartillas/Cartillas';
+import MisCartillas from '../pages/MisCartillas/MisCartillas';
+import Auth from '../pages/Auth/Auth';
+import InteractiveWorkbook from '../pages/Taller/InteractiveWorkbook';
+import AdminDashboard from '../pages/Admin/AdminDashboard';
+
+export default function App() {
+    return (
+        <Router>
+            <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
+                <NavBar />
+                <main className="flex-grow flex flex-col">
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/login" element={<Auth />} />
+                        <Route path="/cartillas" element={<Cartillas />} />
+                        <Route path="/mis-cartillas" element={<MisCartillas />} />
+                        <Route path="/cartilla/:id" element={<InteractiveWorkbook />} />
+                        <Route path="/admin" element={<AdminDashboard />} />
+                    </Routes>
+                </main>
+                <Footer />
+            </div>
+        </Router>
+    );
+}
