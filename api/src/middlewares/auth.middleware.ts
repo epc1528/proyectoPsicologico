@@ -41,3 +41,25 @@ export const isAdmin = (req: Request, res: Response, next: NextFunction): void =
     }
     next();
 };
+
+export const verifyAdminRole = isAdmin;
+
+/**
+ * Middleware: Extrae el token si está presente, pero no bloquea si no hay token.
+ */
+export const optionalToken = (req: Request, _res: Response, next: NextFunction): void => {
+    const authHeader = req.headers['authorization'];
+    if (!authHeader) {
+        next();
+        return;
+    }
+    const token = authHeader.split(' ')[1] ?? authHeader;
+    jwt.verify(token, JWT_SECRET, (_err, decoded) => {
+        if (decoded) {
+            const payload = decoded as IAuthPayload;
+            req.userId = payload.id;
+            req.userRole = payload.role;
+        }
+        next();
+    });
+};
