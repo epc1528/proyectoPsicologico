@@ -1,5 +1,13 @@
-// URL base del backend (usa variable de entorno en producción o localhost en desarrollo)
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+// Determinar URL base según el entorno (desarrollo vs producción en Railway)
+const getBaseUrl = () => {
+    if (import.meta.env.VITE_API_URL) return import.meta.env.VITE_API_URL;
+    if (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+        return 'http://localhost:5000/api';
+    }
+    return 'https://stellar-vision-production.up.railway.app/api';
+};
+
+const BASE_URL = getBaseUrl();
 
 /**
  * Retorna los headers con token de autorización si el usuario está logueado.

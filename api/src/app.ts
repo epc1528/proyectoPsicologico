@@ -71,11 +71,8 @@ const app = express();
 
 app.use(helmet());
 app.use(cors({
-    origin: [
-        'https://stellar-vision-production.up.railway.app',
-        'http://localhost:5173',
-        'http://127.0.0.1:5173',
-    ],
+    origin: true, // Permite cualquier origen dinámicamente en producción y desarrollo
+    credentials: true,
 }));
 app.use(express.json());
 
