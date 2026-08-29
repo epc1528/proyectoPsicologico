@@ -5,12 +5,12 @@ import Swal from 'sweetalert2';
 
 const ESPECIALIDADES = [
     {
-        id: 'Psiquiatría',
-        nombre: 'Psiquiatría',
-        doctora: 'Dra. Milagros Bolaño Romero',
+        id: 'Psicología Clínica',
+        nombre: 'Psicología Clínica',
+        doctora: 'Dra. Milagros Bolaño Romero (Psicóloga Clínica)',
         img: '/dcmaria.jpeg',
         icon: '🩺',
-        badge: 'Medicina Especializada'
+        badge: 'Psicología Clínica'
     },
     {
         id: 'Dra. Johana Barrios (Salud Integral & Mindfulness)',

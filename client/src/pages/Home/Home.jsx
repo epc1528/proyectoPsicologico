@@ -123,16 +123,30 @@ export default function Home() {
                                             confirmButtonText: '¡A surfearlas!',
                                             confirmButtonColor: '#be185d',
                                             customClass: {
-                                                popup: 'rounded-[2.5rem] border-2 border-pink-100 shadow-[0_20px_50px_rgba(190,24,93,0.15)]',
-                                                confirmButton: 'rounded-2xl px-8 py-4 font-bold text-lg shadow-lg hover:shadow-xl'
-                                            }
+                                            title: 'Dra. Milagros Bolaño Romero',
+                                            text: 'Psicóloga Clínica especialista en salud mental y regulación emocional.',
+                                            icon: 'info',
+                                            confirmButtonColor: '#e11d48'
                                         });
                                     }}
                                 >
-                                    <div className="w-12 h-12 rounded-full bg-pink-100 dark:bg-pink-900/50 flex items-center justify-center text-pink-600 dark:text-pink-400 text-2xl flex-shrink-0">🌸</div>
+                                    <div className="w-10 h-10 rounded-full bg-pink-100 dark:bg-pink-900/50 flex items-center justify-center text-pink-600 dark:text-pink-400 font-bold text-xl shadow-inner shrink-0">
+                                        🩺
+                                    </div>
                                     <div>
-                                        <p className="text-sm font-bold text-slate-900 dark:text-white line-clamp-1">Regulación Emocional</p>
-                                        <p className="text-xs text-slate-500 dark:text-slate-400">Nuevos ejercicios</p>
+                                        <p className="text-xs font-bold text-slate-900 dark:text-white">Dra. Milagros Bolaño R.</p>
+                                        <p className="text-[11px] text-pink-600 dark:text-pink-400 font-medium">Psicóloga Clínica Especialista</p>
+                                    </div>
+                                </div>
+
+                                <div className="absolute -left-4 sm:-left-8 bottom-8 bg-white dark:bg-slate-800 p-3 sm:p-4 rounded-3xl shadow-xl border border-slate-100 dark:border-slate-700 flex items-center gap-3 max-w-[85%] z-10">
+                                    <span className="flex h-3 w-3 relative">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-3 w-3 bg-teal-500"></span>
+                                    </span>
+                                    <div>
+                                        <p className="text-xs font-bold text-slate-900 dark:text-white">Atención Profesional</p>
+                                        <p className="text-[11px] text-slate-500 dark:text-slate-400 font-light">Modalidad Virtual & Presencial</p>
                                     </div>
                                 </div>
                             </div>
@@ -188,7 +202,7 @@ export default function Home() {
                     <div className="md:w-2/3 grid sm:grid-cols-2 gap-6 text-base font-medium">
                         <div className="flex items-start gap-3">
                             <span className="text-pink-200 text-xl font-black mt-1">✔</span>
-                            <p>Elaboradas por la Dra. Johana Barrios (Médico especialista en Psicología Positiva y Neurociencias).</p>
+                            <p>Elaboradas por la Dra. Johana Barrios (Médico especialista en Psicología Positiva y Neurociencias) y la Dra. Milagros Bolaño (Psicóloga Clínica).</p>
                         </div>
                         <div className="flex items-start gap-3">
                             <span className="text-pink-200 text-xl font-black mt-1">✔</span>
@@ -290,13 +304,13 @@ export default function Home() {
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {/* 1. Psiquiatría */}
+                        {/* 1. Psicología Clínica (Dra. Milagros Bolaño Romero) */}
                         <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
                             <div>
                                 <div className="relative mb-6 mx-auto w-24 h-24">
                                     <img
                                         src="/dcmaria.jpeg"
-                                        alt="Dra. Milagros Bolaño Romero - Psiquiatría"
+                                        alt="Dra. Milagros Bolaño Romero - Psicóloga Clínica"
                                         className="w-24 h-24 rounded-full object-cover shadow-md border-4 border-rose-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
                                     />
                                     <span className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-pink-500 text-white flex items-center justify-center text-sm shadow-md">
@@ -304,18 +318,18 @@ export default function Home() {
                                     </span>
                                 </div>
                                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
-                                    Psiquiatría
+                                    Psicología Clínica
                                 </h3>
                                 <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-4">
-                                    Dra. Milagros Bolaño Romero
+                                    Dra. Milagros Bolaño Romero (Psicóloga Clínica)
                                 </p>
                                 <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light mb-8">
-                                    Acompañamiento médico especializado para el diagnóstico y tratamiento integral de los trastornos emocionales.
+                                    Acompañamiento psicoterapéutico especializado para el diagnóstico, tratamiento y regulación emocional integral.
                                 </p>
                             </div>
                             <button
                                 onClick={() => {
-                                    setSelectedEspecialidad('Psiquiatría');
+                                    setSelectedEspecialidad('Psicología Clínica');
                                     setIsCitaModalOpen(true);
                                 }}
                                 className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3.5 px-6 rounded-2xl transition-all shadow-md hover:shadow-xl text-center"
