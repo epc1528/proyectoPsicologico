@@ -138,26 +138,38 @@ export default function Home() {
                 </div>
             </header>
 
-            {/* Nuestra Esencia Section */}
-            <section className="py-16 md:py-24 bg-pink-50/30 dark:bg-slate-900/50 relative z-20">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12">
-                    <div className="md:w-1/2">
-                        <img
-                            src="/johana_barrios_quote.jpg"
-                            alt="Dra. Johana Barrios - Sanarnos un destino es un camino"
-                            className="rounded-3xl shadow-2xl border-4 border-white dark:border-slate-800 w-full object-cover"
-                        />
-                    </div>
-                    <div className="md:w-1/2 space-y-6 text-center md:text-left">
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-pink-400 italic" style={{ fontFamily: "'Playfair Display', serif" }}>
-                            "Sanarnos un destino es un camino y empieza por escuchar."
-                        </h2>
-                        <p className="text-lg md:text-xl text-slate-700 dark:text-slate-300 leading-relaxed font-light">
-                            Las Bitácoras Emocionales nacen para acompañarte en el camino del autoconocimiento, ayudándote a identificar, comprender y gestionar tus emociones a través de ejercicios prácticos, reflexiones y herramientas diseñadas por la <strong>Dra. Johana Barrios</strong> (Médico, Mindfulness y Psicología Positiva) y nuestro equipo de neuropsicología.
-                        </p>
-                        <p className="text-lg md:text-xl text-slate-700 dark:text-slate-300 leading-relaxed font-light">
-                            Cada página es una invitación a detenerte, escucharte y regalarte un espacio para crecer emocionalmente.
-                        </p>
+            {/* Nuestra Esencia Section — Perfil Dra. Johana Barrios */}
+            <section className="py-16 md:py-24 bg-gradient-to-b from-pink-50/40 via-white to-rose-50/30 dark:from-slate-900/80 dark:via-slate-950 dark:to-slate-900 relative z-20">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="bg-white dark:bg-slate-900 rounded-[3rem] p-8 md:p-12 shadow-2xl border border-rose-100 dark:border-slate-800 flex flex-col lg:flex-row items-center gap-12">
+                        <div className="lg:w-1/2 relative group">
+                            <div className="absolute -inset-2 bg-gradient-to-r from-pink-400 to-rose-500 rounded-[2.5rem] blur opacity-30 group-hover:opacity-50 transition duration-700"></div>
+                            <img
+                                src="/johana_barrios_quote.jpg"
+                                alt="Dra. Johana Barrios - Sanarnos un destino es un camino"
+                                className="relative rounded-[2rem] shadow-xl border-4 border-white dark:border-slate-800 w-full object-cover transform transition duration-500 group-hover:scale-[1.01]"
+                            />
+                        </div>
+                        <div className="lg:w-1/2 space-y-6 text-center lg:text-left">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-100 dark:bg-rose-900/40 text-rose-800 dark:text-rose-300 text-sm font-bold tracking-wide uppercase">
+                                🩺 Médica • Mindfulness • Psicología Positiva
+                            </div>
+                            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                Dra. Johana Barrios
+                            </h2>
+                            <p className="text-xl text-rose-700 dark:text-pink-400 italic font-medium" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                "Sanarnos un destino es un camino y empieza por escuchar."
+                            </p>
+                            <p className="text-slate-700 dark:text-slate-300 text-base md:text-lg leading-relaxed font-light">
+                                Médica con más de 20 años de trayectoria en atención clínica, promoción y prevención de la salud, coordinación médica y gestión de servicios de salud.
+                            </p>
+                            <p className="text-slate-700 dark:text-slate-300 text-base md:text-lg leading-relaxed font-light">
+                                Su experiencia acompañando a pacientes en distintas etapas de la vida demostró que la salud va más allá del diagnóstico: requiere comprender la mente, las emociones, los vínculos y el propósito.
+                            </p>
+                            <p className="text-slate-700 dark:text-slate-300 text-base md:text-lg leading-relaxed font-light">
+                                Por ello complementó su formación médica con <strong>Mindfulness, Gestión Emocional, Psicología Positiva, Coaching en Salud y Neurociencias</strong>, promoviendo una salud consciente e integral que escucha y comprende la raíz de cada historia.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -173,11 +185,11 @@ export default function Home() {
                     <div className="md:w-2/3 grid sm:grid-cols-2 gap-6 text-base font-medium">
                         <div className="flex items-start gap-3">
                             <span className="text-pink-200 text-xl font-black mt-1">✔</span>
-                            <p>Elaboradas por una Psicóloga Clínica y una Neuropsicóloga.</p>
+                            <p>Elaboradas por la Dra. Johana Barrios (Médico especialista en Psicología Positiva y Neurociencias).</p>
                         </div>
                         <div className="flex items-start gap-3">
                             <span className="text-pink-200 text-xl font-black mt-1">✔</span>
-                            <p>Basadas en principios de la psicología y las neurociencias.</p>
+                            <p>Basadas en principios de la psicología, mindfulness y las neurociencias.</p>
                         </div>
                         <div className="flex items-start gap-3">
                             <span className="text-pink-200 text-xl font-black mt-1">✔</span>
