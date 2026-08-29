@@ -15,6 +15,9 @@ const connectionConfig = process.env.MYSQL_URL || process.env.DATABASE_URL
         queueLimit: 0,
     };
 
+const targetHost = typeof connectionConfig === 'string' ? 'URL (DATABASE_URL / MYSQL_URL)' : (connectionConfig.host || 'localhost');
+console.log(`🔌 Conectando a MySQL en: ${targetHost}`);
+
 const pool = mysql.createPool(connectionConfig as any);
 
 export default pool;
