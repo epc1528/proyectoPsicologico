@@ -3,6 +3,41 @@ import { AuthContext } from '../../app/providers/AuthProvider';
 import { solicitarCita } from '../../features/citas/api/citas.api';
 import Swal from 'sweetalert2';
 
+const ESPECIALIDADES = [
+    {
+        id: 'Psiquiatría',
+        nombre: 'Psiquiatría',
+        doctora: 'Dra. Milagros Bolaño Romero',
+        icon: '🩺',
+        color: 'from-pink-500 to-rose-600',
+        badge: 'Medicina Especializada'
+    },
+    {
+        id: 'Dra. Johana Barrios (Salud Integral & Mindfulness)',
+        nombre: 'Dra. Johana Barrios',
+        doctora: 'Médica • Mindfulness • Psicología Positiva',
+        icon: '🌿',
+        color: 'from-rose-500 to-pink-600',
+        badge: 'Salud Integral & Emocional'
+    },
+    {
+        id: 'Neuropsicología',
+        nombre: 'Neuropsicología',
+        doctora: 'Evaluación y Rehabilitación Cognitiva',
+        icon: '🧠',
+        color: 'from-purple-500 to-pink-600',
+        badge: 'Neurociencias'
+    },
+    {
+        id: 'Nutrición',
+        nombre: 'Nutrición',
+        doctora: 'Salud & Alimentación Consciente',
+        icon: '🥗',
+        color: 'from-emerald-500 to-teal-600',
+        badge: 'Nutrición Clínica'
+    }
+];
+
 export default function CitaModal({ isOpen, onClose, especialidadInicial = 'Psiquiatría' }) {
     const { user } = useContext(AuthContext);
 
@@ -11,8 +46,9 @@ export default function CitaModal({ isOpen, onClose, especialidadInicial = 'Psiq
         correo_cliente: '',
         telefono_cliente: '',
         especialidad: especialidadInicial,
+        modalidad: 'Virtual',
         fecha_cita: '',
-        hora_cita: '09:00 AM - 12:00 PM (Mañana)',
+        hora_cita: '🌅 Mañana (8:00 AM - 12:00 PM)',
         motivo: ''
     });
 
@@ -39,70 +75,138 @@ export default function CitaModal({ isOpen, onClose, especialidadInicial = 'Psiq
         setEnviando(true);
 
         try {
-            await solicitarCita(formData);
+            const espObj = ESPECIALIDADES.find(e => e.id === formData.especialidad) || { nombre: formData.especialidad };
+            const motivoConModalidad = `[${formData.modalidad}] ${formData.motivo || ''}`.trim();
+
+            await solicitarCita({
+                ...formData,
+                motivo: motivoConModalidad
+            });
+
+            const numTelDoctor = '573000000000'; // Número de la consulta
+            const mensajeWa = encodeURIComponent(`Hola, acabo de solicitar una cita médica en la especialidad de *${espObj.nombre}* para el día *${formData.fecha_cita}* (${formData.modalidad}). Mi nombre es ${formData.nombre_cliente}.`);
+
             Swal.fire({
-                title: '¡Cita Solicitada con Éxito!',
+                title: '¡Solicitud Registrada con Éxito!',
                 html: `
-                    <div style="font-size: 1rem; color: #475569; margin-bottom: 1rem;">
-                        Hemos registrado tu solicitud para <b>${formData.especialidad}</b> el día <b>${formData.fecha_cita}</b>.
-                    </div>
-                    <div style="font-size: 0.9rem; color: #64748b; background: #f8fafc; padding: 12px; rounded: 12px; border: 1px solid #e2e8f0;">
-                        El equipo médico revisará la disponibilidad y te contactará a tu WhatsApp/teléfono <b>${formData.telefono_cliente}</b> para confirmar la fecha exacta.
+                    <div style="text-align: left; font-size: 0.95rem; color: #475569; line-height: 1.6;">
+                        <p style="margin-bottom: 8px;"><strong>Especialidad:</strong> ${espObj.nombre}</p>
+                        <p style="margin-bottom: 8px;"><strong>Modalidad:</strong> ${formData.modalidad}</p>
+                        <p style="margin-bottom: 8px;"><strong>Fecha solicitada:</strong> ${formData.fecha_cita}</p>
+                        <p style="margin-bottom: 16px;"><strong>Contacto:</strong> ${formData.telefono_cliente}</p>
+                        <div style="background: #fdf2f8; border: 1px solid #fbcfe8; padding: 12px; border-radius: 16px; color: #9d174d; font-size: 0.85rem;">
+                            💡 El equipo médico confirmará la disponibilidad del horario. Si deseas agilizar la confirmación, puedes escribirnos por WhatsApp directamente.
+                        </div>
                     </div>
                 `,
                 icon: 'success',
-                confirmButtonColor: '#e11d48',
-                confirmButtonText: 'Entendido ✨'
+                showCancelButton: true,
+                confirmButtonColor: '#25D366',
+                cancelButtonColor: '#e11d48',
+                confirmButtonText: '💬 Contactar por WhatsApp',
+                cancelButtonText: 'Cerrar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.open(`https://wa.me/${numTelDoctor}?text=${mensajeWa}`, '_blank');
+                }
             });
+
             onClose();
         } catch (err) {
             console.error(err);
-            Swal.fire('Error', err.message || 'No se pudo enviar la solicitud. Por favor intenta de nuevo.', 'error');
+            Swal.fire('Error', err.message || 'No se pudo enviar la solicitud. Intenta nuevamente.', 'error');
         } finally {
             setEnviando(false);
         }
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-300">
-            <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-rose-100 dark:border-slate-800 relative max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-md animate-in fade-in duration-300">
+            <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] max-w-2xl w-full p-6 sm:p-10 shadow-2xl border border-rose-100 dark:border-slate-800 relative max-h-[92vh] overflow-y-auto">
                 <button
                     onClick={onClose}
-                    className="absolute top-6 right-6 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-2xl font-bold w-10 h-10 rounded-full flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                    className="absolute top-6 right-6 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 text-xl font-bold w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center transition-transform hover:scale-110"
                 >
                     ✕
                 </button>
 
-                <div className="text-center mb-6">
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-300 text-xs font-bold uppercase tracking-wider mb-2">
-                        Reserva Tu Espacio
+                <div className="text-center mb-8">
+                    <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-rose-500/10 to-pink-500/10 border border-rose-200/50 dark:border-rose-900/50 text-rose-700 dark:text-pink-400 text-xs font-black uppercase tracking-widest mb-3">
+                        ✨ Agendamiento de Cita Médica
                     </span>
-                    <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white" style={{ fontFamily: "'Playfair Display', serif" }}>
-                        Solicitud de Cita Médica
+                    <h3 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+                        Selecciona tu Especialista y Horario
                     </h3>
                     <p className="text-slate-500 dark:text-slate-400 text-sm font-light mt-1">
-                        Completa tus datos para coordinar tu atención especializada.
+                        Acompañamiento profesional y confidencial en salud mental e integral.
                     </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Tarjetas Interactivas de Selección de Especialidad */}
                     <div>
-                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
-                            Especialidad
+                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-3">
+                            1. Selecciona la Especialidad o Doctora
                         </label>
-                        <select
-                            required
-                            value={formData.especialidad}
-                            onChange={(e) => setFormData({ ...formData, especialidad: e.target.value })}
-                            className="w-full p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-medium outline-none focus:ring-2 focus:ring-rose-400"
-                        >
-                            <option value="Psiquiatría">🩺 Psiquiatría (Dra. Milagros Bolaño Romero)</option>
-                            <option value="Dra. Johana Barrios (Salud Integral & Mindfulness)">🌿 Dra. Johana Barrios (Médico • Mindfulness • Psicología Positiva)</option>
-                            <option value="Neuropsicología">🧠 Neuropsicología</option>
-                            <option value="Nutrición">🥗 Nutrición & Salud Mental</option>
-                        </select>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            {ESPECIALIDADES.map((esp) => {
+                                const selected = formData.especialidad === esp.id;
+                                return (
+                                    <div
+                                        key={esp.id}
+                                        onClick={() => setFormData({ ...formData, especialidad: esp.id })}
+                                        className={`p-4 rounded-2xl cursor-pointer transition-all duration-300 border flex items-center gap-3 relative ${
+                                            selected
+                                                ? 'bg-gradient-to-br from-rose-50 to-pink-50 dark:from-slate-800 dark:to-slate-800/80 border-rose-400 dark:border-pink-500 shadow-md ring-2 ring-rose-400/40'
+                                                : 'bg-slate-50/70 dark:bg-slate-800/40 border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800'
+                                        }`}
+                                    >
+                                        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${esp.color} text-white flex items-center justify-center text-xl shadow-md shrink-0`}>
+                                            {esp.icon}
+                                        </div>
+                                        <div className="overflow-hidden">
+                                            <h4 className="font-bold text-slate-900 dark:text-white text-sm truncate">{esp.nombre}</h4>
+                                            <p className="text-[11px] text-slate-500 dark:text-slate-400 font-light truncate">{esp.doctora}</p>
+                                        </div>
+                                        {selected && (
+                                            <span className="absolute top-3 right-3 w-5 h-5 rounded-full bg-rose-600 text-white flex items-center justify-center text-[10px] font-black">
+                                                ✓
+                                            </span>
+                                        )}
+                                    </div>
+                                );
+                            })}
+                        </div>
                     </div>
 
+                    {/* Modalidad de Consulta */}
+                    <div>
+                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">
+                            2. Modalidad de Atención
+                        </label>
+                        <div className="grid grid-cols-2 gap-3">
+                            {[
+                                { id: 'Virtual', label: '💻 Consulta Virtual (Online)', desc: 'Desde la comodidad de tu hogar' },
+                                { id: 'Presencial', label: '🏥 Consulta Presencial', desc: 'En nuestro consultorio médico' }
+                            ].map((mod) => (
+                                <button
+                                    type="button"
+                                    key={mod.id}
+                                    onClick={() => setFormData({ ...formData, modalidad: mod.id })}
+                                    className={`p-3.5 rounded-2xl text-left border transition-all ${
+                                        formData.modalidad === mod.id
+                                            ? 'bg-rose-600 text-white border-rose-600 shadow-md'
+                                            : 'bg-slate-50 dark:bg-slate-800/60 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100'
+                                    }`}
+                                >
+                                    <div className="font-bold text-xs">{mod.label}</div>
+                                    <div className={`text-[10px] ${formData.modalidad === mod.id ? 'text-rose-100' : 'text-slate-400'}`}>{mod.desc}</div>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Datos Personales */}
                     <div className="grid sm:grid-cols-2 gap-4">
                         <div>
                             <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
@@ -146,10 +250,11 @@ export default function CitaModal({ isOpen, onClose, especialidadInicial = 'Psiq
                         />
                     </div>
 
+                    {/* Fecha y Franja Horaria */}
                     <div className="grid sm:grid-cols-2 gap-4">
                         <div>
                             <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
-                                Fecha Preferida
+                                Fecha Deseada
                             </label>
                             <input
                                 type="date"
@@ -157,31 +262,32 @@ export default function CitaModal({ isOpen, onClose, especialidadInicial = 'Psiq
                                 min={new Date().toISOString().split('T')[0]}
                                 value={formData.fecha_cita}
                                 onChange={(e) => setFormData({ ...formData, fecha_cita: e.target.value })}
-                                className="w-full p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 outline-none focus:ring-2 focus:ring-rose-400 text-sm"
+                                className="w-full p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 outline-none focus:ring-2 focus:ring-rose-400 text-sm font-medium"
                             />
                         </div>
                         <div>
                             <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
-                                Horario Preferido
+                                Franja Horaria
                             </label>
                             <select
                                 value={formData.hora_cita}
                                 onChange={(e) => setFormData({ ...formData, hora_cita: e.target.value })}
-                                className="w-full p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 outline-none focus:ring-2 focus:ring-rose-400 text-sm"
+                                className="w-full p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 outline-none focus:ring-2 focus:ring-rose-400 text-sm font-medium"
                             >
-                                <option value="08:00 AM - 12:00 PM (Mañana)">🌅 Mañana (8:00 AM - 12:00 PM)</option>
-                                <option value="02:00 PM - 06:00 PM (Tarde)">🌇 Tarde (2:00 PM - 6:00 PM)</option>
+                                <option value="🌅 Mañana (8:00 AM - 12:00 PM)">🌅 Mañana (8:00 AM - 12:00 PM)</option>
+                                <option value="🌇 Tarde (2:00 PM - 6:00 PM)">🌇 Tarde (2:00 PM - 6:00 PM)</option>
                             </select>
                         </div>
                     </div>
 
+                    {/* Motivo */}
                     <div>
                         <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
-                            Motivo o Nota Adicional (Opcional)
+                            Motivo o Síntomas (Opcional)
                         </label>
                         <textarea
                             rows="2"
-                            placeholder="Cuéntanos brevemente la razón de tu consulta..."
+                            placeholder="Describe brevemente el motivo de tu solicitud..."
                             value={formData.motivo}
                             onChange={(e) => setFormData({ ...formData, motivo: e.target.value })}
                             className="w-full p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 outline-none focus:ring-2 focus:ring-rose-400 text-sm"
@@ -191,9 +297,9 @@ export default function CitaModal({ isOpen, onClose, especialidadInicial = 'Psiq
                     <button
                         type="submit"
                         disabled={enviando}
-                        className="w-full py-4 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform active:scale-95 disabled:opacity-50 mt-2"
+                        className="w-full py-4 bg-gradient-to-r from-rose-600 via-pink-600 to-rose-600 hover:from-rose-700 hover:to-pink-700 text-white font-black rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform active:scale-98 disabled:opacity-50 text-base"
                     >
-                        {enviando ? 'Enviando solicitud...' : 'Confirmar Solicitud de Cita ✨'}
+                        {enviando ? 'Procesando tu solicitud...' : 'Confirmar Solicitud de Cita Médica ✨'}
                     </button>
                 </form>
             </div>

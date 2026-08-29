@@ -4,7 +4,7 @@ import { AuthContext } from '../../app/providers/AuthProvider';
 import { ThemeContext } from '../../app/providers/ThemeProvider';
 import logoClick from '../../assets/logo-click.jpeg';
 
-export default function NavBar() {
+export default function NavBar({ onOpenCitaModal }) {
     const { user, logout } = useContext(AuthContext);
     const { theme, toggleTheme } = useContext(ThemeContext);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -21,6 +21,15 @@ export default function NavBar() {
                 <div className="hidden md:flex items-center space-x-8">
                     <Link to="/" className="text-slate-600 dark:text-slate-300 font-medium hover:text-rose-600 dark:hover:text-pink-400 transition-colors">Inicio</Link>
                     <Link to="/cartillas" className="text-slate-600 dark:text-slate-300 font-medium hover:text-rose-600 dark:hover:text-pink-400 transition-colors">Catálogo</Link>
+                    
+                    {onOpenCitaModal && (
+                        <button
+                            onClick={onOpenCitaModal}
+                            className="bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800 px-4 py-2 rounded-full font-bold text-sm hover:bg-rose-100 transition-all flex items-center gap-1.5 shadow-sm"
+                        >
+                            <span>📅</span> Solicitar Cita
+                        </button>
+                    )}
 
                     <button onClick={toggleTheme} className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 transition-colors focus:outline-none" aria-label="Toggle Dark Mode">
                         {theme === 'light' ? '🌙' : '☀️'}
@@ -45,6 +54,14 @@ export default function NavBar() {
 
                 {/* Mobile Toggle */}
                 <div className="md:hidden flex items-center gap-4 z-50">
+                    {onOpenCitaModal && (
+                        <button
+                            onClick={onOpenCitaModal}
+                            className="bg-rose-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-sm"
+                        >
+                            📅 Citas
+                        </button>
+                    )}
                     <button onClick={toggleTheme} className="p-2 rounded-full text-slate-500 dark:text-slate-400" aria-label="Toggle Dark Mode">
                         {theme === 'light' ? '🌙' : '☀️'}
                     </button>
@@ -65,6 +82,17 @@ export default function NavBar() {
                 <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 shadow-xl py-4 px-6 flex flex-col space-y-4 animate-in slide-in-from-top-4">
                     <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-slate-700 dark:text-slate-300 hover:text-rose-600 dark:hover:text-pink-400">Inicio</Link>
                     <Link to="/cartillas" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-slate-700 dark:text-slate-300 hover:text-rose-600 dark:hover:text-pink-400">Catálogo</Link>
+                    {onOpenCitaModal && (
+                        <button
+                            onClick={() => {
+                                setIsMobileMenuOpen(false);
+                                onOpenCitaModal();
+                            }}
+                            className="text-left text-lg font-bold text-rose-600 dark:text-pink-400"
+                        >
+                            📅 Solicitar Cita Médica
+                        </button>
+                    )}
                     {user ? (
                         <>
                             <Link to="/mis-cartillas" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-slate-700 dark:text-slate-300 hover:text-rose-600">Mis Bitácoras</Link>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from '../components/NavBar/NavBar';
 import Footer from '../components/Footer/Footer';
@@ -8,15 +8,18 @@ import MisCartillas from '../pages/MisCartillas/MisCartillas';
 import Auth from '../pages/Auth/Auth';
 import InteractiveWorkbook from '../pages/Taller/InteractiveWorkbook';
 import AdminDashboard from '../pages/Admin/AdminDashboard';
+import CitaModal from '../components/CitaModal/CitaModal';
 
 export default function App() {
+    const [isGlobalCitaModalOpen, setIsGlobalCitaModalOpen] = useState(false);
+
     return (
         <Router>
             <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
-                <NavBar />
+                <NavBar onOpenCitaModal={() => setIsGlobalCitaModalOpen(true)} />
                 <main className="flex-grow flex flex-col">
                     <Routes>
-                        <Route path="/" element={<Home />} />
+                        <Route path="/" element={<Home onOpenCitaModal={() => setIsGlobalCitaModalOpen(true)} />} />
                         <Route path="/login" element={<Auth />} />
                         <Route path="/cartillas" element={<Cartillas />} />
                         <Route path="/mis-cartillas" element={<MisCartillas />} />
@@ -25,6 +28,10 @@ export default function App() {
                     </Routes>
                 </main>
                 <Footer />
+                <CitaModal
+                    isOpen={isGlobalCitaModalOpen}
+                    onClose={() => setIsGlobalCitaModalOpen(false)}
+                />
             </div>
         </Router>
     );
