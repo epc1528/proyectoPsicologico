@@ -16,7 +16,6 @@ export const createAuthRouter = (controller: AuthController): Router => {
 
     router.post(
         '/register',
-        authLimiter,
         [
             body('nombre').trim().isLength({ min: 2, max: 50 }).escape(),
             body('correo').isEmail().normalizeEmail(),
@@ -25,11 +24,10 @@ export const createAuthRouter = (controller: AuthController): Router => {
         controller.register
     );
 
-    router.post('/login', authLimiter, controller.login);
+    router.post('/login', controller.login);
 
     router.post(
         '/forgot-password',
-        authLimiter,
         [body('correo').isEmail().normalizeEmail()],
         controller.forgotPassword
     );

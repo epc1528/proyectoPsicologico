@@ -29,16 +29,25 @@ export const apiClient = async (endpoint, options = {}) => {
         ...options,
     });
 
-    const data = await response.json();
+    let data = {};
+    const text = await response.text();
+    if (text) {
+        try {
+            data = JSON.parse(text);
+        } catch {
+            data = { error: text };
+        }
+    }
 
     if (!response.ok) {
-        // Interceptor global para token expirado / no autorizado
-        if (response.status === 401) {
+        // Interceptor global para token expirado (excepto si estamos en el proceso de login)
+        if (response.status === 401 && !endpoint.includes('/login')) {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
-            window.location.href = '/login'; // Forzar redirección
+            window.location.href = '/login';
         }
-        throw new Error(data.error || data.message || 'Error en la petición');
+        const errorMsg = data.error || data.message || `Error ${response.status}: ${response.statusText || 'de conexión'}`;
+        throw new Error(errorMsg);
     }
 
     return data;

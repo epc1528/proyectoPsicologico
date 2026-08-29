@@ -79,7 +79,7 @@ app.use(express.json());
 // Rate Limiter para rutas de autenticación
 const authLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutos
-    max: 20, // Limitar cada IP a 20 peticiones por ventana
+    max: 100, // Permitir suficientes peticiones para pruebas
     message: { error: 'Demasiadas peticiones desde esta IP, por favor intenta de nuevo en 15 minutos' },
     standardHeaders: true,
     legacyHeaders: false,
