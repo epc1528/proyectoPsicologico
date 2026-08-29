@@ -4,7 +4,7 @@
   "private": true,
   "main": "api/dist/app.js",
   "scripts": {
-    "build": "cd api && npm install && npm run build",
-    "start": "node api/dist/app.js"
+    "build": "cd api && npm install && npm run build && mkdir -p ../dist && cp -r dist/* ../dist/ 2>/dev/null || true",
+    "start": "node dist/app.js"
   }
 }
