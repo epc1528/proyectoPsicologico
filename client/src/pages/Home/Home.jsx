@@ -40,8 +40,8 @@ export default function Home() {
                             <div className="absolute -inset-2 bg-gradient-to-r from-pink-400 to-rose-500 rounded-[2.5rem] blur opacity-30 group-hover:opacity-50 transition duration-1000 -z-10"></div>
                             <div className="relative bg-white dark:bg-slate-900 p-2 sm:p-4 rounded-[2.5rem] shadow-2xl border border-white/50 dark:border-slate-800/50 backdrop-blur-sm transform transition-transform duration-500 group-hover:scale-[1.02]">
                                 <img
-                                    src="/psicologa.jpeg"
-                                    alt="Terapia Digital"
+                                    src="/johana_barrios_hero.jpg"
+                                    alt="Dra. Johana Barrios"
                                     className="rounded-[2rem] w-full object-cover h-[400px] sm:h-[500px] shadow-inner cursor-pointer"
                                     onClick={() => {
                                         Swal.fire({
@@ -64,7 +64,7 @@ export default function Home() {
                                             }
                                         });
                                     }}
-                                    onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }}
+                                    onError={(e) => { e.target.src = '/psicologa.jpeg' }}
                                 />
 
                                 {/* Floating Elements */}
@@ -140,16 +140,25 @@ export default function Home() {
 
             {/* Nuestra Esencia Section */}
             <section className="py-16 md:py-24 bg-pink-50/30 dark:bg-slate-900/50 relative z-20">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-                    <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-pink-400 italic" style={{ fontFamily: "'Playfair Display', serif" }}>
-                        "No todas las heridas se ven, pero todas merecen ser escuchadas."
-                    </h2>
-                    <p className="text-lg md:text-xl text-slate-700 dark:text-slate-300 leading-relaxed font-light">
-                        Las Bitácoras Emocionales nacen para acompañarte en el camino del autoconocimiento, ayudándote a identificar, comprender y gestionar tus emociones a través de ejercicios prácticos, reflexiones y herramientas diseñadas por psicóloga clínica de orientación psicoanalista y Neuropsicóloga con énfasis en investigación.
-                    </p>
-                    <p className="text-lg md:text-xl text-slate-700 dark:text-slate-300 leading-relaxed font-light">
-                        Cada página es una invitación a detenerte, escucharte y regalarte un espacio para crecer emocionalmente.
-                    </p>
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12">
+                    <div className="md:w-1/2">
+                        <img
+                            src="/johana_barrios_quote.jpg"
+                            alt="Dra. Johana Barrios - Sanarnos un destino es un camino"
+                            className="rounded-3xl shadow-2xl border-4 border-white dark:border-slate-800 w-full object-cover"
+                        />
+                    </div>
+                    <div className="md:w-1/2 space-y-6 text-center md:text-left">
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-pink-400 italic" style={{ fontFamily: "'Playfair Display', serif" }}>
+                            "Sanarnos un destino es un camino y empieza por escuchar."
+                        </h2>
+                        <p className="text-lg md:text-xl text-slate-700 dark:text-slate-300 leading-relaxed font-light">
+                            Las Bitácoras Emocionales nacen para acompañarte en el camino del autoconocimiento, ayudándote a identificar, comprender y gestionar tus emociones a través de ejercicios prácticos, reflexiones y herramientas diseñadas por la <strong>Dra. Johana Barrios</strong> (Médico, Mindfulness y Psicología Positiva) y nuestro equipo de neuropsicología.
+                        </p>
+                        <p className="text-lg md:text-xl text-slate-700 dark:text-slate-300 leading-relaxed font-light">
+                            Cada página es una invitación a detenerte, escucharte y regalarte un espacio para crecer emocionalmente.
+                        </p>
+                    </div>
                 </div>
             </section>
 
