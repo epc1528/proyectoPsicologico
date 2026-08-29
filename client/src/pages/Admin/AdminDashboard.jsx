@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../app/providers/AuthProvider';
 import { getUsuarios, getRespuestas, deleteUsuario, createCartilla } from '../../features/admin/api/admin.api';
+import { getCitasAdmin, updateEstadoCita, deleteCita } from '../../features/citas/api/citas.api';
 import Swal from 'sweetalert2';
 
 export default function AdminDashboard() {
@@ -9,6 +10,7 @@ export default function AdminDashboard() {
     const navigate = useNavigate();
     const [usuarios, setUsuarios] = useState([]);
     const [respuestas, setRespuestas] = useState([]);
+    const [citas, setCitas] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
     const [formData, setFormData] = useState({ titulo: '', descripcion: '', precio: 12000, imagen_url: '' });
@@ -50,6 +52,36 @@ export default function AdminDashboard() {
         });
     };
 
+    const handleCambiarEstadoCita = (id, nuevoEstado) => {
+        updateEstadoCita(id, nuevoEstado)
+            .then(() => {
+                setCitas(citas.map(c => c.id === id ? { ...c, estado: nuevoEstado } : c));
+                Swal.fire('Estado Actualizado', `La cita fue marcada como ${nuevoEstado}`, 'success');
+            })
+            .catch(console.error);
+    };
+
+    const handleDeleteCita = (id) => {
+        Swal.fire({
+            title: '¿Eliminar registro de cita?',
+            text: "Esta acción no se puede deshacer.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#ef4444',
+            cancelButtonColor: '#94a3b8',
+            confirmButtonText: 'Eliminar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteCita(id)
+                    .then(() => {
+                        setCitas(citas.filter(c => c.id !== id));
+                        Swal.fire('Eliminado', 'La cita fue eliminada del registro.', 'success');
+                    })
+                    .catch(console.error);
+            }
+        });
+    };
+
     useEffect(() => {
         if (!user || user.role !== 'admin') {
             navigate('/');
@@ -58,11 +90,13 @@ export default function AdminDashboard() {
 
         Promise.all([
             getUsuarios(),
-            getRespuestas()
+            getRespuestas(),
+            getCitasAdmin()
         ])
-            .then(([usuariosData, respuestasData]) => {
+            .then(([usuariosData, respuestasData, citasData]) => {
                 setUsuarios(usuariosData);
                 setRespuestas(respuestasData);
+                setCitas(citasData || []);
                 setLoading(false);
             })
             .catch(err => {
@@ -105,6 +139,102 @@ export default function AdminDashboard() {
                             <p className="text-xs text-indigo-500 font-bold uppercase tracking-wider">Sesión Activa</p>
                             <p className="font-bold text-sm">{getTituloDoctor(user.nombre)} {user.nombre.replace('Doctora (Admin)', '').replace('Doctor (Admin)', '').trim() || 'Profesional'}</p>
                         </div>
+                    </div>
+                </div>
+
+                {/* Sección de Citas Médicas Solicitadas */}
+                <div className="mb-12 bg-white rounded-[2.5rem] p-8 shadow-sm border border-slate-100">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 pb-6 border-b border-slate-100">
+                        <div>
+                            <span className="text-xs font-bold text-rose-600 uppercase tracking-widest bg-rose-50 px-3 py-1 rounded-full border border-rose-100">
+                                Gestión de Agendamiento
+                            </span>
+                            <h3 className="text-2xl font-extrabold text-slate-900 mt-2" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                📅 Citas Médicas Solicitadas por Clientes
+                            </h3>
+                            <p className="text-slate-500 text-sm font-light">
+                                Revisa y confirma las solicitudes de cita realizadas por tus pacientes.
+                            </p>
+                        </div>
+                        <span className="bg-pink-600 text-white text-xs font-bold px-4 py-2 rounded-full shadow-sm">
+                            {citas.length} {citas.length === 1 ? 'Solicitud' : 'Solicitudes'}
+                        </span>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {citas.map(c => {
+                            const numTel = c.telefono_cliente.replace(/\D/g, '');
+                            const textWa = encodeURIComponent(`Hola ${c.nombre_cliente}, te escribo desde la consulta de ${c.especialidad} para confirmar tu cita médica solicitada.`);
+                            return (
+                                <div key={c.id} className="bg-slate-50 rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+                                    <div>
+                                        <div className="flex justify-between items-start mb-3 gap-2">
+                                            <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
+                                                c.estado === 'CONFIRMADA' ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' :
+                                                c.estado === 'CANCELADA' ? 'bg-rose-100 text-rose-800 border border-rose-200' :
+                                                'bg-amber-100 text-amber-800 border border-amber-200 animate-pulse'
+                                            }`}>
+                                                {c.estado === 'CONFIRMADA' ? '✔ Confirmada' : c.estado === 'CANCELADA' ? '✖ Cancelada' : '⏳ Pendiente'}
+                                            </span>
+                                            <button
+                                                onClick={() => handleDeleteCita(c.id)}
+                                                className="text-slate-300 hover:text-red-500 transition-colors p-1"
+                                                title="Eliminar cita"
+                                            >
+                                                ✕
+                                            </button>
+                                        </div>
+
+                                        <h4 className="font-extrabold text-slate-900 text-lg mb-1">{c.nombre_cliente}</h4>
+                                        <p className="text-xs font-bold text-rose-600 mb-3 uppercase tracking-wide">🩺 {c.especialidad}</p>
+
+                                        <div className="space-y-1.5 text-xs text-slate-600 font-medium mb-4 bg-white p-3 rounded-xl border border-slate-100">
+                                            <p className="flex items-center gap-2"><span>📅 Fecha:</span> <b className="text-slate-800">{c.fecha_cita}</b></p>
+                                            <p className="flex items-center gap-2"><span>⏰ Horario:</span> <b className="text-slate-800">{c.hora_cita}</b></p>
+                                            <p className="flex items-center gap-2"><span>📞 Teléfono:</span> <b className="text-slate-800">{c.telefono_cliente}</b></p>
+                                            <p className="flex items-center gap-2"><span>✉ Correo:</span> <b className="text-slate-800">{c.correo_cliente}</b></p>
+                                            {c.motivo && <p className="mt-2 text-slate-500 italic font-light">"{c.motivo}"</p>}
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-2 pt-2 border-t border-slate-200/60">
+                                        <a
+                                            href={`https://wa.me/${numTel}?text=${textWa}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all shadow-sm"
+                                        >
+                                            💬 Contactar por WhatsApp
+                                        </a>
+
+                                        <div className="grid grid-cols-2 gap-2">
+                                            <button
+                                                onClick={() => handleCambiarEstadoCita(c.id, 'CONFIRMADA')}
+                                                disabled={c.estado === 'CONFIRMADA'}
+                                                className="bg-indigo-600 hover:bg-indigo-700 disabled:opacity-40 text-white font-bold py-2 px-3 rounded-xl text-[11px] transition-all"
+                                            >
+                                                ✔ Confirmar
+                                            </button>
+                                            <button
+                                                onClick={() => handleCambiarEstadoCita(c.id, 'CANCELADA')}
+                                                disabled={c.estado === 'CANCELADA'}
+                                                className="bg-rose-500 hover:bg-rose-600 disabled:opacity-40 text-white font-bold py-2 px-3 rounded-xl text-[11px] transition-all"
+                                            >
+                                                ✖ Cancelar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
+
+                        {citas.length === 0 && (
+                            <div className="col-span-full p-12 text-center bg-slate-50 rounded-2xl border border-dashed border-slate-200">
+                                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-3 text-2xl shadow-sm">📅</div>
+                                <h4 className="font-bold text-slate-800">No hay solicitudes de cita pendientes</h4>
+                                <p className="text-slate-400 text-xs font-light mt-1">Las citas que soliciten los clientes en la página principal aparecerán automáticamente aquí.</p>
+                            </div>
+                        )}
                     </div>
                 </div>
 

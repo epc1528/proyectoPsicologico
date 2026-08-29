@@ -17,6 +17,7 @@ import { CartillaRepository } from './repositories/cartilla.repository';
 import { CompraRepository } from './repositories/compra.repository';
 import { RespuestaRepository } from './repositories/respuesta.repository';
 import { TallerRepository } from './repositories/taller.repository';
+import { CitaRepository } from './repositories/cita.repository';
 
 // ── Services ──────────────────────────────────────────────────────────────────
 import { AuthService } from './services/auth.service';
@@ -24,6 +25,7 @@ import { CartillaService } from './services/cartilla.service';
 import { CompraService } from './services/compra.service';
 import { RespuestaService } from './services/respuesta.service';
 import { AdminService } from './services/admin.service';
+import { CitaService } from './services/cita.service';
 
 // ── Controllers ───────────────────────────────────────────────────────────────
 import { AuthController } from './controllers/auth.controller';
@@ -31,6 +33,7 @@ import { CartillaController } from './controllers/cartilla.controller';
 import { CompraController } from './controllers/compra.controller';
 import { RespuestaController } from './controllers/respuesta.controller';
 import { AdminController } from './controllers/admin.controller';
+import { CitaController } from './controllers/cita.controller';
 
 // ── Routes ────────────────────────────────────────────────────────────────────
 import { createAuthRouter } from './routes/auth.routes';
@@ -38,6 +41,7 @@ import { createCartillaRouter } from './routes/cartilla.routes';
 import { createCompraRouter } from './routes/compra.routes';
 import { createRespuestaRouter } from './routes/respuesta.routes';
 import { createAdminRouter } from './routes/admin.routes';
+import { createCitaRouter } from './routes/cita.routes';
 
 // =============================================================================
 // COMPOSITION ROOT — Instanciación y cableado de dependencias
@@ -49,6 +53,7 @@ const cartillaRepo = new CartillaRepository();
 const compraRepo = new CompraRepository();
 const respuestaRepo = new RespuestaRepository();
 const tallerRepo = new TallerRepository();
+const citaRepo = new CitaRepository();
 
 // Services (reciben repositories por inyección de dependencias)
 const authService = new AuthService(usuarioRepo, mailer);
@@ -56,6 +61,7 @@ const cartillaService = new CartillaService(cartillaRepo);
 const compraService = new CompraService(compraRepo, cartillaRepo);
 const respuestaService = new RespuestaService(respuestaRepo);
 const adminService = new AdminService(usuarioRepo, cartillaRepo, respuestaRepo, compraRepo, tallerRepo);
+const citaService = new CitaService(citaRepo);
 
 // Controllers (reciben services por inyección de dependencias)
 const authController = new AuthController(authService);
@@ -63,6 +69,7 @@ const cartillaController = new CartillaController(cartillaService, adminService)
 const compraController = new CompraController(compraService);
 const respuestaController = new RespuestaController(respuestaService);
 const adminController = new AdminController(adminService);
+const citaController = new CitaController(citaService);
 
 // =============================================================================
 // Express App
@@ -103,6 +110,7 @@ app.use('/api/cartillas', createCartillaRouter(cartillaController));
 app.use('/api/compras', createCompraRouter(compraController));
 app.use('/api/respuestas', createRespuestaRouter(respuestaController));
 app.use('/api/admin', createAdminRouter(adminController));
+app.use('/api/citas', createCitaRouter(citaController));
 
 // Middleware de Manejo de Errores (debe ser el último)
 app.use(errorHandler);

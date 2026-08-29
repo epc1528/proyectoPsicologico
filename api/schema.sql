@@ -46,3 +46,18 @@ CREATE TABLE IF NOT EXISTS respuestas (
   FOREIGN KEY (taller_id) REFERENCES talleres(id) ON DELETE CASCADE,
   UNIQUE (usuario_id, taller_id)
 );
+
+CREATE TABLE IF NOT EXISTS citas (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  usuario_id INT NULL,
+  nombre_cliente VARCHAR(100) NOT NULL,
+  correo_cliente VARCHAR(100) NOT NULL,
+  telefono_cliente VARCHAR(20) NOT NULL,
+  especialidad VARCHAR(100) NOT NULL,
+  fecha_cita DATE NOT NULL,
+  hora_cita VARCHAR(50) NOT NULL,
+  motivo TEXT,
+  estado ENUM('PENDIENTE', 'CONFIRMADA', 'CANCELADA') DEFAULT 'PENDIENTE',
+  fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE SET NULL
+);

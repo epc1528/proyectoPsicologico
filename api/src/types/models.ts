@@ -94,3 +94,27 @@ export interface IAuthResult {
         role: 'admin' | 'user';
     };
 }
+
+export interface ICita {
+    id: number;
+    usuario_id?: number | null;
+    nombre_cliente: string;
+    correo_cliente: string;
+    telefono_cliente: string;
+    especialidad: string;
+    fecha_cita: string;
+    hora_cita: string;
+    motivo?: string;
+    estado: 'PENDIENTE' | 'CONFIRMADA' | 'CANCELADA';
+    fecha_creacion?: Date;
+}
+
+export interface ICitaInput {
+    nombre_cliente: string;
+    correo_cliente: string;
+    telefono_cliente: string;
+    especialidad: string;
+    fecha_cita: string;
+    hora_cita: string;
+    motivo?: string;
+}

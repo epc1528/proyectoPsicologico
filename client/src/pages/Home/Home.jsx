@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import CitaModal from '../../components/CitaModal/CitaModal';
 
 export default function Home() {
+    const [isCitaModalOpen, setIsCitaModalOpen] = useState(false);
+    const [selectedEspecialidad, setSelectedEspecialidad] = useState('Psiquiatría');
     return (
         <div className="bg-white dark:bg-slate-950 transition-colors duration-300">
             {/* Hero Section Premium */}
@@ -303,14 +306,15 @@ export default function Home() {
                                     Acompañamiento médico especializado para el diagnóstico y tratamiento integral de los trastornos emocionales.
                                 </p>
                             </div>
-                            <a
-                                href="https://wa.me/573000000000?text=Hola,%20quisiera%20solicitar%20una%20cita%20de%20Psiquiatr%C3%ADa"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <button
+                                onClick={() => {
+                                    setSelectedEspecialidad('Psiquiatría');
+                                    setIsCitaModalOpen(true);
+                                }}
                                 className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3.5 px-6 rounded-2xl transition-all shadow-md hover:shadow-xl text-center"
                             >
                                 Solicitar Cita
-                            </a>
+                            </button>
                         </div>
 
                         {/* 2. Dra. Johana Barrios (Médico, Mindfulness, Psicología Positiva) */}
@@ -332,14 +336,15 @@ export default function Home() {
                                     Consulta médica en salud integral, regulación emocional, auto-liderazgo y desarrollo del bienestar consciente.
                                 </p>
                             </div>
-                            <a
-                                href="https://wa.me/573000000000?text=Hola,%20quisiera%20solicitar%20una%20cita%20con%20la%20Dra.%20Johana%20Barrios"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <button
+                                onClick={() => {
+                                    setSelectedEspecialidad('Dra. Johana Barrios (Salud Integral & Mindfulness)');
+                                    setIsCitaModalOpen(true);
+                                }}
                                 className="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3.5 px-6 rounded-2xl transition-all shadow-md hover:shadow-xl text-center"
                             >
                                 Solicitar Cita
-                            </a>
+                            </button>
                         </div>
 
                         {/* 3. Neuropsicología */}
@@ -358,14 +363,15 @@ export default function Home() {
                                     Evaluación, estimulación y rehabilitación cognitiva basada en el funcionamiento del cerebro y la conducta.
                                 </p>
                             </div>
-                            <a
-                                href="https://wa.me/573000000000?text=Hola,%20quisiera%20solicitar%20una%20cita%20de%20Neuropsicolog%C3%ADa"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <button
+                                onClick={() => {
+                                    setSelectedEspecialidad('Neuropsicología');
+                                    setIsCitaModalOpen(true);
+                                }}
                                 className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3.5 px-6 rounded-2xl transition-all shadow-md hover:shadow-xl text-center"
                             >
                                 Solicitar Cita
-                            </a>
+                            </button>
                         </div>
 
                         {/* 4. Nutrición */}
@@ -384,17 +390,25 @@ export default function Home() {
                                     Nutrición clínica y relación consciente con la alimentación para potenciar la salud integral y vitalidad.
                                 </p>
                             </div>
-                            <a
-                                href="https://wa.me/573000000000?text=Hola,%20quisiera%20solicitar%20una%20cita%20de%20Nutrici%C3%B3n"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <button
+                                onClick={() => {
+                                    setSelectedEspecialidad('Nutrición');
+                                    setIsCitaModalOpen(true);
+                                }}
                                 className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3.5 px-6 rounded-2xl transition-all shadow-md hover:shadow-xl text-center"
                             >
                                 Solicitar Cita
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
+
+                {/* Modal de Cita Médica */}
+                <CitaModal
+                    isOpen={isCitaModalOpen}
+                    onClose={() => setIsCitaModalOpen(false)}
+                    especialidadInicial={selectedEspecialidad}
+                />
             </section>
 
             {/* Para quién son y Qué encontrarás */}
