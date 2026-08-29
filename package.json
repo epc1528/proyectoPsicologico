@@ -1,0 +1,9 @@
+{
+  "name": "proyecto-psicologico-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cd api && npm install && npm run build",
+    "start": "cd api && node dist/app.js"
+  }
+}
