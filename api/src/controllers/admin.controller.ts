@@ -1,58 +1,46 @@
 import { Request, Response } from 'express';
 import { AdminService } from '../services/admin.service';
-import { ICartillaInput } from '../types/models';
+import { ICartillaInput, IUsuarioPublico } from '../types/models';
+import { catchAsync } from '../utils/catchAsync';
 
 export class AdminController {
     constructor(private readonly adminService: AdminService) { }
 
-    getUsuarios = async (_req: Request, res: Response): Promise<void> => {
-        try {
-            const usuarios = await this.adminService.getUsuarios();
-            res.json(usuarios);
-        } catch (err: any) {
-            console.error(err);
-            res.status(500).json({ error: 'Error interno del servidor' });
-        }
-    };
+    getUsuarios = catchAsync(async (_req: Request, res: Response) => {
+        const usuarios = await this.adminService.getUsuarios();
+        res.json(usuarios);
+    });
 
-    deleteUsuario = async (req: Request, res: Response): Promise<void> => {
-        try {
-            await this.adminService.deleteUsuario(Number(req.params.id));
-            res.json({ message: 'Usuario eliminado' });
-        } catch (err: any) {
-            console.error(err);
-            res.status(500).json({ error: 'Error interno' });
-        }
-    };
+    deleteUsuario = catchAsync(async (req: Request, res: Response) => {
+        await this.adminService.deleteUsuario(Number(req.params.id));
+        res.json({ message: 'Usuario eliminado' });
+    });
 
-    getRespuestas = async (_req: Request, res: Response): Promise<void> => {
-        try {
-            const respuestas = await this.adminService.getRespuestas();
-            res.json(respuestas);
-        } catch (err: any) {
-            console.error(err);
-            res.status(500).json({ error: 'Error interno del servidor' });
-        }
-    };
+    updateUsuario = catchAsync(async (req: Request, res: Response) => {
+        const data = req.body as Partial<IUsuarioPublico>;
+        await this.adminService.updateUsuario(Number(req.params.id), data);
+        res.json({ message: 'Usuario actualizado correctamente' });
+    });
 
-    createCartilla = async (req: Request, res: Response): Promise<void> => {
+    getRespuestas = catchAsync(async (_req: Request, res: Response) => {
+        const respuestas = await this.adminService.getRespuestas();
+        res.json(respuestas);
+    });
+
+    createCartilla = catchAsync(async (req: Request, res: Response) => {
         const data = req.body as ICartillaInput;
-        try {
-            const id = await this.adminService.createCartilla(data);
-            res.json({ message: 'Cartilla creada', id });
-        } catch (err: any) {
-            console.error(err);
-            res.status(500).json({ error: 'Error interno del servidor' });
-        }
-    };
+        const id = await this.adminService.createCartilla(data);
+        res.json({ message: 'Cartilla creada', id });
+    });
 
-    deleteCartilla = async (req: Request, res: Response): Promise<void> => {
-        try {
-            await this.adminService.deleteCartilla(Number(req.params.id));
-            res.json({ message: 'Cartilla eliminada' });
-        } catch (err: any) {
-            console.error(err);
-            res.status(500).json({ error: 'Error interno' });
-        }
-    };
+    updateCartilla = catchAsync(async (req: Request, res: Response) => {
+        const data = req.body as Partial<ICartillaInput>;
+        await this.adminService.updateCartilla(Number(req.params.id), data);
+        res.json({ message: 'Cartilla actualizada correctamente' });
+    });
+
+    deleteCartilla = catchAsync(async (req: Request, res: Response) => {
+        await this.adminService.deleteCartilla(Number(req.params.id));
+        res.json({ message: 'Cartilla eliminada' });
+    });
 }

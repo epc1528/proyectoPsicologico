@@ -2,6 +2,10 @@ import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import 'dotenv/config';
+import rateLimit from 'express-rate-limit';
+
+// ── Middlewares ───────────────────────────────────────────────────────────────
+import { errorHandler } from './middlewares/errorHandler.middleware';
 
 // ── Config ────────────────────────────────────────────────────────────────────
 import mailer from './config/mailer';
@@ -75,17 +79,30 @@ app.use(cors({
 }));
 app.use(express.json());
 
+// Rate Limiter para rutas de autenticación
+const authLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutos
+    max: 20, // Limitar cada IP a 20 peticiones por ventana
+    message: { error: 'Demasiadas peticiones desde esta IP, por favor intenta de nuevo en 15 minutos' },
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+
+
 // Health check
 app.get('/api/health', (_req, res) => {
     res.json({ status: 'ok', message: 'API MySQL is running' });
 });
 
 // Rutas montadas con routers configurados
-app.use('/api/auth', createAuthRouter(authController));
+app.use('/api/auth', authLimiter, createAuthRouter(authController));
 app.use('/api/cartillas', createCartillaRouter(cartillaController));
 app.use('/api/compras', createCompraRouter(compraController));
 app.use('/api/respuestas', createRespuestaRouter(respuestaController));
 app.use('/api/admin', createAdminRouter(adminController));
+
+// Middleware de Manejo de Errores (debe ser el último)
+app.use(errorHandler);
 
 const PORT = Number(process.env.PORT) || 5000;
 

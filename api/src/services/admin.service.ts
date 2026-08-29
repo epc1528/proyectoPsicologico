@@ -22,6 +22,10 @@ export class AdminService {
         await this.userRepo.deleteById(id);
     }
 
+    async updateUsuario(id: number, data: Partial<IUsuarioPublico>): Promise<void> {
+        await this.userRepo.update(id, data);
+    }
+
     /**
      * Obtener todas las respuestas formateadas para el panel admin.
      * Intenta parsear el JSON de la respuesta para mostrar texto legible.
@@ -48,6 +52,10 @@ export class AdminService {
 
     async deleteCartilla(id: number): Promise<void> {
         await this.cartillaRepo.deleteById(id);
+    }
+
+    async updateCartilla(id: number, data: Partial<ICartillaInput>): Promise<void> {
+        await this.cartillaRepo.update(id, data);
     }
 
     /**

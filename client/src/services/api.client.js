@@ -24,7 +24,13 @@ export const apiClient = async (endpoint, options = {}) => {
     const data = await response.json();
 
     if (!response.ok) {
-        throw new Error(data.error || 'Error en la petición');
+        // Interceptor global para token expirado / no autorizado
+        if (response.status === 401) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = '/login'; // Forzar redirección
+        }
+        throw new Error(data.error || data.message || 'Error en la petición');
     }
 
     return data;

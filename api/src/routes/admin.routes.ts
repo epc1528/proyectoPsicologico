@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { AdminController } from '../controllers/admin.controller';
 import { verifyToken, isAdmin } from '../middlewares/auth.middleware';
+import { createCartillaValidator, updateCartillaValidator } from '../middlewares/validators.middleware';
 
 export const createAdminRouter = (controller: AdminController): Router => {
     const router = Router();
@@ -9,9 +10,13 @@ export const createAdminRouter = (controller: AdminController): Router => {
     router.use(verifyToken, isAdmin);
 
     router.get('/usuarios', controller.getUsuarios);
+    router.put('/usuarios/:id', controller.updateUsuario);
     router.delete('/usuarios/:id', controller.deleteUsuario);
+    
     router.get('/respuestas', controller.getRespuestas);
-    router.post('/cartillas', controller.createCartilla);
+    
+    router.post('/cartillas', createCartillaValidator, controller.createCartilla);
+    router.put('/cartillas/:id', updateCartillaValidator, controller.updateCartilla);
     router.delete('/cartillas/:id', controller.deleteCartilla);
 
     return router;
