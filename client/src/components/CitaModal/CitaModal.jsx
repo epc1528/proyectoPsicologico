@@ -8,7 +8,7 @@ const ESPECIALIDADES = [
         id: 'Psicología Clínica',
         nombre: 'Psicología Clínica',
         doctora: 'Dra. Milagros Bolaño Romero (Psicóloga Clínica)',
-        img: '/dcmaria.jpeg',
+        img: '/doctoras/dra_milagros.jpg',
         icon: '🩺',
         badge: 'Psicología Clínica'
     },
@@ -16,7 +16,7 @@ const ESPECIALIDADES = [
         id: 'Dra. Johana Barrios (Salud Integral & Mindfulness)',
         nombre: 'Dra. Johana Barrios',
         doctora: 'Médica • Mindfulness • Psicología Positiva',
-        img: '/johana_barrios_hero.jpg',
+        img: '/doctoras/dra_johana_hero.jpg',
         icon: '🌿',
         badge: 'Salud Integral & Emocional'
     },
@@ -24,7 +24,7 @@ const ESPECIALIDADES = [
         id: 'Neuropsicología',
         nombre: 'Neuropsicología',
         doctora: 'Evaluación y Rehabilitación Cognitiva',
-        img: '/doc.jpeg',
+        img: '/doctoras/neuropsicologia.jpg',
         icon: '🧠',
         badge: 'Neurociencias'
     },
@@ -32,7 +32,7 @@ const ESPECIALIDADES = [
         id: 'Nutrición',
         nombre: 'Nutrición',
         doctora: 'Salud & Alimentación Consciente',
-        img: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&q=80',
+        img: '/doctoras/nutricion.jpg',
         icon: '🥗',
         badge: 'Nutrición Clínica'
     }

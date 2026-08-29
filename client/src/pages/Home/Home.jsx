@@ -123,10 +123,9 @@ export default function Home() {
                                             confirmButtonText: '¡A surfearlas!',
                                             confirmButtonColor: '#be185d',
                                             customClass: {
-                                            title: 'Dra. Milagros Bolaño Romero',
-                                            text: 'Psicóloga Clínica especialista en salud mental y regulación emocional.',
-                                            icon: 'info',
-                                            confirmButtonColor: '#e11d48'
+                                                popup: 'rounded-[2.5rem] border-2 border-rose-100 shadow-[0_20px_50px_rgba(190,18,60,0.15)]',
+                                                confirmButton: 'rounded-2xl px-8 py-4 font-bold text-lg shadow-lg hover:shadow-xl'
+                                            }
                                         });
                                     }}
                                 >
@@ -162,7 +161,7 @@ export default function Home() {
                         <div className="lg:w-1/2 relative group">
                             <div className="absolute -inset-2 bg-gradient-to-r from-pink-400 to-rose-500 rounded-[2.5rem] blur opacity-30 group-hover:opacity-50 transition duration-700"></div>
                             <img
-                                src="/johana_barrios_quote.jpg"
+                                src="/doctoras/dra_johana_quote.jpg"
                                 alt="Dra. Johana Barrios - Sanarnos un destino es un camino"
                                 className="relative rounded-[2rem] shadow-xl border-4 border-white dark:border-slate-800 w-full object-cover transform transition duration-500 group-hover:scale-[1.01]"
                             />
@@ -309,7 +308,7 @@ export default function Home() {
                             <div>
                                 <div className="relative mb-6 mx-auto w-24 h-24">
                                     <img
-                                        src="/dcmaria.jpeg"
+                                        src="/doctoras/dra_milagros.jpg"
                                         alt="Dra. Milagros Bolaño Romero - Psicóloga Clínica"
                                         className="w-24 h-24 rounded-full object-cover shadow-md border-4 border-rose-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
                                     />
@@ -346,7 +345,7 @@ export default function Home() {
                             <div>
                                 <div className="relative mb-6 mx-auto w-24 h-24">
                                     <img
-                                        src="/johana_barrios_hero.jpg"
+                                        src="/doctoras/dra_johana_hero.jpg"
                                         alt="Dra. Johana Barrios"
                                         className="w-24 h-24 rounded-full object-cover shadow-md border-4 border-rose-200 dark:border-slate-700 group-hover:scale-105 transition-transform"
                                     />
@@ -380,7 +379,7 @@ export default function Home() {
                             <div>
                                 <div className="relative mb-6 mx-auto w-24 h-24">
                                     <img
-                                        src="/doc.jpeg"
+                                        src="/doctoras/neuropsicologia.jpg"
                                         alt="Neuropsicología"
                                         className="w-24 h-24 rounded-full object-cover shadow-md border-4 border-purple-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
                                     />
@@ -414,7 +413,7 @@ export default function Home() {
                             <div>
                                 <div className="relative mb-6 mx-auto w-24 h-24">
                                     <img
-                                        src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&q=80"
+                                        src="/doctoras/nutricion.jpg"
                                         alt="Nutrición Clínico-Emocional"
                                         className="w-24 h-24 rounded-full object-cover shadow-md border-4 border-emerald-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
                                     />
