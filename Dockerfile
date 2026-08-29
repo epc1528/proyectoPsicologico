@@ -1,17 +1,9 @@
-# Root Dockerfile for Backend API
-FROM node:20-alpine AS builder
+FROM node:20-alpine
 WORKDIR /app
 COPY api/package*.json ./
 RUN npm install
-COPY api/ .
+COPY api/ ./
 RUN npm run build
-
-FROM node:20-alpine AS runner
-WORKDIR /app
-ENV NODE_ENV=production
-COPY api/package*.json ./
-RUN npm install --only=production
-COPY --from=builder /app/dist ./dist
 
 EXPOSE 5000
 CMD ["node", "dist/app.js"]
