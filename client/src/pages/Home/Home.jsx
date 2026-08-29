@@ -302,28 +302,62 @@ export default function Home() {
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {/* 1. Psicología Clínica (Dra. Milagros Bolaño Romero) */}
-                        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                        {/* 1. Psiquiatría */}
+                        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
                             <div>
-                                <div className="relative mb-6 mx-auto w-24 h-24">
+                                <div className="relative mb-6 mx-auto w-20 h-20">
                                     <img
-                                        src="/doctoras/dra_milagros.jpg"
-                                        alt="Dra. Milagros Bolaño Romero - Psicóloga Clínica"
-                                        className="w-24 h-24 rounded-full object-cover shadow-md border-4 border-rose-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
+                                        src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&q=80"
+                                        alt="Psiquiatría Especializada"
+                                        className="w-20 h-20 rounded-full object-cover shadow-md border-4 border-rose-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
                                     />
-                                    <span className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-pink-500 text-white flex items-center justify-center text-sm shadow-md">
+                                    <span className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs shadow-md">
                                         🩺
                                     </span>
                                 </div>
-                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                    Psiquiatría
+                                </h3>
+                                <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-3">
+                                    Medicina Especializada
+                                </p>
+                                <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed font-light mb-6">
+                                    Diagnóstico, tratamiento médico y seguimiento integral para la salud mental.
+                                </p>
+                            </div>
+                            <button
+                                onClick={() => {
+                                    setSelectedEspecialidad('Psiquiatría');
+                                    setIsCitaModalOpen(true);
+                                }}
+                                className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-2xl transition-all shadow-md hover:shadow-xl text-center text-sm"
+                            >
+                                Solicitar Cita
+                            </button>
+                        </div>
+
+                        {/* 2. Psicología Clínica (Dra. Milagros Bolaño Romero) */}
+                        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+                            <div>
+                                <div className="relative mb-6 mx-auto w-20 h-20">
+                                    <img
+                                        src="/doctoras/dra_milagros.jpg"
+                                        alt="Dra. Milagros Bolaño Romero - Psicóloga Clínica"
+                                        className="w-20 h-20 rounded-full object-cover shadow-md border-4 border-rose-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
+                                    />
+                                    <span className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs shadow-md">
+                                        🩺
+                                    </span>
+                                </div>
+                                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
                                     Psicología Clínica
                                 </h3>
-                                <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-4">
-                                    Dra. Milagros Bolaño Romero (Psicóloga Clínica)
+                                <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-3">
+                                    Dra. Milagros Bolaño Romero
                                 </p>
-                                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light mb-8">
-                                    Acompañamiento psicoterapéutico especializado para el diagnóstico, tratamiento y regulación emocional integral.
+                                <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed font-light mb-6">
+                                    Acompañamiento psicoterapéutico especializado para el diagnóstico y regulación emocional.
                                 </p>
                             </div>
                             <button
@@ -331,36 +365,36 @@ export default function Home() {
                                     setSelectedEspecialidad('Psicología Clínica');
                                     setIsCitaModalOpen(true);
                                 }}
-                                className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3.5 px-6 rounded-2xl transition-all shadow-md hover:shadow-xl text-center"
+                                className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-2xl transition-all shadow-md hover:shadow-xl text-center text-sm"
                             >
                                 Solicitar Cita
                             </button>
                         </div>
 
-                        {/* 2. Dra. Johana Barrios (Médico, Mindfulness, Psicología Positiva) */}
-                        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 shadow-sm border-2 border-rose-200 dark:border-pink-800/60 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 relative">
-                            <span className="absolute -top-3 bg-gradient-to-r from-pink-500 to-rose-600 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-md">
+                        {/* 3. Dra. Johana Barrios (Médico, Mindfulness, Psicología Positiva) */}
+                        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 shadow-sm border-2 border-rose-200 dark:border-pink-800/60 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 relative">
+                            <span className="absolute -top-3 bg-gradient-to-r from-pink-500 to-rose-600 text-white text-[9px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full shadow-md">
                                 Salud Integral
                             </span>
                             <div>
-                                <div className="relative mb-6 mx-auto w-24 h-24">
+                                <div className="relative mb-6 mx-auto w-20 h-20">
                                     <img
                                         src="/doctoras/dra_johana_hero.jpg"
                                         alt="Dra. Johana Barrios"
-                                        className="w-24 h-24 rounded-full object-cover shadow-md border-4 border-rose-200 dark:border-slate-700 group-hover:scale-105 transition-transform"
+                                        className="w-20 h-20 rounded-full object-cover shadow-md border-4 border-rose-200 dark:border-slate-700 group-hover:scale-105 transition-transform"
                                     />
-                                    <span className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-rose-600 text-white flex items-center justify-center text-sm shadow-md">
+                                    <span className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-rose-600 text-white flex items-center justify-center text-xs shadow-md">
                                         🌿
                                     </span>
                                 </div>
-                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
                                     Dra. Johana Barrios
                                 </h3>
-                                <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-4">
-                                    Médico • Mindfulness • Psicología Positiva
+                                <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-3">
+                                    Médico • Mindfulness
                                 </p>
-                                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light mb-8">
-                                    Consulta médica en salud integral, regulación emocional, auto-liderazgo y desarrollo del bienestar consciente.
+                                <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed font-light mb-6">
+                                    Consulta médica en salud integral, auto-liderazgo y desarrollo del bienestar consciente.
                                 </p>
                             </div>
                             <button
@@ -368,33 +402,33 @@ export default function Home() {
                                     setSelectedEspecialidad('Dra. Johana Barrios (Salud Integral & Mindfulness)');
                                     setIsCitaModalOpen(true);
                                 }}
-                                className="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3.5 px-6 rounded-2xl transition-all shadow-md hover:shadow-xl text-center"
+                                className="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-4 rounded-2xl transition-all shadow-md hover:shadow-xl text-center text-sm"
                             >
                                 Solicitar Cita
                             </button>
                         </div>
 
-                        {/* 3. Neuropsicología */}
-                        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+                        {/* 4. Neuropsicología */}
+                        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
                             <div>
-                                <div className="relative mb-6 mx-auto w-24 h-24">
+                                <div className="relative mb-6 mx-auto w-20 h-20">
                                     <img
                                         src="/doctoras/neuropsicologia.jpg"
                                         alt="Neuropsicología"
-                                        className="w-24 h-24 rounded-full object-cover shadow-md border-4 border-purple-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
+                                        className="w-20 h-20 rounded-full object-cover shadow-md border-4 border-purple-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
                                     />
-                                    <span className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center text-sm shadow-md">
+                                    <span className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs shadow-md">
                                         🧠
                                     </span>
                                 </div>
-                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
                                     Neuropsicología
                                 </h3>
-                                <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-4">
+                                <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-3">
                                     Evaluación & Rehabilitación
                                 </p>
-                                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light mb-8">
-                                    Evaluación, estimulación y rehabilitación cognitiva basada en el funcionamiento del cerebro y la conducta.
+                                <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed font-light mb-6">
+                                    Evaluación y rehabilitación cognitiva basada en la neurociencia y la conducta.
                                 </p>
                             </div>
                             <button
@@ -402,33 +436,33 @@ export default function Home() {
                                     setSelectedEspecialidad('Neuropsicología');
                                     setIsCitaModalOpen(true);
                                 }}
-                                className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3.5 px-6 rounded-2xl transition-all shadow-md hover:shadow-xl text-center"
+                                className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-2xl transition-all shadow-md hover:shadow-xl text-center text-sm"
                             >
                                 Solicitar Cita
                             </button>
                         </div>
 
-                        {/* 4. Nutrición */}
-                        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+                        {/* 5. Nutrición */}
+                        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
                             <div>
-                                <div className="relative mb-6 mx-auto w-24 h-24">
+                                <div className="relative mb-6 mx-auto w-20 h-20">
                                     <img
                                         src="/doctoras/nutricion.jpg"
                                         alt="Nutrición Clínico-Emocional"
-                                        className="w-24 h-24 rounded-full object-cover shadow-md border-4 border-emerald-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
+                                        className="w-20 h-20 rounded-full object-cover shadow-md border-4 border-emerald-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
                                     />
-                                    <span className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center text-sm shadow-md">
+                                    <span className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs shadow-md">
                                         🥗
                                     </span>
                                 </div>
-                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
                                     Nutrición
                                 </h3>
-                                <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-4">
-                                    Salud & Alimentación Consciente
+                                <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-3">
+                                    Alimentación Consciente
                                 </p>
-                                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light mb-8">
-                                    Nutrición clínica y relación consciente con la alimentación para potenciar la salud integral y vitalidad.
+                                <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed font-light mb-6">
+                                    Nutrición clínica y relación saludable con la alimentación para potenciar tu vitalidad.
                                 </p>
                             </div>
                             <button
@@ -436,7 +470,7 @@ export default function Home() {
                                     setSelectedEspecialidad('Nutrición');
                                     setIsCitaModalOpen(true);
                                 }}
-                                className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3.5 px-6 rounded-2xl transition-all shadow-md hover:shadow-xl text-center"
+                                className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-2xl transition-all shadow-md hover:shadow-xl text-center text-sm"
                             >
                                 Solicitar Cita
                             </button>

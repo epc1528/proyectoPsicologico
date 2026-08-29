@@ -5,6 +5,14 @@ import Swal from 'sweetalert2';
 
 const ESPECIALIDADES = [
     {
+        id: 'Psiquiatría',
+        nombre: 'Psiquiatría',
+        doctora: 'Atención Médica Psiquiátrica Especializada',
+        img: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&q=80',
+        icon: '🩺',
+        badge: 'Medicina Especializada'
+    },
+    {
         id: 'Psicología Clínica',
         nombre: 'Psicología Clínica',
         doctora: 'Dra. Milagros Bolaño Romero (Psicóloga Clínica)',
