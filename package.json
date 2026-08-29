@@ -2,8 +2,9 @@
   "name": "proyecto-psicologico-root",
   "version": "1.0.0",
   "private": true,
+  "main": "api/dist/app.js",
   "scripts": {
     "build": "cd api && npm install && npm run build",
-    "start": "cd api && node dist/app.js"
+    "start": "node api/dist/app.js"
   }
 }
