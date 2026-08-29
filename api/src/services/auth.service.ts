@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { Transporter } from 'nodemailer';
 import { UsuarioRepository } from '../repositories/usuario.repository';
