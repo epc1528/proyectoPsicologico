@@ -87,6 +87,11 @@ const authLimiter = rateLimit({
 });
 
 
+// Root endpoint
+app.get('/', (_req, res) => {
+    res.json({ status: 'ok', message: '🚀 Psicocartillas Backend API is running!' });
+});
+
 // Health check
 app.get('/api/health', (_req, res) => {
     res.json({ status: 'ok', message: 'API MySQL is running' });
