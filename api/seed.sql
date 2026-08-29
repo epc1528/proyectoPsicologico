@@ -1,5 +1,3 @@
-USE cartillas_psicologicas;
-
 -- Limpiar datos existentes (opcional pero util para resets)
 DELETE FROM respuestas;
 DELETE FROM talleres;

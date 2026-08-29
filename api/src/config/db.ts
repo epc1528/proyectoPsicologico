@@ -15,7 +15,7 @@ const connectionConfig = process.env.MYSQL_URL || process.env.DATABASE_URL
         waitForConnections: true,
         connectionLimit: 10,
         queueLimit: 0,
-        multipleStatements: true, // Permitir múltiples queries para el seed
+        multipleStatements: true,
     };
 
 const targetHost = typeof connectionConfig === 'string' ? 'URL (DATABASE_URL / MYSQL_URL)' : (connectionConfig.host || 'localhost');
@@ -27,46 +27,57 @@ const pool = mysql.createPool(
         : connectionConfig as any
 );
 
+function findFilePath(filename: string): string | null {
+    const candidates = [
+        path.join(__dirname, '../../', filename),
+        path.join(__dirname, '../', filename),
+        path.join(process.cwd(), filename),
+        path.join(process.cwd(), 'api', filename),
+    ];
+    for (const c of candidates) {
+        if (fs.existsSync(c)) return c;
+    }
+    return null;
+}
+
 /**
  * Auto-inicializador de esquema y datos semilla (Auto-Migration)
  */
 export async function initializeDatabase(): Promise<void> {
-    let retries = 5;
-    while (retries > 0) {
-        try {
-            console.log('🔄 Verificando esquema de la base de datos...');
-            const connection = await pool.getConnection();
+    try {
+        console.log('🔄 Conectando e inicializando base de datos MySQL...');
+        const connection = await pool.getConnection();
 
-            // 1. Cargar esquema SQL si existe
-            const schemaPath = path.join(__dirname, '../../schema.sql');
-            if (fs.existsSync(schemaPath)) {
+        // 1. Cargar esquema SQL
+        const schemaPath = findFilePath('schema.sql');
+        if (schemaPath) {
+            try {
                 const schemaSql = fs.readFileSync(schemaPath, 'utf-8');
                 await connection.query(schemaSql);
-                console.log('✅ Esquema SQL verificado / creado con éxito.');
-            }
-
-            // 2. Verificar si la tabla usuarios está vacía para correr el seed
-            const [users] = await connection.query<any[]>('SELECT COUNT(*) as count FROM usuarios');
-            if (users && users[0] && users[0].count === 0) {
-                const seedPath = path.join(__dirname, '../../seed.sql');
-                if (fs.existsSync(seedPath)) {
-                    const seedSql = fs.readFileSync(seedPath, 'utf-8');
-                    await connection.query(seedSql);
-                    console.log('🌱 Datos de prueba (Seed SQL) insertados con éxito.');
-                }
-            }
-
-            connection.release();
-            break;
-        } catch (err: any) {
-            retries--;
-            console.warn(`⚠️ Intento de conexión a MySQL falló (${err.message}). Reintentando en 3s... (${retries} reintentos restantes)`);
-            if (retries === 0) {
-                console.error('❌ No se pudo inicializar la base de datos:', err.message);
-            } else {
-                await new Promise((res) => setTimeout(res, 3000));
+                console.log('✅ Esquema de base de datos verificado con éxito.');
+            } catch (sErr: any) {
+                console.warn('⚠️ Nota al ejecutar schema.sql:', sErr.message);
             }
         }
+
+        // 2. Verificar e insertar datos de prueba (Seed SQL)
+        try {
+            const [users] = await connection.query<any[]>('SELECT COUNT(*) as count FROM usuarios');
+            if (users && users[0] && Number(users[0].count) === 0) {
+                const seedPath = findFilePath('seed.sql');
+                if (seedPath) {
+                    const seedSql = fs.readFileSync(seedPath, 'utf-8');
+                    await connection.query(seedSql);
+                    console.log('🌱 Datos iniciales (Seed SQL) insertados con éxito.');
+                }
+            }
+        } catch (seedErr: any) {
+            console.warn('⚠️ Nota al verificar/ejecutar seed.sql:', seedErr.message);
+        }
+
+        connection.release();
+    } catch (err: any) {
+        console.error('⚠️ Conexión inicial a MySQL falló, la API continuará intentándolo:', err.message);
     }
 }
 
