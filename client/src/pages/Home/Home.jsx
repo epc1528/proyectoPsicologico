@@ -40,8 +40,8 @@ export default function Home() {
                             <div className="absolute -inset-2 bg-gradient-to-r from-pink-400 to-rose-500 rounded-[2.5rem] blur opacity-30 group-hover:opacity-50 transition duration-1000 -z-10"></div>
                             <div className="relative bg-white dark:bg-slate-900 p-2 sm:p-4 rounded-[2.5rem] shadow-2xl border border-white/50 dark:border-slate-800/50 backdrop-blur-sm transform transition-transform duration-500 group-hover:scale-[1.02]">
                                 <img
-                                    src="/johana_barrios_hero.jpg"
-                                    alt="Dra. Johana Barrios"
+                                    src="/psicologa.jpeg"
+                                    alt="Salud Mental y Bienestar"
                                     className="rounded-[2rem] w-full object-cover h-[400px] sm:h-[500px] shadow-inner cursor-pointer"
                                     onClick={() => {
                                         Swal.fire({
@@ -64,7 +64,7 @@ export default function Home() {
                                             }
                                         });
                                     }}
-                                    onError={(e) => { e.target.src = '/psicologa.jpeg' }}
+                                    onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }}
                                 />
 
                                 {/* Floating Elements */}
