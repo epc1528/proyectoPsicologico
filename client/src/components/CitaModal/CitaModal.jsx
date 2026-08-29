@@ -8,32 +8,32 @@ const ESPECIALIDADES = [
         id: 'Psiquiatría',
         nombre: 'Psiquiatría',
         doctora: 'Dra. Milagros Bolaño Romero',
+        img: '/dcmaria.jpeg',
         icon: '🩺',
-        color: 'from-pink-500 to-rose-600',
         badge: 'Medicina Especializada'
     },
     {
         id: 'Dra. Johana Barrios (Salud Integral & Mindfulness)',
         nombre: 'Dra. Johana Barrios',
         doctora: 'Médica • Mindfulness • Psicología Positiva',
+        img: '/johana_barrios_hero.jpg',
         icon: '🌿',
-        color: 'from-rose-500 to-pink-600',
         badge: 'Salud Integral & Emocional'
     },
     {
         id: 'Neuropsicología',
         nombre: 'Neuropsicología',
         doctora: 'Evaluación y Rehabilitación Cognitiva',
+        img: '/doc.jpeg',
         icon: '🧠',
-        color: 'from-purple-500 to-pink-600',
         badge: 'Neurociencias'
     },
     {
         id: 'Nutrición',
         nombre: 'Nutrición',
         doctora: 'Salud & Alimentación Consciente',
+        img: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&q=80',
         icon: '🥗',
-        color: 'from-emerald-500 to-teal-600',
         badge: 'Nutrición Clínica'
     }
 ];
@@ -83,7 +83,7 @@ export default function CitaModal({ isOpen, onClose, especialidadInicial = 'Psiq
                 motivo: motivoConModalidad
             });
 
-            const numTelDoctor = '573000000000'; // Número de la consulta
+            const numTelDoctor = '573000000000';
             const mensajeWa = encodeURIComponent(`Hola, acabo de solicitar una cita médica en la especialidad de *${espObj.nombre}* para el día *${formData.fecha_cita}* (${formData.modalidad}). Mi nombre es ${formData.nombre_cliente}.`);
 
             Swal.fire({
@@ -95,7 +95,7 @@ export default function CitaModal({ isOpen, onClose, especialidadInicial = 'Psiq
                         <p style="margin-bottom: 8px;"><strong>Fecha solicitada:</strong> ${formData.fecha_cita}</p>
                         <p style="margin-bottom: 16px;"><strong>Contacto:</strong> ${formData.telefono_cliente}</p>
                         <div style="background: #fdf2f8; border: 1px solid #fbcfe8; padding: 12px; border-radius: 16px; color: #9d174d; font-size: 0.85rem;">
-                            💡 El equipo médico confirmará la disponibilidad del horario. Si deseas agilizar la confirmación, puedes escribirnos por WhatsApp directamente.
+                            💡 El equipo médico revisará la disponibilidad de la agenda. Puedes presionar el botón abajo para agilizar la respuesta por WhatsApp.
                         </div>
                     </div>
                 `,
@@ -125,7 +125,7 @@ export default function CitaModal({ isOpen, onClose, especialidadInicial = 'Psiq
             <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] max-w-2xl w-full p-6 sm:p-10 shadow-2xl border border-rose-100 dark:border-slate-800 relative max-h-[92vh] overflow-y-auto">
                 <button
                     onClick={onClose}
-                    className="absolute top-6 right-6 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 text-xl font-bold w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center transition-transform hover:scale-110"
+                    className="absolute top-6 right-6 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 text-xl font-bold w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center transition-transform hover:scale-110 z-10"
                 >
                     ✕
                 </button>
@@ -143,7 +143,7 @@ export default function CitaModal({ isOpen, onClose, especialidadInicial = 'Psiq
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
-                    {/* Tarjetas Interactivas de Selección de Especialidad */}
+                    {/* Tarjetas con Foto de cada Doctora / Especialidad */}
                     <div>
                         <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-3">
                             1. Selecciona la Especialidad o Doctora
@@ -155,23 +155,28 @@ export default function CitaModal({ isOpen, onClose, especialidadInicial = 'Psiq
                                     <div
                                         key={esp.id}
                                         onClick={() => setFormData({ ...formData, especialidad: esp.id })}
-                                        className={`p-4 rounded-2xl cursor-pointer transition-all duration-300 border flex items-center gap-3 relative ${
+                                        className={`p-3.5 rounded-2xl cursor-pointer transition-all duration-300 border flex items-center gap-3.5 relative overflow-hidden ${
                                             selected
-                                                ? 'bg-gradient-to-br from-rose-50 to-pink-50 dark:from-slate-800 dark:to-slate-800/80 border-rose-400 dark:border-pink-500 shadow-md ring-2 ring-rose-400/40'
+                                                ? 'bg-gradient-to-br from-rose-50 to-pink-50 dark:from-slate-800 dark:to-slate-800/90 border-rose-500 shadow-md ring-2 ring-rose-400/50'
                                                 : 'bg-slate-50/70 dark:bg-slate-800/40 border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800'
                                         }`}
                                     >
-                                        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${esp.color} text-white flex items-center justify-center text-xl shadow-md shrink-0`}>
-                                            {esp.icon}
-                                        </div>
-                                        <div className="overflow-hidden">
-                                            <h4 className="font-bold text-slate-900 dark:text-white text-sm truncate">{esp.nombre}</h4>
-                                            <p className="text-[11px] text-slate-500 dark:text-slate-400 font-light truncate">{esp.doctora}</p>
+                                        <img
+                                            src={esp.img}
+                                            alt={esp.nombre}
+                                            className="w-14 h-14 rounded-xl object-cover border-2 border-white dark:border-slate-700 shadow-md shrink-0"
+                                        />
+                                        <div className="overflow-hidden flex-grow">
+                                            <div className="flex items-center gap-1.5">
+                                                <span className="text-xs">{esp.icon}</span>
+                                                <h4 className="font-extrabold text-slate-900 dark:text-white text-sm truncate">{esp.nombre}</h4>
+                                            </div>
+                                            <p className="text-[11px] text-rose-700 dark:text-pink-400 font-semibold truncate mt-0.5">{esp.doctora}</p>
                                         </div>
                                         {selected && (
-                                            <span className="absolute top-3 right-3 w-5 h-5 rounded-full bg-rose-600 text-white flex items-center justify-center text-[10px] font-black">
+                                            <div className="absolute top-2 right-2 w-6 h-6 rounded-full bg-rose-600 text-white flex items-center justify-center text-xs font-black shadow-md">
                                                 ✓
-                                            </span>
+                                            </div>
                                         )}
                                     </div>
                                 );
@@ -283,11 +288,11 @@ export default function CitaModal({ isOpen, onClose, especialidadInicial = 'Psiq
                     {/* Motivo */}
                     <div>
                         <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
-                            Motivo o Síntomas (Opcional)
+                            Motivo o Nota Adicional (Opcional)
                         </label>
                         <textarea
                             rows="2"
-                            placeholder="Describe brevemente el motivo de tu solicitud..."
+                            placeholder="Describe brevemente el motivo de tu consulta..."
                             value={formData.motivo}
                             onChange={(e) => setFormData({ ...formData, motivo: e.target.value })}
                             className="w-full p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 outline-none focus:ring-2 focus:ring-rose-400 text-sm"

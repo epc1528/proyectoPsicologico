@@ -293,10 +293,17 @@ export default function Home() {
                         {/* 1. Psiquiatría */}
                         <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
                             <div>
-                                <div className="w-20 h-20 rounded-full bg-pink-50 dark:bg-pink-900/30 flex items-center justify-center text-3xl text-pink-600 dark:text-pink-400 mx-auto mb-6 shadow-inner group-hover:scale-110 transition-transform">
-                                    🩺
+                                <div className="relative mb-6 mx-auto w-24 h-24">
+                                    <img
+                                        src="/dcmaria.jpeg"
+                                        alt="Dra. Milagros Bolaño Romero - Psiquiatría"
+                                        className="w-24 h-24 rounded-full object-cover shadow-md border-4 border-rose-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
+                                    />
+                                    <span className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-pink-500 text-white flex items-center justify-center text-sm shadow-md">
+                                        🩺
+                                    </span>
                                 </div>
-                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
                                     Psiquiatría
                                 </h3>
                                 <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-4">
@@ -323,8 +330,15 @@ export default function Home() {
                                 Salud Integral
                             </span>
                             <div>
-                                <div className="w-20 h-20 rounded-full bg-rose-50 dark:bg-rose-900/30 flex items-center justify-center text-3xl text-rose-600 dark:text-rose-400 mx-auto mb-6 shadow-inner group-hover:scale-110 transition-transform">
-                                    🌿
+                                <div className="relative mb-6 mx-auto w-24 h-24">
+                                    <img
+                                        src="/johana_barrios_hero.jpg"
+                                        alt="Dra. Johana Barrios"
+                                        className="w-24 h-24 rounded-full object-cover shadow-md border-4 border-rose-200 dark:border-slate-700 group-hover:scale-105 transition-transform"
+                                    />
+                                    <span className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-rose-600 text-white flex items-center justify-center text-sm shadow-md">
+                                        🌿
+                                    </span>
                                 </div>
                                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
                                     Dra. Johana Barrios
@@ -350,10 +364,17 @@ export default function Home() {
                         {/* 3. Neuropsicología */}
                         <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
                             <div>
-                                <div className="w-20 h-20 rounded-full bg-pink-50 dark:bg-pink-900/30 flex items-center justify-center text-3xl text-pink-600 dark:text-pink-400 mx-auto mb-6 shadow-inner group-hover:scale-110 transition-transform">
-                                    🧠
+                                <div className="relative mb-6 mx-auto w-24 h-24">
+                                    <img
+                                        src="/doc.jpeg"
+                                        alt="Neuropsicología"
+                                        className="w-24 h-24 rounded-full object-cover shadow-md border-4 border-purple-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
+                                    />
+                                    <span className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center text-sm shadow-md">
+                                        🧠
+                                    </span>
                                 </div>
-                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
                                     Neuropsicología
                                 </h3>
                                 <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-4">
@@ -377,10 +398,17 @@ export default function Home() {
                         {/* 4. Nutrición */}
                         <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
                             <div>
-                                <div className="w-20 h-20 rounded-full bg-pink-50 dark:bg-pink-900/30 flex items-center justify-center text-3xl text-pink-600 dark:text-pink-400 mx-auto mb-6 shadow-inner group-hover:scale-110 transition-transform">
-                                    🥗
+                                <div className="relative mb-6 mx-auto w-24 h-24">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&q=80"
+                                        alt="Nutrición Clínico-Emocional"
+                                        className="w-24 h-24 rounded-full object-cover shadow-md border-4 border-emerald-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
+                                    />
+                                    <span className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center text-sm shadow-md">
+                                        🥗
+                                    </span>
                                 </div>
-                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
                                     Nutrición
                                 </h3>
                                 <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-4">
