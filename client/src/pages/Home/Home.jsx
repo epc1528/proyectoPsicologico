@@ -271,6 +271,132 @@ export default function Home() {
                 </div>
             </section>
 
+            {/* Servicios y Citas Médicas Especializadas en Orden Específico */}
+            <section className="py-16 md:py-24 relative z-20 bg-slate-50/70 dark:bg-slate-900/60 border-y border-pink-100 dark:border-slate-800">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                        <span className="inline-block px-4 py-1.5 rounded-full bg-pink-100 dark:bg-pink-900/40 text-pink-700 dark:text-pink-300 text-xs font-bold uppercase tracking-wider">
+                            Atención Profesional Personalizada
+                        </span>
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white" style={{ fontFamily: "'Playfair Display', serif" }}>
+                            Nuestros Servicios y Citas Especializadas
+                        </h2>
+                        <p className="text-slate-600 dark:text-slate-400 text-lg font-light">
+                            Un equipo interdisciplinario de salud integral a tu disposición para acompañar tu proceso de bienestar.
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {/* 1. Psiquiatría */}
+                        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+                            <div>
+                                <div className="w-20 h-20 rounded-full bg-pink-50 dark:bg-pink-900/30 flex items-center justify-center text-3xl text-pink-600 dark:text-pink-400 mx-auto mb-6 shadow-inner group-hover:scale-110 transition-transform">
+                                    🩺
+                                </div>
+                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                    Psiquiatría
+                                </h3>
+                                <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-4">
+                                    Dra. Milagros Bolaño Romero
+                                </p>
+                                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light mb-8">
+                                    Acompañamiento médico especializado para el diagnóstico y tratamiento integral de los trastornos emocionales.
+                                </p>
+                            </div>
+                            <a
+                                href="https://wa.me/573000000000?text=Hola,%20quisiera%20solicitar%20una%20cita%20de%20Psiquiatr%C3%ADa"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3.5 px-6 rounded-2xl transition-all shadow-md hover:shadow-xl text-center"
+                            >
+                                Solicitar Cita
+                            </a>
+                        </div>
+
+                        {/* 2. Dra. Johana Barrios (Médico, Mindfulness, Psicología Positiva) */}
+                        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 shadow-sm border-2 border-rose-200 dark:border-pink-800/60 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 relative">
+                            <span className="absolute -top-3 bg-gradient-to-r from-pink-500 to-rose-600 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-md">
+                                Salud Integral
+                            </span>
+                            <div>
+                                <div className="w-20 h-20 rounded-full bg-rose-50 dark:bg-rose-900/30 flex items-center justify-center text-3xl text-rose-600 dark:text-rose-400 mx-auto mb-6 shadow-inner group-hover:scale-110 transition-transform">
+                                    🌿
+                                </div>
+                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                    Dra. Johana Barrios
+                                </h3>
+                                <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-4">
+                                    Médico • Mindfulness • Psicología Positiva
+                                </p>
+                                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light mb-8">
+                                    Consulta médica en salud integral, regulación emocional, auto-liderazgo y desarrollo del bienestar consciente.
+                                </p>
+                            </div>
+                            <a
+                                href="https://wa.me/573000000000?text=Hola,%20quisiera%20solicitar%20una%20cita%20con%20la%20Dra.%20Johana%20Barrios"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3.5 px-6 rounded-2xl transition-all shadow-md hover:shadow-xl text-center"
+                            >
+                                Solicitar Cita
+                            </a>
+                        </div>
+
+                        {/* 3. Neuropsicología */}
+                        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+                            <div>
+                                <div className="w-20 h-20 rounded-full bg-pink-50 dark:bg-pink-900/30 flex items-center justify-center text-3xl text-pink-600 dark:text-pink-400 mx-auto mb-6 shadow-inner group-hover:scale-110 transition-transform">
+                                    🧠
+                                </div>
+                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                    Neuropsicología
+                                </h3>
+                                <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-4">
+                                    Evaluación & Rehabilitación
+                                </p>
+                                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light mb-8">
+                                    Evaluación, estimulación y rehabilitación cognitiva basada en el funcionamiento del cerebro y la conducta.
+                                </p>
+                            </div>
+                            <a
+                                href="https://wa.me/573000000000?text=Hola,%20quisiera%20solicitar%20una%20cita%20de%20Neuropsicolog%C3%ADa"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3.5 px-6 rounded-2xl transition-all shadow-md hover:shadow-xl text-center"
+                            >
+                                Solicitar Cita
+                            </a>
+                        </div>
+
+                        {/* 4. Nutrición */}
+                        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+                            <div>
+                                <div className="w-20 h-20 rounded-full bg-pink-50 dark:bg-pink-900/30 flex items-center justify-center text-3xl text-pink-600 dark:text-pink-400 mx-auto mb-6 shadow-inner group-hover:scale-110 transition-transform">
+                                    🥗
+                                </div>
+                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                    Nutrición
+                                </h3>
+                                <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-4">
+                                    Salud & Alimentación Consciente
+                                </p>
+                                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light mb-8">
+                                    Nutrición clínica y relación consciente con la alimentación para potenciar la salud integral y vitalidad.
+                                </p>
+                            </div>
+                            <a
+                                href="https://wa.me/573000000000?text=Hola,%20quisiera%20solicitar%20una%20cita%20de%20Nutrici%C3%B3n"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3.5 px-6 rounded-2xl transition-all shadow-md hover:shadow-xl text-center"
+                            >
+                                Solicitar Cita
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* Para quién son y Qué encontrarás */}
             <section className="py-16 md:py-24 relative z-20 bg-white dark:bg-slate-950">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
