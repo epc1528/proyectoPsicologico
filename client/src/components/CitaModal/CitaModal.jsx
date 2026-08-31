@@ -21,8 +21,8 @@ const ESPECIALIDADES = [
         badge: 'Psicología Clínica'
     },
     {
-        id: 'Dra. Johana Barrios (Salud Integral & Mindfulness)',
-        nombre: 'Dra. Johana Barrios',
+        id: 'Dra. Johana Barrios Chinchilla (Salud Integral & Mindfulness)',
+        nombre: 'Dra. Johana Barrios Chinchilla',
         doctora: 'Médica • Mindfulness • Psicología Positiva',
         img: '/doctoras/dra_johana_hero.jpg',
         icon: '🌿',

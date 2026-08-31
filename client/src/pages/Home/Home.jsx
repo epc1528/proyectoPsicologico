@@ -6,16 +6,15 @@ import CitaModal from '../../components/CitaModal/CitaModal';
 const ESPECIALISTAS_DETALLE = [
     {
         id: 'johana',
-        nombre: 'Dra. Johana Barrios',
+        nombre: 'Dra. Johana Barrios Chinchilla',
         cargoBreve: 'Médica • Mindfulness • Psicología Positiva',
-        tituloEspecialidad: 'Dra. Johana Barrios (Salud Integral & Mindfulness)',
+        tituloEspecialidad: 'Dra. Johana Barrios Chinchilla (Salud Integral & Mindfulness)',
         badge: '🩺 MÉDICA • MINDFULNESS • PSICOLOGÍA POSITIVA',
-        frase: '"Sanarnos un destino es un camino y empieza por escuchar."',
+        frase: '“Somos una conversación constante entre cerebro, cuerpo, emociones y entorno; comprender esa conexión es también comprender nuestra salud.💛”',
         imagen: '/doctoras/dra_johana_quote.jpg',
         parrafos: [
-            'Médica con más de 20 años de trayectoria en atención clínica, promoción y prevención de la salud, coordinación médica y gestión de servicios de salud.',
-            'Su experiencia acompañando a pacientes en distintas etapas de la vida demostró que la salud va más allá del diagnóstico: requiere comprender la mente, las emociones, los vínculos y el propósito.',
-            'Por ello complementó su formación médica con Mindfulness, Gestión Emocional, Psicología Positiva, Coaching en Salud y Neurociencias, promoviendo una salud consciente e integral que escucha y comprende la raíz de cada historia.'
+            'Médica con amplia experiencia clínica en promoción y prevención de la salud. Título Superior Universitario en Mindfulness y Gestión Emocional, formación en Psicología Positiva, Coaching en Salud y Neurociencias.',
+            'Integra la medicina con una mirada integral del bienestar físico, mental y emocional.'
         ]
     },
     {
@@ -272,7 +271,7 @@ export default function Home() {
                         })}
                     </div>
 
-                    {/* Tarjeta Destacada del Especialista Seleccionado (Estilo Imagen del Usuario) */}
+                    {/* Tarjeta Destacada del Especialista Seleccionado */}
                     <div className="bg-white dark:bg-slate-900 rounded-[3rem] p-8 md:p-12 shadow-2xl border border-rose-100 dark:border-slate-800 flex flex-col lg:flex-row items-center gap-12 transition-all duration-500">
                         <div className="lg:w-1/2 relative group w-full">
                             <div className="absolute -inset-2 bg-gradient-to-r from-pink-400 via-rose-500 to-pink-500 rounded-[2.5rem] blur opacity-30 group-hover:opacity-50 transition duration-700"></div>
@@ -326,7 +325,7 @@ export default function Home() {
                     <div className="md:w-2/3 grid sm:grid-cols-2 gap-6 text-base font-medium">
                         <div className="flex items-start gap-3">
                             <span className="text-pink-200 text-xl font-black mt-1">✔</span>
-                            <p>Elaboradas por la Dra. Johana Barrios (Médico especialista en Psicología Positiva y Neurociencias) y la Dra. Milagros Bolaño (Psicóloga Clínica).</p>
+                            <p>Elaboradas por la Dra. Johana Barrios Chinchilla (Médico especialista en Psicología Positiva y Neurociencias) y la Dra. Milagros Bolaño (Psicóloga Clínica).</p>
                         </div>
                         <div className="flex items-start gap-3">
                             <span className="text-pink-200 text-xl font-black mt-1">✔</span>
@@ -496,7 +495,7 @@ export default function Home() {
                             </button>
                         </div>
 
-                        {/* 3. Dra. Johana Barrios (Médico, Mindfulness, Psicología Positiva) */}
+                        {/* 3. Dra. Johana Barrios Chinchilla (Médico, Mindfulness, Psicología Positiva) */}
                         <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 shadow-sm border-2 border-rose-200 dark:border-pink-800/60 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 relative">
                             <span className="absolute -top-3 bg-gradient-to-r from-pink-500 to-rose-600 text-white text-[9px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full shadow-md">
                                 Salud Integral
@@ -505,7 +504,7 @@ export default function Home() {
                                 <div className="relative mb-6 mx-auto w-20 h-20">
                                     <img
                                         src="/doctoras/dra_johana_hero.jpg"
-                                        alt="Dra. Johana Barrios"
+                                        alt="Dra. Johana Barrios Chinchilla"
                                         className="w-20 h-20 rounded-full object-cover shadow-md border-4 border-rose-200 dark:border-slate-700 group-hover:scale-105 transition-transform"
                                     />
                                     <span className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-rose-600 text-white flex items-center justify-center text-xs shadow-md">
@@ -513,7 +512,7 @@ export default function Home() {
                                     </span>
                                 </div>
                                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
-                                    Dra. Johana Barrios
+                                    Dra. Johana Barrios C.
                                 </h3>
                                 <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-3">
                                     Médico • Mindfulness
@@ -524,7 +523,7 @@ export default function Home() {
                             </div>
                             <button
                                 onClick={() => {
-                                    setSelectedEspecialidad('Dra. Johana Barrios (Salud Integral & Mindfulness)');
+                                    setSelectedEspecialidad('Dra. Johana Barrios Chinchilla (Salud Integral & Mindfulness)');
                                     setIsCitaModalOpen(true);
                                 }}
                                 className="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-4 rounded-2xl transition-all shadow-md hover:shadow-xl text-center text-sm"
