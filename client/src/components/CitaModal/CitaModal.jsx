@@ -46,8 +46,9 @@ const ESPECIALIDADES = [
     }
 ];
 
-export default function CitaModal({ isOpen, onClose, especialidadInicial = 'Psiquiatría' }) {
+export default function CitaModal({ isOpen, onClose, especialidadInicial = ESPECIALIDADES[0].id }) {
     const { user } = useContext(AuthContext);
+    const todayStr = new Date().toISOString().split('T')[0];
 
     const [formData, setFormData] = useState({
         nombre_cliente: '',
@@ -55,7 +56,7 @@ export default function CitaModal({ isOpen, onClose, especialidadInicial = 'Psiq
         telefono_cliente: '',
         especialidad: especialidadInicial,
         modalidad: 'Virtual',
-        fecha_cita: '',
+        fecha_cita: todayStr,
         hora_cita: '🌅 Mañana (8:00 AM - 12:00 PM)',
         motivo: ''
     });
@@ -72,7 +73,9 @@ export default function CitaModal({ isOpen, onClose, especialidadInicial = 'Psiq
             }));
         }
         if (especialidadInicial) {
-            setFormData(prev => ({ ...prev, especialidad: especialidadInicial }));
+            // Buscar coincidencia en ESPECIALIDADES o usar por defecto
+            const espEncontrada = ESPECIALIDADES.find(e => e.id === especialidadInicial || e.nombre.includes(especialidadInicial));
+            setFormData(prev => ({ ...prev, especialidad: espEncontrada ? espEncontrada.id : ESPECIALIDADES[0].id }));
         }
     }, [user, especialidadInicial, isOpen]);
 
