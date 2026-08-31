@@ -49,6 +49,8 @@ services:
     restart: always
     ports:
       - "80:80"
+    environment:
+      BACKEND_URL: http://api:5000/api/
     depends_on:
       - api
 
