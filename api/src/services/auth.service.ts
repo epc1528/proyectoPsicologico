@@ -93,8 +93,12 @@ export class AuthService {
         };
 
         if (process.env.EMAIL_PASS && process.env.EMAIL_PASS !== 'tu_contraseña_de_aplicacion') {
-            await this.mailer.sendMail(mailOptions);
-            console.log(`📧 Correo real enviado a: ${correo}`);
+            try {
+                await this.mailer.sendMail(mailOptions);
+                console.log(`📧 Correo real enviado a: ${correo}`);
+            } catch (mailError: any) {
+                console.error(`⚠️ Error al enviar correo por SMTP (${mailError.message}). Enlace de respaldo:`, resetLink);
+            }
         } else {
             console.log('----------------------------------------------------');
             console.log(`📧 [MODO PRUEBA] Correo simulado a: ${correo}`);
