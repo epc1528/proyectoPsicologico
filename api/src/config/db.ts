@@ -7,11 +7,11 @@ import 'dotenv/config';
 const connectionConfig = process.env.MYSQL_URL || process.env.DATABASE_URL
     ? (process.env.MYSQL_URL || process.env.DATABASE_URL)!
     : {
-        host: process.env.MYSQLHOST || process.env.DB_HOST || 'localhost',
+        host: process.env.MYSQLHOST || process.env.DB_HOST || '127.0.0.1',
         user: process.env.MYSQLUSER || process.env.DB_USER || 'root',
-        password: process.env.MYSQLPASSWORD || process.env.DB_PASSWORD || '',
+        password: process.env.MYSQLPASSWORD || process.env.DB_PASSWORD || 'rootpassword',
         database: process.env.MYSQLDATABASE || process.env.DB_NAME || 'cartillas_psicologicas',
-        port: Number(process.env.MYSQLPORT || process.env.DB_PORT) || 3306,
+        port: Number(process.env.MYSQLPORT || process.env.DB_PORT) || (process.env.DB_HOST === 'db' ? 3306 : 3307),
         waitForConnections: true,
         connectionLimit: 10,
         queueLimit: 0,
