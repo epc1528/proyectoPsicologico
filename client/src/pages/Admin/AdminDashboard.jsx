@@ -133,15 +133,21 @@ export default function AdminDashboard() {
             return;
         }
 
-        Promise.all([
+        Promise.allSettled([
             getUsuarios(),
             getRespuestas(),
             getCitasAdmin()
         ])
-            .then(([usuariosData, respuestasData, citasData]) => {
-                setUsuarios(usuariosData);
-                setRespuestas(respuestasData);
-                setCitas(citasData || []);
+            .then(([usersRes, respRes, citasRes]) => {
+                if (usersRes.status === 'fulfilled' && Array.isArray(usersRes.value)) {
+                    setUsuarios(usersRes.value);
+                }
+                if (respRes.status === 'fulfilled' && Array.isArray(respRes.value)) {
+                    setRespuestas(respRes.value);
+                }
+                if (citasRes.status === 'fulfilled' && Array.isArray(citasRes.value)) {
+                    setCitas(citasRes.value);
+                }
                 setLoading(false);
             })
             .catch(err => {

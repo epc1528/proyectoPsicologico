@@ -88,6 +88,7 @@ export default function CitaModal({ isOpen, onClose, especialidadInicial = 'Psiq
 
             await solicitarCita({
                 ...formData,
+                especialidad: espObj.nombre,
                 motivo: motivoConModalidad
             });
 

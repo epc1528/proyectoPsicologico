@@ -60,6 +60,28 @@ export async function initializeDatabase(): Promise<void> {
             }
         }
 
+        // Garantizar existencia de la tabla citas
+        try {
+            await connection.query(`
+                CREATE TABLE IF NOT EXISTS citas (
+                  id INT AUTO_INCREMENT PRIMARY KEY,
+                  usuario_id INT NULL,
+                  nombre_cliente VARCHAR(100) NOT NULL,
+                  correo_cliente VARCHAR(100) NOT NULL,
+                  telefono_cliente VARCHAR(20) NOT NULL,
+                  especialidad VARCHAR(100) NOT NULL,
+                  fecha_cita DATE NOT NULL,
+                  hora_cita VARCHAR(50) NOT NULL,
+                  motivo TEXT,
+                  estado ENUM('PENDIENTE', 'CONFIRMADA', 'CANCELADA') DEFAULT 'PENDIENTE',
+                  fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                  FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE SET NULL
+                );
+            `);
+        } catch (cErr: any) {
+            console.warn('⚠️ Nota al verificar la tabla citas:', cErr.message);
+        }
+
         // 2. Verificar e insertar datos de prueba (Seed SQL)
         try {
             const [users] = await connection.query<any[]>('SELECT COUNT(*) as count FROM usuarios');
