@@ -3,9 +3,86 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import CitaModal from '../../components/CitaModal/CitaModal';
 
+const ESPECIALISTAS_DETALLE = [
+    {
+        id: 'johana',
+        nombre: 'Dra. Johana Barrios',
+        cargoBreve: 'Médica • Mindfulness • Psicología Positiva',
+        tituloEspecialidad: 'Dra. Johana Barrios (Salud Integral & Mindfulness)',
+        badge: '🩺 MÉDICA • MINDFULNESS • PSICOLOGÍA POSITIVA',
+        frase: '"Sanarnos un destino es un camino y empieza por escuchar."',
+        imagen: '/doctoras/dra_johana_quote.jpg',
+        parrafos: [
+            'Médica con más de 20 años de trayectoria en atención clínica, promoción y prevención de la salud, coordinación médica y gestión de servicios de salud.',
+            'Su experiencia acompañando a pacientes en distintas etapas de la vida demostró que la salud va más allá del diagnóstico: requiere comprender la mente, las emociones, los vínculos y el propósito.',
+            'Por ello complementó su formación médica con Mindfulness, Gestión Emocional, Psicología Positiva, Coaching en Salud y Neurociencias, promoviendo una salud consciente e integral que escucha y comprende la raíz de cada historia.'
+        ]
+    },
+    {
+        id: 'milagros',
+        nombre: 'Dra. Milagros Bolaño Romero',
+        cargoBreve: 'Psicóloga Clínica Especialista',
+        tituloEspecialidad: 'Psicología Clínica',
+        badge: '🩺 PSICOLOGÍA CLÍNICA • ESPECIALISTA EN SALUD MENTAL',
+        frase: '"Tener una autoestima sana y paz mental te permite construir una vida con propósito."',
+        imagen: '/doctoras/dra_milagros.jpg',
+        parrafos: [
+            'Psicóloga Clínica con amplia trayectoria en acompañamiento psicoterapéutico, evaluación psicológica y regulación emocional para niños, adolescentes y adultos.',
+            'Especializada en el diseño de bitácoras terapéuticas y herramientas de autoconocimiento, guiando a cada paciente a comprender sus emociones y fortalecer su resiliencia.',
+            'Su enfoque integra técnicas basadas en evidencia científica, psicoeducación y terapia cognitivo-conductual para transformar patrones de pensamiento y fomentar el bienestar integral.'
+        ]
+    },
+    {
+        id: 'psiquiatria',
+        nombre: 'Psiquiatría Especializada',
+        cargoBreve: 'Medicina Psiquiátrica & Salud Mental',
+        tituloEspecialidad: 'Psiquiatría',
+        badge: '🩺 PSIQUIATRÍA • MEDICINA ESPECIALIZADA',
+        frase: '"La medicina mental y el acompañamiento profesional abren caminos hacia la serenidad y la estabilidad."',
+        imagen: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=80',
+        parrafos: [
+            'Atención psiquiátrica clínica orientada al diagnóstico, tratamiento médico ético y seguimiento continuo de trastornos del estado de ánimo, ansiedad y bienestar mental.',
+            'Evaluación médica integral que aborda factores neurobiológicos y emocionales para restaurar el equilibrio químico y emocional de forma segura y personalizada.',
+            'Trabajo interdisciplinario articulado con psicología y medicina integral para brindar un abordaje completo, empático y humano adaptado a las necesidades de cada paciente.'
+        ]
+    },
+    {
+        id: 'neuropsicologia',
+        nombre: 'Neuropsicología',
+        cargoBreve: 'Evaluación & Rehabilitación Cognitiva',
+        tituloEspecialidad: 'Neuropsicología',
+        badge: '🧠 NEUROPSICOLOGÍA • EVALUACIÓN Y REHABILITACIÓN COGNITIVA',
+        frase: '"Comprender el funcionamiento cerebral es la clave para potenciar nuestras habilidades y superar desafíos cognitivos."',
+        imagen: '/doctoras/neuropsicologia.jpg',
+        parrafos: [
+            'Evaluación neuropsicológica detallada y programas personalizados de rehabilitación cognitiva para optimizar la memoria, la atención, las funciones ejecutivas y el aprendizaje.',
+            'Diagnóstico especializado de funciones cerebrales superiores para diseñar estrategias terapéuticas eficaces orientadas a potenciar las capacidades mentales.',
+            'Acompañamiento especializado a niños, jóvenes y adultos en procesos de desarrollo neuropsicológico y recuperación funcional con un enfoque humano y científico.'
+        ]
+    },
+    {
+        id: 'nutricion',
+        nombre: 'Nutrición Clínico-Emocional',
+        cargoBreve: 'Alimentación Consciente & Psiconutrición',
+        tituloEspecialidad: 'Nutrición',
+        badge: '🥗 NUTRICIÓN CLÍNICA • ALIMENTACIÓN CONSCIENTE',
+        frase: '"Nutrir tu cuerpo de manera consciente es un acto de amor que potencia tu energía física y vitalidad emocional."',
+        imagen: '/doctoras/nutricion.jpg',
+        parrafos: [
+            'Asesoría nutricional clínica y psiconutrición orientada a sanar la relación con los alimentos, equilibrar el sistema digestivo y mejorar el estado de ánimo mediante la nutrición.',
+            'Abordaje integral que comprende la conexión entre el intestino y el cerebro, promoviendo elecciones alimenticias que favorezcan la producción de serotonina y la salud física.',
+            'Planes personalizados basados en hábitos sostenibles y alimentación consciente para alcanzar un peso saludable, vitalidad y un estilo de vida pleno.'
+        ]
+    }
+];
+
 export default function Home() {
     const [isCitaModalOpen, setIsCitaModalOpen] = useState(false);
     const [selectedEspecialidad, setSelectedEspecialidad] = useState('Psiquiatría');
+    const [selectedEspecialistaId, setSelectedEspecialistaId] = useState('johana');
+
+    const especialistaActual = ESPECIALISTAS_DETALLE.find(e => e.id === selectedEspecialistaId) || ESPECIALISTAS_DETALLE[0];
+
     return (
         <div className="bg-white dark:bg-slate-950 transition-colors duration-300">
             {/* Hero Section Premium */}
@@ -154,37 +231,85 @@ export default function Home() {
                 </div>
             </header>
 
-            {/* Nuestra Esencia Section — Perfil Dra. Johana Barrios */}
+            {/* Sección Nuestra Esencia — Perfiles de Especialistas con Tarjetas Destacadas */}
             <section className="py-16 md:py-24 bg-gradient-to-b from-pink-50/40 via-white to-rose-50/30 dark:from-slate-900/80 dark:via-slate-950 dark:to-slate-900 relative z-20">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="bg-white dark:bg-slate-900 rounded-[3rem] p-8 md:p-12 shadow-2xl border border-rose-100 dark:border-slate-800 flex flex-col lg:flex-row items-center gap-12">
-                        <div className="lg:w-1/2 relative group">
-                            <div className="absolute -inset-2 bg-gradient-to-r from-pink-400 to-rose-500 rounded-[2.5rem] blur opacity-30 group-hover:opacity-50 transition duration-700"></div>
+                    <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
+                        <span className="inline-block px-4 py-1.5 rounded-full bg-rose-100 dark:bg-rose-900/40 text-rose-800 dark:text-rose-300 text-xs font-extrabold uppercase tracking-wider">
+                            Nuestra Esencia & Dirección Especializada
+                        </span>
+                        <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white" style={{ fontFamily: "'Playfair Display', serif" }}>
+                            Conoce a Nuestro Equipo de Salud Integral
+                        </h2>
+                        <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg font-light">
+                            Haz clic en cada especialista para conocer su trayectoria clínica, filosofía terapéutica y enfoque de acompañamiento.
+                        </p>
+                    </div>
+
+                    {/* Selector / Tabs de Especialistas */}
+                    <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+                        {ESPECIALISTAS_DETALLE.map((esp) => {
+                            const isSelected = esp.id === selectedEspecialistaId;
+                            return (
+                                <button
+                                    key={esp.id}
+                                    onClick={() => setSelectedEspecialistaId(esp.id)}
+                                    className={`flex items-center gap-3 px-5 py-3 rounded-2xl transition-all duration-300 text-sm font-bold shadow-sm ${
+                                        isSelected
+                                            ? 'bg-rose-600 text-white shadow-lg shadow-rose-500/30 scale-105 ring-2 ring-rose-400'
+                                            : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-rose-50 dark:hover:bg-slate-800'
+                                    }`}
+                                >
+                                    <img
+                                        src={esp.imagen}
+                                        alt={esp.nombre}
+                                        className="w-8 h-8 rounded-full object-cover border border-white/50 shadow-inner"
+                                        onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80' }}
+                                    />
+                                    <span>{esp.nombre}</span>
+                                </button>
+                            );
+                        })}
+                    </div>
+
+                    {/* Tarjeta Destacada del Especialista Seleccionado (Estilo Imagen del Usuario) */}
+                    <div className="bg-white dark:bg-slate-900 rounded-[3rem] p-8 md:p-12 shadow-2xl border border-rose-100 dark:border-slate-800 flex flex-col lg:flex-row items-center gap-12 transition-all duration-500">
+                        <div className="lg:w-1/2 relative group w-full">
+                            <div className="absolute -inset-2 bg-gradient-to-r from-pink-400 via-rose-500 to-pink-500 rounded-[2.5rem] blur opacity-30 group-hover:opacity-50 transition duration-700"></div>
                             <img
-                                src="/doctoras/dra_johana_quote.jpg"
-                                alt="Dra. Johana Barrios - Sanarnos un destino es un camino"
-                                className="relative rounded-[2rem] shadow-xl border-4 border-white dark:border-slate-800 w-full object-cover transform transition duration-500 group-hover:scale-[1.01]"
+                                src={especialistaActual.imagen}
+                                alt={`${especialistaActual.nombre} - ${especialistaActual.cargoBreve}`}
+                                className="relative rounded-[2rem] shadow-xl border-4 border-white dark:border-slate-800 w-full max-h-[520px] object-cover transform transition duration-500 group-hover:scale-[1.01]"
+                                onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }}
                             />
                         </div>
                         <div className="lg:w-1/2 space-y-6 text-center lg:text-left">
-                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-100 dark:bg-rose-900/40 text-rose-800 dark:text-rose-300 text-sm font-bold tracking-wide uppercase">
-                                🩺 Médica • Mindfulness • Psicología Positiva
+                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-100 dark:bg-rose-900/40 text-rose-800 dark:text-rose-300 text-xs sm:text-sm font-bold tracking-wide uppercase shadow-sm">
+                                {especialistaActual.badge}
                             </div>
                             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white" style={{ fontFamily: "'Playfair Display', serif" }}>
-                                Dra. Johana Barrios
+                                {especialistaActual.nombre}
                             </h2>
-                            <p className="text-xl text-rose-700 dark:text-pink-400 italic font-medium" style={{ fontFamily: "'Playfair Display', serif" }}>
-                                "Sanarnos un destino es un camino y empieza por escuchar."
+                            <p className="text-lg sm:text-xl text-rose-700 dark:text-pink-400 italic font-medium" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                {especialistaActual.frase}
                             </p>
-                            <p className="text-slate-700 dark:text-slate-300 text-base md:text-lg leading-relaxed font-light">
-                                Médica con más de 20 años de trayectoria en atención clínica, promoción y prevención de la salud, coordinación médica y gestión de servicios de salud.
-                            </p>
-                            <p className="text-slate-700 dark:text-slate-300 text-base md:text-lg leading-relaxed font-light">
-                                Su experiencia acompañando a pacientes en distintas etapas de la vida demostró que la salud va más allá del diagnóstico: requiere comprender la mente, las emociones, los vínculos y el propósito.
-                            </p>
-                            <p className="text-slate-700 dark:text-slate-300 text-base md:text-lg leading-relaxed font-light">
-                                Por ello complementó su formación médica con <strong>Mindfulness, Gestión Emocional, Psicología Positiva, Coaching en Salud y Neurociencias</strong>, promoviendo una salud consciente e integral que escucha y comprende la raíz de cada historia.
-                            </p>
+                            {especialistaActual.parrafos.map((parrafo, idx) => (
+                                <p key={idx} className="text-slate-700 dark:text-slate-300 text-base md:text-lg leading-relaxed font-light">
+                                    {parrafo}
+                                </p>
+                            ))}
+                            <div className="pt-4">
+                                <button
+                                    onClick={() => {
+                                        setSelectedEspecialidad(especialistaActual.tituloEspecialidad);
+                                        setIsCitaModalOpen(true);
+                                    }}
+                                    className="bg-rose-600 hover:bg-rose-700 text-white font-bold py-3.5 px-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5 inline-flex items-center gap-2 text-base"
+                                >
+                                    <span>📅</span>
+                                    <span>Solicitar Cita con {especialistaActual.nombre}</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
