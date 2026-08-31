@@ -11,34 +11,36 @@ export default function NavBar({ onOpenCitaModal }) {
 
     return (
         <nav className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 sticky top-0 z-50 transition-colors duration-300">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex justify-between items-center gap-4">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex justify-between items-center">
                 
-                {/* Logo & Marca */}
-                <Link to="/" className="flex items-center gap-3 shrink-0 group z-50">
+                {/* Logo & Marca con margen derecho garantizado */}
+                <Link to="/" className="flex items-center gap-3 shrink-0 group z-50 mr-6 lg:mr-12">
                     <img
                         src={logoClick}
                         alt="Logo PsicoCartillas"
-                        className="w-11 h-11 rounded-xl object-cover shadow-sm group-hover:scale-105 transition-transform duration-300"
+                        className="w-11 h-11 rounded-full object-cover shadow-sm group-hover:scale-105 transition-transform duration-300 border border-purple-100"
                     />
                     <span
-                        className="text-base sm:text-lg lg:text-xl font-extrabold text-indigo-950 dark:text-white tracking-tight group-hover:text-rose-600 dark:group-hover:text-pink-400 transition-colors hidden sm:inline-block"
+                        className="text-lg lg:text-xl font-extrabold text-indigo-950 dark:text-white tracking-tight group-hover:text-rose-600 dark:group-hover:text-pink-400 transition-colors"
                         style={{ fontFamily: "'Playfair Display', serif" }}
                     >
-                        Dale un click a tus emociones
+                        {/* En pantallas xl se muestra completo, en medianas muestra PsicoCartillas */}
+                        <span className="hidden xl:inline">Dale un click a tus emociones</span>
+                        <span className="xl:hidden inline">PsicoCartillas</span>
                     </span>
                 </Link>
 
-                {/* Desktop Menu */}
-                <div className="hidden lg:flex items-center gap-5 lg:gap-6">
+                {/* Desktop Menu - xl breakpoint para amplio espacio visual */}
+                <div className="hidden xl:flex items-center gap-6">
                     <Link
                         to="/"
-                        className="text-slate-600 dark:text-slate-300 font-semibold text-sm hover:text-rose-600 dark:hover:text-pink-400 transition-colors"
+                        className="text-slate-600 dark:text-slate-300 font-semibold text-sm hover:text-rose-600 dark:hover:text-pink-400 transition-colors px-2 py-1"
                     >
                         Inicio
                     </Link>
                     <Link
                         to="/cartillas"
-                        className="text-slate-600 dark:text-slate-300 font-semibold text-sm hover:text-rose-600 dark:hover:text-pink-400 transition-colors"
+                        className="text-slate-600 dark:text-slate-300 font-semibold text-sm hover:text-rose-600 dark:hover:text-pink-400 transition-colors px-2 py-1"
                     >
                         Catálogo
                     </Link>
@@ -46,7 +48,7 @@ export default function NavBar({ onOpenCitaModal }) {
                     {onOpenCitaModal && (
                         <button
                             onClick={onOpenCitaModal}
-                            className="bg-gradient-to-r from-rose-50 to-pink-50 dark:from-rose-950/40 dark:to-pink-950/40 text-rose-700 dark:text-pink-300 border border-rose-200/80 dark:border-rose-800/80 px-4 py-2 rounded-full font-bold text-xs sm:text-sm hover:bg-rose-100 dark:hover:bg-rose-900/50 transition-all flex items-center gap-1.5 shadow-sm active:scale-95"
+                            className="bg-gradient-to-r from-rose-50 to-pink-50 dark:from-rose-950/40 dark:to-pink-950/40 text-rose-700 dark:text-pink-300 border border-rose-200/80 dark:border-rose-800/80 px-4 py-2 rounded-full font-bold text-sm hover:bg-rose-100 dark:hover:bg-rose-900/50 transition-all flex items-center gap-1.5 shadow-sm active:scale-95"
                         >
                             <span>📅</span> Solicitar Cita
                         </button>
@@ -65,7 +67,7 @@ export default function NavBar({ onOpenCitaModal }) {
                         <div className="flex items-center gap-4 border-l border-slate-200 dark:border-slate-800 pl-4">
                             <Link
                                 to="/mis-cartillas"
-                                className="text-slate-600 dark:text-slate-300 font-semibold text-sm hover:text-rose-600 dark:hover:text-pink-400 transition-colors"
+                                className="text-slate-600 dark:text-slate-300 font-semibold text-sm hover:text-rose-600 dark:hover:text-pink-400 transition-colors whitespace-nowrap"
                             >
                                 Mis Bitácoras
                             </Link>
@@ -73,19 +75,19 @@ export default function NavBar({ onOpenCitaModal }) {
                             {user.role === 'admin' && (
                                 <Link
                                     to="/admin"
-                                    className="text-pink-600 dark:text-pink-400 font-extrabold text-xs bg-pink-50 dark:bg-pink-900/30 border border-pink-200 dark:border-pink-800 px-3.5 py-1.5 rounded-full hover:bg-pink-100 transition-colors"
+                                    className="text-pink-600 dark:text-pink-400 font-extrabold text-xs bg-pink-50 dark:bg-pink-900/30 border border-pink-200 dark:border-pink-800 px-3.5 py-2 rounded-full hover:bg-pink-100 transition-colors whitespace-nowrap"
                                 >
                                     Panel Doctora
                                 </Link>
                             )}
 
-                            <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                            <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 whitespace-nowrap">
                                 Hola, <b className="text-rose-950 dark:text-white">{user.nombre.split(' ')[0]}</b>
                             </span>
 
                             <button
                                 onClick={logout}
-                                className="text-xs font-bold text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 transition-colors"
+                                className="text-xs font-bold text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 transition-colors whitespace-nowrap"
                             >
                                 Salir
                             </button>
@@ -94,7 +96,7 @@ export default function NavBar({ onOpenCitaModal }) {
                         <div className="flex items-center gap-3">
                             <Link
                                 to="/login"
-                                className="bg-gradient-to-r from-rose-600 to-pink-600 text-white px-5 py-2 rounded-full font-bold text-xs sm:text-sm hover:opacity-95 transition-all shadow-md"
+                                className="bg-gradient-to-r from-rose-600 to-pink-600 text-white px-5 py-2 rounded-full font-bold text-sm hover:opacity-95 transition-all shadow-md"
                             >
                                 Comenzar
                             </Link>
@@ -102,8 +104,8 @@ export default function NavBar({ onOpenCitaModal }) {
                     )}
                 </div>
 
-                {/* Mobile & Tablet Navigation controls */}
-                <div className="lg:hidden flex items-center gap-3 z-50">
+                {/* Mobile & Laptop (< xl) Navigation Controls */}
+                <div className="xl:hidden flex items-center gap-3 z-50">
                     {onOpenCitaModal && (
                         <button
                             onClick={onOpenCitaModal}
@@ -136,9 +138,9 @@ export default function NavBar({ onOpenCitaModal }) {
                 </div>
             </div>
 
-            {/* Mobile Menu Dropdown */}
+            {/* Mobile / Tablet Menu Dropdown */}
             {isMobileMenuOpen && (
-                <div className="lg:hidden absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 shadow-2xl py-5 px-6 flex flex-col space-y-4 animate-in slide-in-from-top-4">
+                <div className="xl:hidden absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 shadow-2xl py-5 px-6 flex flex-col space-y-4 animate-in slide-in-from-top-4">
                     <Link
                         to="/"
                         onClick={() => setIsMobileMenuOpen(false)}
