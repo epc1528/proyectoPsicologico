@@ -359,51 +359,62 @@ export default function Home() {
 
                     <div className="grid lg:grid-cols-3 gap-10">
                         {/* Bitácora Infantil */}
-                        <div className="bg-slate-50 dark:bg-slate-900 rounded-[2rem] p-6 md:p-10 shadow-sm border border-pink-100 dark:border-slate-800 flex flex-col group hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
-                            <div className="w-full h-64 bg-slate-100 dark:bg-slate-800 rounded-2xl mb-6 flex items-center justify-center relative overflow-hidden border border-slate-200 dark:border-slate-700/50 p-4 transform group-hover:-translate-y-1 transition-transform duration-500">
-                                <img src="/covers/infancia.jpeg" alt="Bitácora Infantil" className="w-full h-full object-contain rounded-xl shadow-md" />
+                        <div className="bg-slate-50 dark:bg-slate-900 rounded-[2rem] p-6 md:p-10 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col group opacity-90">
+                            <div className="flex justify-between items-center mb-4">
+                                <span className="px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 text-xs font-bold">🔒 En Edición</span>
+                            </div>
+                            <div className="w-full h-64 bg-slate-100 dark:bg-slate-800 rounded-2xl mb-6 flex items-center justify-center relative overflow-hidden border border-slate-200 dark:border-slate-700/50 p-4">
+                                <img src="/covers/infancia.jpeg" alt="Bitácora Infantil" className="w-full h-full object-contain rounded-xl shadow-md opacity-80" />
                             </div>
                             <h3 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>Bitácora Infantil</h3>
                             <p className="text-rose-600 dark:text-pink-400 text-lg font-bold italic mb-6">"Aprendo a conocer lo que siento"</p>
                             <p className="font-semibold text-slate-800 dark:text-slate-200 mb-3 text-lg">Porque las emociones también se educan.</p>
-                            <p className="text-slate-600 dark:text-slate-400 flex-grow font-light mb-10 text-base leading-relaxed">
+                            <p className="text-slate-600 dark:text-slate-400 flex-grow font-light mb-8 text-base leading-relaxed">
                                 Actividades lúdicas para desarrollar inteligencia emocional, autoestima, empatía y habilidades para expresar sentimientos.
                             </p>
-                            <Link to="/cartillas" className="w-full text-center bg-white dark:bg-slate-800 text-rose-600 dark:text-pink-400 border-2 border-rose-100 dark:border-pink-900 px-6 py-4 rounded-xl font-bold hover:bg-pink-50 dark:hover:bg-slate-700 transition-colors shadow-sm">
-                                Conocer la bitácora
-                            </Link>
+                            <div className="w-full text-center bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400 px-6 py-4 rounded-xl font-bold text-sm">
+                                Próximamente (En Edición)
+                            </div>
                         </div>
 
-                        {/* Bitácora Adolescentes */}
-                        <div className="bg-slate-50 dark:bg-slate-900 rounded-[2rem] p-6 md:p-10 shadow-sm border border-pink-100 dark:border-slate-800 flex flex-col group hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
+                        {/* Bitácora Adolescentes (OFICIAL DISPONIBLE) */}
+                        <div className="bg-white dark:bg-slate-900 rounded-[2rem] p-6 md:p-10 shadow-xl border-2 border-emerald-400 dark:border-emerald-500 flex flex-col group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 relative">
+                            <div className="flex justify-between items-center mb-4">
+                                <span className="px-3.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 text-xs font-black tracking-wide flex items-center gap-1 shadow-sm">
+                                    <span>✨</span> OFICIAL DISPONIBLE
+                                </span>
+                            </div>
                             <div className="w-full h-64 bg-slate-100 dark:bg-slate-800 rounded-2xl mb-6 flex items-center justify-center relative overflow-hidden border border-slate-200 dark:border-slate-700/50 p-4 transform group-hover:-translate-y-1 transition-transform duration-500">
                                 <img src="/covers/adolescente.jpeg" alt="Bitácora Adolescentes" className="w-full h-full object-contain rounded-xl shadow-md" />
                             </div>
                             <h3 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>Bitácora Adolescentes</h3>
                             <p className="text-rose-600 dark:text-pink-400 text-lg font-bold italic mb-6">"Descubriendo mi propio camino"</p>
                             <p className="font-semibold text-slate-800 dark:text-slate-200 mb-3 text-lg">Entenderme también es crecer.</p>
-                            <p className="text-slate-600 dark:text-slate-400 flex-grow font-light mb-10 text-base leading-relaxed">
+                            <p className="text-slate-600 dark:text-slate-400 flex-grow font-light mb-8 text-base leading-relaxed">
                                 Herramientas para manejar la ansiedad, fortalecer la identidad, mejorar las relaciones y construir autoconfianza.
                             </p>
-                            <Link to="/cartillas" className="w-full text-center bg-white dark:bg-slate-800 text-rose-600 dark:text-pink-400 border-2 border-rose-100 dark:border-pink-900 px-6 py-4 rounded-xl font-bold hover:bg-pink-50 dark:hover:bg-slate-700 transition-colors shadow-sm">
-                                Conocer la bitácora
+                            <Link to="/cartillas" className="w-full text-center bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-4 rounded-xl font-bold transition-all shadow-md hover:shadow-lg">
+                                Explorar Bitácora Oficial →
                             </Link>
                         </div>
 
                         {/* Bitácora Adultos */}
-                        <div className="bg-slate-50 dark:bg-slate-900 rounded-[2rem] p-6 md:p-10 shadow-sm border border-pink-100 dark:border-slate-800 flex flex-col group hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
-                            <div className="w-full h-64 bg-slate-100 dark:bg-slate-800 rounded-2xl mb-6 flex items-center justify-center relative overflow-hidden border border-slate-200 dark:border-slate-700/50 p-4 transform group-hover:-translate-y-1 transition-transform duration-500">
-                                <img src="/covers/adulto.jpeg" alt="Bitácora Adultos" className="w-full h-full object-contain rounded-xl shadow-md" />
+                        <div className="bg-slate-50 dark:bg-slate-900 rounded-[2rem] p-6 md:p-10 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col group opacity-90">
+                            <div className="flex justify-between items-center mb-4">
+                                <span className="px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 text-xs font-bold">🔒 En Edición</span>
+                            </div>
+                            <div className="w-full h-64 bg-slate-100 dark:bg-slate-800 rounded-2xl mb-6 flex items-center justify-center relative overflow-hidden border border-slate-200 dark:border-slate-700/50 p-4">
+                                <img src="/covers/adulto.jpeg" alt="Bitácora Adultos" className="w-full h-full object-contain rounded-xl shadow-md opacity-80" />
                             </div>
                             <h3 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>Bitácora Adultos</h3>
                             <p className="text-rose-600 dark:text-pink-400 text-lg font-bold italic mb-6">"Reconectando con mi esencia"</p>
                             <p className="font-semibold text-slate-800 dark:text-slate-200 mb-3 text-lg">Nunca es tarde para sanar.</p>
-                            <p className="text-slate-600 dark:text-slate-400 flex-grow font-light mb-10 text-base leading-relaxed">
-                                Ejercicios creativos que conecten con el amor propio, para sanar heridas, establecer límites sanos y reducir el estrés propio de la edad
+                            <p className="text-slate-600 dark:text-slate-400 flex-grow font-light mb-8 text-base leading-relaxed">
+                                Ejercicios creativos que conecten con el amor propio, para sanar heridas, establecer límites sanos y reducir el estrés propio de la edad.
                             </p>
-                            <Link to="/cartillas" className="w-full text-center bg-white dark:bg-slate-800 text-rose-600 dark:text-pink-400 border-2 border-rose-100 dark:border-pink-900 px-6 py-4 rounded-xl font-bold hover:bg-pink-50 dark:hover:bg-slate-700 transition-colors shadow-sm">
-                                Conocer la bitácora
-                            </Link>
+                            <div className="w-full text-center bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400 px-6 py-4 rounded-xl font-bold text-sm">
+                                Próximamente (En Edición)
+                            </div>
                         </div>
                     </div>
                 </div>

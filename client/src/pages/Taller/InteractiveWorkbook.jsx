@@ -20,7 +20,7 @@ export default function InteractiveWorkbook() {
 
     const pdfLinks = {
         '1': '/cartillas/Cartilla salud mental ADULTO MAYOR 1.pdf',
-        '2': '/cartillas/cartilla salud mental ADOLESCENTES 1.pdf',
+        '2': '/cartillas/C ADOLESCENTENUEVA.pdf',
         '3': '/cartillas/cartilla salud mental INFANCIA 1.pdf'
     };
 
