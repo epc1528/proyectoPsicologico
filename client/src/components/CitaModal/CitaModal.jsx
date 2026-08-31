@@ -5,12 +5,12 @@ import Swal from 'sweetalert2';
 
 const ESPECIALIDADES = [
     {
-        id: 'Psiquiatría',
-        nombre: 'Psiquiatría',
-        doctora: 'Atención Médica Psiquiátrica Especializada',
+        id: 'Dra. Rosa Fontalvo Morales (Psiquiatría & Salud Mental)',
+        nombre: 'Dra. Rosa Fontalvo Morales',
+        doctora: 'Médica Psiquiatra & Docente Universitaria',
         img: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&q=80',
         icon: '🩺',
-        badge: 'Medicina Especializada'
+        badge: 'Psiquiatría & Salud Mental'
     },
     {
         id: 'Psicología Clínica',
@@ -37,12 +37,12 @@ const ESPECIALIDADES = [
         badge: 'Neurociencias'
     },
     {
-        id: 'Nutrición',
-        nombre: 'Nutrición',
-        doctora: 'Salud & Alimentación Consciente',
-        img: '/doctoras/nutricion.jpg',
-        icon: '🥗',
-        badge: 'Nutrición Clínica'
+        id: 'Psicología Clínica & Suicidología',
+        nombre: 'Psicología & Suicidología',
+        doctora: 'Prevención del Suicidio & Gestión de Crisis',
+        img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80',
+        icon: '💛',
+        badge: 'Prevención & Crisis'
     }
 ];
 

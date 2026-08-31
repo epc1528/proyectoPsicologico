@@ -33,16 +33,15 @@ const ESPECIALISTAS_DETALLE = [
     },
     {
         id: 'psiquiatria',
-        nombre: 'Psiquiatría Especializada',
-        cargoBreve: 'Medicina Psiquiátrica & Salud Mental',
-        tituloEspecialidad: 'Psiquiatría',
-        badge: '🩺 PSIQUIATRÍA • MEDICINA ESPECIALIZADA',
-        frase: '"La medicina mental y el acompañamiento profesional abren caminos hacia la serenidad y la estabilidad."',
+        nombre: 'Dra. Rosa Fontalvo Morales',
+        cargoBreve: 'Médica Psiquiatra & Docente Universitaria',
+        tituloEspecialidad: 'Dra. Rosa Fontalvo Morales (Psiquiatría & Salud Mental)',
+        badge: '🩺 MÉDICA PSIQUIATRA • DOCENTE UNIVERSITARIA',
+        frase: '"La atención integral de la salud mental promueve un envejecimiento saludable, lleno de dignidad y serenidad."',
         imagen: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=80',
         parrafos: [
-            'Atención psiquiátrica clínica orientada al diagnóstico, tratamiento médico ético y seguimiento continuo de trastornos del estado de ánimo, ansiedad y bienestar mental.',
-            'Evaluación médica integral que aborda factores neurobiológicos y emocionales para restaurar el equilibrio químico y emocional de forma segura y personalizada.',
-            'Trabajo interdisciplinario articulado con psicología y medicina integral para brindar un abordaje completo, empático y humano adaptado a las necesidades de cada paciente.'
+            'Médica Psiquiatra y Docente Universitaria, con especial interés en la atención integral de la salud mental de las personas mayores y en la promoción de un envejecimiento saludable.',
+            'Su enfoque combina una sólida práctica clínica con la docencia académica, brindando tratamientos médicos éticos, diagnósticos precisos y acompañamiento continuo a pacientes y sus familias.'
         ]
     },
     {
@@ -60,24 +59,23 @@ const ESPECIALISTAS_DETALLE = [
         ]
     },
     {
-        id: 'nutricion',
-        nombre: 'Nutrición Clínico-Emocional',
-        cargoBreve: 'Alimentación Consciente & Psiconutrición',
-        tituloEspecialidad: 'Nutrición',
-        badge: '🥗 NUTRICIÓN CLÍNICA • ALIMENTACIÓN CONSCIENTE',
-        frase: '"Nutrir tu cuerpo de manera consciente es un acto de amor que potencia tu energía física y vitalidad emocional."',
-        imagen: '/doctoras/nutricion.jpg',
+        id: 'suicidologia',
+        nombre: 'Psicología Clínica & Suicidología',
+        cargoBreve: 'Prevención del Suicidio & Gestión de Crisis',
+        tituloEspecialidad: 'Psicología Clínica & Suicidología',
+        badge: '💛 PREVENCIÓN DEL SUICIDIO • GESTIÓN DE CRISIS & SALUD MENTAL',
+        frase: '"Preservar la vida, ofrecer un refugio de escucha sin juicio y brindar esperanza en los momentos de mayor vulnerabilidad."',
+        imagen: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80',
         parrafos: [
-            'Asesoría nutricional clínica y psiconutrición orientada a sanar la relación con los alimentos, equilibrar el sistema digestivo y mejorar el estado de ánimo mediante la nutrición.',
-            'Abordaje integral que comprende la conexión entre el intestino y el cerebro, promoviendo elecciones alimenticias que favorezcan la producción de serotonina y la salud física.',
-            'Planes personalizados basados en hábitos sostenibles y alimentación consciente para alcanzar un peso saludable, vitalidad y un estilo de vida pleno.'
+            'Psicóloga clínica especializada en prevención del suicidio, intervención en crisis emocionales complejas y abordaje de conductas de autolesión.',
+            'Proporciona una atención altamente sensible, humana y confidencial, estructurando planes de seguridad, contención afectiva y reconstrucción del sentido de vida.'
         ]
     }
 ];
 
 export default function Home() {
     const [isCitaModalOpen, setIsCitaModalOpen] = useState(false);
-    const [selectedEspecialidad, setSelectedEspecialidad] = useState('Psiquiatría');
+    const [selectedEspecialidad, setSelectedEspecialidad] = useState('Dra. Rosa Fontalvo Morales (Psiquiatría & Salud Mental)');
     const [selectedEspecialistaId, setSelectedEspecialistaId] = useState('johana');
 
     const especialistaActual = ESPECIALISTAS_DETALLE.find(e => e.id === selectedEspecialistaId) || ESPECIALISTAS_DETALLE[0];
@@ -325,7 +323,7 @@ export default function Home() {
                     <div className="md:w-2/3 grid sm:grid-cols-2 gap-6 text-base font-medium">
                         <div className="flex items-start gap-3">
                             <span className="text-pink-200 text-xl font-black mt-1">✔</span>
-                            <p>Elaboradas por la Dra. Johana Barrios Chinchilla (Médico especialista en Psicología Positiva y Neurociencias) y la Dra. Milagros Bolaño (Psicóloga Clínica).</p>
+                            <p>Elaboradas por la Dra. Johana Barrios Chinchilla, la Dra. Rosa Fontalvo Morales y la Dra. Milagros Bolaño Romero.</p>
                         </div>
                         <div className="flex items-start gap-3">
                             <span className="text-pink-200 text-xl font-black mt-1">✔</span>
@@ -427,13 +425,13 @@ export default function Home() {
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-                        {/* 1. Psiquiatría */}
+                        {/* 1. Dra. Rosa Fontalvo Morales (Psiquiatría) */}
                         <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
                             <div>
                                 <div className="relative mb-6 mx-auto w-20 h-20">
                                     <img
                                         src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&q=80"
-                                        alt="Psiquiatría Especializada"
+                                        alt="Dra. Rosa Fontalvo Morales - Psiquiatría"
                                         className="w-20 h-20 rounded-full object-cover shadow-md border-4 border-rose-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
                                     />
                                     <span className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs shadow-md">
@@ -441,18 +439,18 @@ export default function Home() {
                                     </span>
                                 </div>
                                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
-                                    Psiquiatría
+                                    Dra. Rosa Fontalvo M.
                                 </h3>
                                 <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-3">
-                                    Medicina Especializada
+                                    Médica Psiquiatra
                                 </p>
                                 <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed font-light mb-6">
-                                    Diagnóstico, tratamiento médico y seguimiento integral para la salud mental.
+                                    Atención integral de salud mental, docencia universitaria y cuidado del adulto mayor.
                                 </p>
                             </div>
                             <button
                                 onClick={() => {
-                                    setSelectedEspecialidad('Psiquiatría');
+                                    setSelectedEspecialidad('Dra. Rosa Fontalvo Morales (Psiquiatría & Salud Mental)');
                                     setIsCitaModalOpen(true);
                                 }}
                                 className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-2xl transition-all shadow-md hover:shadow-xl text-center text-sm"
@@ -566,32 +564,32 @@ export default function Home() {
                             </button>
                         </div>
 
-                        {/* 5. Nutrición */}
+                        {/* 5. Psicología Clínica & Suicidología */}
                         <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
                             <div>
                                 <div className="relative mb-6 mx-auto w-20 h-20">
                                     <img
-                                        src="/doctoras/nutricion.jpg"
-                                        alt="Nutrición Clínico-Emocional"
-                                        className="w-20 h-20 rounded-full object-cover shadow-md border-4 border-emerald-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
+                                        src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
+                                        alt="Psicología Clínica & Suicidología"
+                                        className="w-20 h-20 rounded-full object-cover shadow-md border-4 border-amber-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
                                     />
-                                    <span className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs shadow-md">
-                                        🥗
+                                    <span className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs shadow-md">
+                                        💛
                                     </span>
                                 </div>
                                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
-                                    Nutrición
+                                    Suicidología
                                 </h3>
                                 <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-3">
-                                    Alimentación Consciente
+                                    Prevención & Crisis
                                 </p>
                                 <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed font-light mb-6">
-                                    Nutrición clínica y relación saludable con la alimentación para potenciar tu vitalidad.
+                                    Atención psicológica experta en prevención del suicidio y contención en situaciones de crisis.
                                 </p>
                             </div>
                             <button
                                 onClick={() => {
-                                    setSelectedEspecialidad('Nutrición');
+                                    setSelectedEspecialidad('Psicología Clínica & Suicidología');
                                     setIsCitaModalOpen(true);
                                 }}
                                 className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-2xl transition-all shadow-md hover:shadow-xl text-center text-sm"
