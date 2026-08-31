@@ -16,10 +16,10 @@ export default function MisCartillas() {
         }
         getMisCompras()
             .then((data) => {
-                setCompras(data);
-                setLoading(false);
+                if (Array.isArray(data)) setCompras(data);
             })
-            .catch(console.error);
+            .catch(console.error)
+            .finally(() => setLoading(false));
     }, [user, navigate]);
 
     if (loading) return <div className="min-h-screen flex items-center justify-center">Cargando...</div>;

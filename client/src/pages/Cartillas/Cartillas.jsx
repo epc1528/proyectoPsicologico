@@ -5,16 +5,46 @@ import { getCartillas } from '../../features/cartillas/api/cartillas.api';
 import { getMisCompras, comprarCartilla } from '../../features/compras/api/compras.api';
 import Swal from 'sweetalert2';
 
+const CARTILLAS_DEFAULT = [
+    {
+        id: 1,
+        titulo: 'Bitácora Adultos',
+        descripcion: 'Ejercicios creativos que conectan para el amor propio, sanar heridas, establecer limites sanos y reducir el estres propio de la edad.',
+        precio: 12000,
+        imagen_url: '/covers/adulto.jpeg'
+    },
+    {
+        id: 2,
+        titulo: 'Bitácora Adolescentes',
+        descripcion: 'Herramientas para manejar la ansiedad, fortalecer la identidad, mejorar las relaciones y construir autoconfianza.',
+        precio: 12000,
+        imagen_url: '/covers/adolescente.jpeg'
+    },
+    {
+        id: 3,
+        titulo: 'Bitácora Infantil',
+        descripcion: 'Actividades lúdicas para desarrollar inteligencia emocional, autoestima, empatía y habilidades para expresar sentimientos.',
+        precio: 12000,
+        imagen_url: '/covers/infancia.jpeg'
+    }
+];
+
 export default function Cartillas() {
-    const [cartillas, setCartillas] = useState([]);
+    const [cartillas, setCartillas] = useState(CARTILLAS_DEFAULT);
     const [compradas, setCompradas] = useState([]);
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
     useEffect(() => {
         getCartillas()
-            .then(setCartillas)
-            .catch(console.error);
+            .then((data) => {
+                if (Array.isArray(data) && data.length > 0) {
+                    setCartillas(data);
+                }
+            })
+            .catch((err) => {
+                console.error("Error obteniendo cartillas del servidor:", err);
+            });
 
         if (user) {
             getMisCompras()
