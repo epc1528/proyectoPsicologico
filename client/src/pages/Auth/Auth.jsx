@@ -1,17 +1,28 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../app/providers/AuthProvider';
 import { login as loginApi, register as registerApi, forgotPassword as forgotPasswordApi } from '../../features/auth/api/auth.api';
 import Swal from 'sweetalert2';
 
 export default function Auth() {
-    const [isLogin, setIsLogin] = useState(true);
+    const location = useLocation();
+    const [isLogin, setIsLogin] = useState(() => {
+        return !(location.state?.register || location.search.includes('register'));
+    });
     const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({ nombre: '', correo: '', password: '', telefono: '', fecha_nacimiento: '', motivo_consulta: '', codigoAdmin: '' });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const { login, user } = useContext(AuthContext);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (location.state?.register || location.search.includes('register')) {
+            setIsLogin(false);
+        } else if (location.state?.login) {
+            setIsLogin(true);
+        }
+    }, [location]);
 
     // Si ya está logueado, redirigir
     useEffect(() => {
