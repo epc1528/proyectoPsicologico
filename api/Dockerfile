@@ -9,10 +9,9 @@ RUN npm run build
 # Stage 2: Production Runner
 FROM node:20-alpine AS runner
 WORKDIR /app
-ENV NODE_ENV=production
 COPY package*.json ./
-RUN npm install --only=production
+RUN npm install
 COPY --from=builder /app/dist ./dist
 
 EXPOSE 5000
-CMD ["npm", "start"]
+CMD ["node", "dist/app.js"]
