@@ -24,7 +24,7 @@ export class RespuestaRepository extends BaseRepository {
 
     async findAll(): Promise<IRespuestaAdmin[]> {
         return this.query<(IRespuestaAdmin & RowDataPacket)[]>(
-            'SELECT id, usuario_id as userId, taller_id as cartillaId, respuesta, energia, fecha FROM respuestas'
+            'SELECT r.id, r.usuario_id as userId, r.taller_id as tallerId, COALESCE(t.cartilla_id, r.taller_id) as cartillaId, r.respuesta, r.energia, r.fecha FROM respuestas r LEFT JOIN talleres t ON r.taller_id = t.id ORDER BY r.fecha DESC'
         );
     }
 }

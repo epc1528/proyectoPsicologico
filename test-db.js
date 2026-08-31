@@ -1,14 +1,16 @@
 const http = require('http');
 
 const runTest = async () => {
+  const uniqueEmail = `testdb_${Date.now()}@psicocartillas.com`;
+  
   // 1. Register a test user
   const registerRes = await fetch('http://localhost:5000/api/auth/register', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       nombre: 'Test User',
-      correo: 'testdb@psicocartillas.com',
-      password: 'password123',
+      correo: uniqueEmail,
+      password: 'Password123!',
       telefono: '1234567890',
       fecha_nacimiento: '1990-01-01',
       codigoAdmin: '2409@'
@@ -29,7 +31,7 @@ const runTest = async () => {
       'Authorization': `Bearer ${token}` 
     },
     body: JSON.stringify({
-      taller_id: 1, // ID de la cartilla
+      taller_id: 1, // ID del taller / cartilla
       respuesta: JSON.stringify({ "0": "Respuesta test 1", "1": "Respuesta test 2" }),
       energia: 8
     })
@@ -39,7 +41,7 @@ const runTest = async () => {
   console.log('Save response:', saveData);
 
   // 3. Get my responses
-  const getRes = await fetch('http://localhost:5000/api/mis-respuestas', {
+  const getRes = await fetch('http://localhost:5000/api/respuestas/mis-respuestas', {
     headers: { 'Authorization': `Bearer ${token}` }
   });
   

@@ -1,10 +1,18 @@
-FROM node:20-alpine
+# Stage 1: Build TypeScript API
+FROM node:20-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
-RUN mkdir -p /app/dist/src && cp -r dist/* /app/dist/src/ 2>/dev/null || true
+
+# Stage 2: Production Runner
+FROM node:20-alpine AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+COPY package*.json ./
+RUN npm install --only=production
+COPY --from=builder /app/dist ./dist
 
 EXPOSE 5000
-CMD ["node", "dist/app.js"]
+CMD ["npm", "start"]

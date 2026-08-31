@@ -32,12 +32,12 @@ export default function InteractiveWorkbook() {
 
         getMisRespuestas()
             .then(data => {
-                const myRes = data.find(r => r.taller_id === parseInt(id));
+                const myRes = data.find(r => r.taller_id === parseInt(id) || r.cartillaId === parseInt(id));
                 if (myRes) {
                     try {
                         const parsed = JSON.parse(myRes.respuesta);
                         setRespuestas(parsed || {});
-                    } catch (e) {
+                    } catch {
                         setRespuestas({});
                     }
                     if (myRes.energia) setEnergia(myRes.energia.toString());
@@ -46,6 +46,15 @@ export default function InteractiveWorkbook() {
             })
             .catch(() => setLoading(false));
     }, [user, navigate, id]);
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-950">
+                <div className="w-12 h-12 border-4 border-pink-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+                <p className="text-slate-500 dark:text-slate-400 font-medium">Cargando tu bitácora...</p>
+            </div>
+        );
+    }
 
     if (!cartilla) return <div className="text-center py-20 text-2xl font-bold">Cartilla no encontrada</div>;
 

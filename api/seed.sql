@@ -8,7 +8,7 @@ DELETE FROM usuarios;
 -- Insertar Usuario Admin (Contraseña: admin123 -> $2b$10$C826n9D1Kxk9Q2gGvVd86.6L... hashed con bcrypt)
 -- Para propósitos de este seed, insertamos un admin con password admin123
 INSERT INTO usuarios (nombre, correo, password, role) VALUES 
-('Doctora (Admin)', 'admin@psicocartillas.com', '$2b$10$wB9L1yXo5UvK.t7J0pI9e.oH6k.k.V0Z6v9I.k.k.k.k.k.k.k', 'admin');
+('Doctora (Admin)', 'admin@psicocartillas.com', '$2a$10$Yd9MrRkG5ZtRer4I1PAa6.p.KDSl/747dg.zuOp5qklSSxsqMRAQy', 'admin');
 
 -- Insertar Cartillas
 INSERT INTO cartillas (id, titulo, descripcion, precio, imagen_url) VALUES

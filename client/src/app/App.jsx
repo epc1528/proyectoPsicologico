@@ -6,6 +6,9 @@ import Home from '../pages/Home/Home';
 import Cartillas from '../pages/Cartillas/Cartillas';
 import MisCartillas from '../pages/MisCartillas/MisCartillas';
 import Auth from '../pages/Auth/Auth';
+import ResetPassword from '../pages/Auth/ResetPassword';
+import PoliticaPrivacidad from '../pages/Legal/PoliticaPrivacidad';
+import TerminosCondiciones from '../pages/Legal/TerminosCondiciones';
 import InteractiveWorkbook from '../pages/Taller/InteractiveWorkbook';
 import AdminDashboard from '../pages/Admin/AdminDashboard';
 import CitaModal from '../components/CitaModal/CitaModal';
@@ -21,6 +24,9 @@ export default function App() {
                     <Routes>
                         <Route path="/" element={<Home onOpenCitaModal={() => setIsGlobalCitaModalOpen(true)} />} />
                         <Route path="/login" element={<Auth />} />
+                        <Route path="/reset-password" element={<ResetPassword />} />
+                        <Route path="/politica-privacidad" element={<PoliticaPrivacidad />} />
+                        <Route path="/terminos-condiciones" element={<TerminosCondiciones />} />
                         <Route path="/cartillas" element={<Cartillas />} />
                         <Route path="/mis-cartillas" element={<MisCartillas />} />
                         <Route path="/cartilla/:id" element={<InteractiveWorkbook />} />

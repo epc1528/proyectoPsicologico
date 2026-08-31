@@ -71,7 +71,8 @@ export class AuthService {
         if (!user) return; // Respuesta silenciosa por seguridad
 
         const resetToken = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '15m' });
-        const resetLink = `http://localhost:5173/reset-password?token=${resetToken}`;
+        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+        const resetLink = `${frontendUrl}/reset-password?token=${resetToken}`;
 
         const mailOptions = {
             from: `"PsicoCartillas" <${process.env.EMAIL_USER}>`,
@@ -101,5 +102,33 @@ export class AuthService {
             console.log('⚠️  Añade tu contraseña de Gmail en el archivo .env para enviar correos reales');
             console.log('----------------------------------------------------');
         }
+    }
+
+    async resetPassword(token: string, newPassword: string): Promise<void> {
+        if (!PASSWORD_REGEX.test(newPassword)) {
+            const err = new Error('La contraseña debe tener al menos 8 caracteres, incluir una mayúscula y un número.');
+            (err as any).statusCode = 400;
+            throw err;
+        }
+
+        let decoded: any;
+        try {
+            decoded = jwt.verify(token, JWT_SECRET);
+        } catch {
+            const err = new Error('El enlace de recuperación es inválido o ha expirado.');
+            (err as any).statusCode = 400;
+            throw err;
+        }
+
+        const userId = decoded.id;
+        const user = await this.userRepo.findById(userId);
+        if (!user) {
+            const err = new Error('Usuario no encontrado');
+            (err as any).statusCode = 404;
+            throw err;
+        }
+
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        await this.userRepo.updatePassword(userId, hashedPassword);
     }
 }

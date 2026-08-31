@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../app/providers/AuthProvider';
 import { getUsuarios, getRespuestas, deleteUsuario, createCartilla } from '../../features/admin/api/admin.api';
-import { getCitasAdmin, updateEstadoCita, deleteCita } from '../../features/citas/api/citas.api';
+import { getCitasAdmin, updateEstadoCita, deleteCita, enviarCorreoCita } from '../../features/citas/api/citas.api';
 import Swal from 'sweetalert2';
 
 export default function AdminDashboard() {
@@ -59,6 +59,51 @@ export default function AdminDashboard() {
                 Swal.fire('Estado Actualizado', `La cita fue marcada como ${nuevoEstado}`, 'success');
             })
             .catch(console.error);
+    };
+
+    const handleEnviarCorreoCita = (cita) => {
+        Swal.fire({
+            title: `📧 Enviar correo a ${cita.nombre_cliente}`,
+            html: `
+                <div style="text-align: left;">
+                    <label style="display: block; font-size: 0.8rem; font-weight: bold; margin-bottom: 4px; color: #475569;">ASUNTO DEL CORREO:</label>
+                    <input id="swal-input-asunto" class="swal2-input" style="width: 100%; margin: 0 0 12px 0; font-size: 0.9rem;" value="Información de tu Cita Médica - PsicoCartillas">
+                    <label style="display: block; font-size: 0.8rem; font-weight: bold; margin-bottom: 4px; color: #475569;">MENSAJE PARA EL PACIENTE:</label>
+                    <textarea id="swal-input-mensaje" class="swal2-textarea" style="width: 100%; margin: 0; font-size: 0.9rem; height: 120px;" placeholder="Hola ${cita.nombre_cliente}, nos comunicamos para..."></textarea>
+                </div>
+            `,
+            focusConfirm: false,
+            showCancelButton: true,
+            confirmButtonText: '✉ Enviar Correo Real/Simulado',
+            cancelButtonText: 'Cancelar',
+            confirmButtonColor: '#be123c',
+            preConfirm: () => {
+                const asunto = document.getElementById('swal-input-asunto').value;
+                const mensaje = document.getElementById('swal-input-mensaje').value;
+                if (!mensaje) {
+                    Swal.showValidationMessage('Por favor escribe un mensaje para el paciente');
+                    return false;
+                }
+                return { asunto, mensaje };
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Enviando correo...',
+                    text: 'Por favor espera un momento.',
+                    allowOutsideClick: false,
+                    didOpen: () => Swal.showLoading()
+                });
+
+                enviarCorreoCita(cita.id, result.value)
+                    .then(() => {
+                        Swal.fire('¡Correo Enviado!', `Se envió el mensaje a ${cita.correo_cliente} con éxito.`, 'success');
+                    })
+                    .catch((err) => {
+                        Swal.fire('Error', err.message || 'No se pudo enviar el correo.', 'error');
+                    });
+            }
+        });
     };
 
     const handleDeleteCita = (id) => {
@@ -198,14 +243,22 @@ export default function AdminDashboard() {
                                     </div>
 
                                     <div className="space-y-2 pt-2 border-t border-slate-200/60">
-                                        <a
-                                            href={`https://wa.me/${numTel}?text=${textWa}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all shadow-sm"
-                                        >
-                                            💬 Contactar por WhatsApp
-                                        </a>
+                                        <div className="grid grid-cols-2 gap-2">
+                                            <a
+                                                href={`https://wa.me/${numTel}?text=${textWa}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all shadow-sm"
+                                            >
+                                                💬 WhatsApp
+                                            </a>
+                                            <button
+                                                onClick={() => handleEnviarCorreoCita(c)}
+                                                className="bg-rose-600 hover:bg-rose-700 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all shadow-sm"
+                                            >
+                                                📧 Enviar Correo
+                                            </button>
+                                        </div>
 
                                         <div className="grid grid-cols-2 gap-2">
                                             <button

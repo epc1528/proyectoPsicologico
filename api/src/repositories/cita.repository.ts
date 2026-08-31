@@ -34,6 +34,16 @@ export class CitaRepository extends BaseRepository {
         await this.execute('UPDATE citas SET estado = ? WHERE id = ?', [estado, id]);
     }
 
+    async findById(id: number): Promise<ICita | null> {
+        const rows = await this.query<(ICita & RowDataPacket)[]>(
+            `SELECT id, usuario_id, nombre_cliente, correo_cliente, telefono_cliente, especialidad,
+                    DATE_FORMAT(fecha_cita, '%Y-%m-%d') as fecha_cita, hora_cita, motivo, estado, fecha_creacion
+             FROM citas WHERE id = ?`,
+            [id]
+        );
+        return rows[0] ?? null;
+    }
+
     async deleteById(id: number): Promise<void> {
         await this.execute('DELETE FROM citas WHERE id = ?', [id]);
     }

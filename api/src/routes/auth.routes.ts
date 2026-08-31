@@ -1,15 +1,6 @@
 import { Router } from 'express';
 import { body } from 'express-validator';
-import rateLimit from 'express-rate-limit';
 import { AuthController } from '../controllers/auth.controller';
-
-const authLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000,
-    max: 10,
-    message: { error: 'Demasiados intentos desde esta IP, por favor intenta de nuevo en 15 minutos.' },
-    standardHeaders: true,
-    legacyHeaders: false,
-});
 
 export const createAuthRouter = (controller: AuthController): Router => {
     const router = Router();
@@ -30,6 +21,15 @@ export const createAuthRouter = (controller: AuthController): Router => {
         '/forgot-password',
         [body('correo').isEmail().normalizeEmail()],
         controller.forgotPassword
+    );
+
+    router.post(
+        '/reset-password',
+        [
+            body('token').notEmpty().withMessage('Token requerido'),
+            body('password').notEmpty().withMessage('Contraseña requerida')
+        ],
+        controller.resetPassword
     );
 
     return router;

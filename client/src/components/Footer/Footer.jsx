@@ -35,10 +35,10 @@ export default function Footer() {
                     <div>
                         <h4 className="text-white font-semibold mb-6 uppercase tracking-wider text-sm">Legal & Soporte</h4>
                         <ul className="space-y-4">
-                            <li><a href="#" className="text-rose-200/70 dark:text-slate-500 hover:text-pink-400 transition-colors">Términos y Condiciones</a></li>
-                            <li><a href="#" className="text-rose-200/70 dark:text-slate-500 hover:text-pink-400 transition-colors">Política de Privacidad</a></li>
-                            <li><a href="#" className="text-rose-200/70 dark:text-slate-500 hover:text-pink-400 transition-colors">Centro de Ayuda</a></li>
-                            <li><a href="#" className="text-rose-200/70 dark:text-slate-500 hover:text-pink-400 transition-colors">Contacto</a></li>
+                            <li><Link to="/terminos-condiciones" className="text-rose-200/70 dark:text-slate-500 hover:text-pink-400 transition-colors">Términos y Condiciones</Link></li>
+                            <li><Link to="/politica-privacidad" className="text-rose-200/70 dark:text-slate-500 hover:text-pink-400 transition-colors">Política de Privacidad</Link></li>
+                            <li><Link to="/politica-privacidad" className="text-rose-200/70 dark:text-slate-500 hover:text-pink-400 transition-colors">Centro de Ayuda</Link></li>
+                            <li><Link to="/politica-privacidad" className="text-rose-200/70 dark:text-slate-500 hover:text-pink-400 transition-colors">Contacto</Link></li>
                         </ul>
                     </div>
                 </div>

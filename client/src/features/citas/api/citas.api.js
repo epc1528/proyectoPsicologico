@@ -23,3 +23,10 @@ export const deleteCita = async (id) => {
         method: 'DELETE'
     });
 };
+
+export const enviarCorreoCita = async (id, { asunto, mensaje }) => {
+    return apiClient(`/citas/${id}/enviar-correo`, {
+        method: 'POST',
+        body: JSON.stringify({ asunto, mensaje })
+    });
+};

@@ -47,4 +47,20 @@ export class CitaController {
             res.status(500).json({ error: 'Error al eliminar cita' });
         }
     };
+
+    enviarCorreoCliente = async (req: Request, res: Response): Promise<void> => {
+        try {
+            const id = Number(req.params.id);
+            const { asunto, mensaje } = req.body as { asunto: string; mensaje: string };
+            if (!mensaje) {
+                res.status(400).json({ error: 'El contenido del mensaje es requerido' });
+                return;
+            }
+            await this.citaService.enviarCorreoCliente(id, asunto, mensaje);
+            res.json({ message: 'Correo enviado exitosamente al paciente' });
+        } catch (err: any) {
+            console.error(err);
+            res.status(err.statusCode ?? 500).json({ error: err.message ?? 'Error al enviar correo al paciente' });
+        }
+    };
 }

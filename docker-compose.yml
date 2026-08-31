@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # 1. Base de datos MySQL 8.0 con inicialización automática de esquema y seed
   db:
@@ -15,6 +13,12 @@ services:
       - mysql_data:/var/lib/mysql
       - ./api/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql
       - ./api/seed.sql:/docker-entrypoint-initdb.d/02_seed.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpassword"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
 
   # 2. Servidor Backend Express + TypeScript
   api:
@@ -33,7 +37,8 @@ services:
       JWT_SECRET: secret_psicocartillas_123_production
       PORT: 5000
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   # 3. Frontend React (Vite) servido por Nginx Reverse Proxy
   client:

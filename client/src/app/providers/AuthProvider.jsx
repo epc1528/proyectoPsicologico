@@ -21,7 +21,7 @@ export function AuthProvider({ children }) {
                 } else {
                     setUser(JSON.parse(storedUser));
                 }
-            } catch (e) {
+            } catch {
                 logout();
             }
         }

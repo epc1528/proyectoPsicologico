@@ -70,7 +70,7 @@ export default function Auth() {
         });
 
         forgotPasswordApi(formData.correo)
-            .then(data => {
+            .then(() => {
                 Swal.fire('Correo enviado', 'Si el correo existe en nuestra base de datos, recibirás un enlace de recuperación pronto.', 'success');
             })
             .catch(() => {
@@ -242,7 +242,7 @@ export default function Auth() {
                                         className="mt-1 w-5 h-5 rounded border-slate-300 text-rose-600 focus:ring-rose-500"
                                     />
                                     <label htmlFor="terminos" className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                                        Acepto los <a href="#" className="text-rose-600 dark:text-pink-400 font-bold hover:underline">Términos y Condiciones</a> y autorizo el tratamiento de mis datos sensibles según la <a href="#" className="text-rose-600 dark:text-pink-400 font-bold hover:underline">Política de Privacidad</a>.
+                                        Acepto los <Link to="/terminos-condiciones" target="_blank" className="text-rose-600 dark:text-pink-400 font-bold hover:underline">Términos y Condiciones</Link> y autorizo el tratamiento de mis datos sensibles según la <Link to="/politica-privacidad" target="_blank" className="text-rose-600 dark:text-pink-400 font-bold hover:underline">Política de Privacidad</Link>.
                                     </label>
                                 </div>
                             )}

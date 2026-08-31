@@ -26,3 +26,12 @@ export const forgotPassword = (correo) =>
         method: 'POST',
         body: JSON.stringify({ correo }),
     });
+
+/**
+ * Restablecer contraseña con token.
+ */
+export const resetPassword = (token, password) =>
+    apiClient('/auth/reset-password', {
+        method: 'POST',
+        body: JSON.stringify({ token, password }),
+    });

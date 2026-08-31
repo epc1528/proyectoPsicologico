@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../app/providers/AuthProvider';
 import { getCartillas } from '../../features/cartillas/api/cartillas.api';
-import { getMisCompras } from '../../features/compras/api/compras.api';
+import { getMisCompras, comprarCartilla } from '../../features/compras/api/compras.api';
 
 export default function Cartillas() {
     const [cartillas, setCartillas] = useState([]);
@@ -24,10 +24,18 @@ export default function Cartillas() {
         }
     }, [user]);
 
-    const handleIngresar = (cartilla) => {
+    const handleIngresar = async (cartilla) => {
         if (!user) {
             navigate('/login');
             return;
+        }
+        if (!compradas.includes(cartilla.id) && user.role !== 'admin') {
+            try {
+                await comprarCartilla(cartilla.id);
+                setCompradas((prev) => [...prev, cartilla.id]);
+            } catch {
+                // Si ya estaba comprada o falla, continuar
+            }
         }
         navigate(`/cartilla/${cartilla.id}`);
     };

@@ -11,6 +11,7 @@ export const createCitaRouter = (controller: CitaController): Router => {
     // Rutas protegidas para Administradora
     router.get('/', verifyToken, verifyAdminRole, controller.getCitasAdmin);
     router.patch('/:id/estado', verifyToken, verifyAdminRole, controller.updateEstadoCita);
+    router.post('/:id/enviar-correo', verifyToken, verifyAdminRole, controller.enviarCorreoCliente);
     router.delete('/:id', verifyToken, verifyAdminRole, controller.deleteCita);
 
     return router;

@@ -69,4 +69,22 @@ export class UsuarioRepository extends BaseRepository {
         const setClause = updates.join(', ');
         await this.execute(`UPDATE usuarios SET ${setClause} WHERE id = ?`, values);
     }
+
+    /**
+     * Buscar un usuario por ID.
+     */
+    async findById(id: number): Promise<IUsuario | null> {
+        const rows = await this.query<(IUsuario & RowDataPacket)[]>(
+            'SELECT * FROM usuarios WHERE id = ?',
+            [id]
+        );
+        return rows[0] ?? null;
+    }
+
+    /**
+     * Actualizar la contraseña de un usuario por ID.
+     */
+    async updatePassword(id: number, hashedPassword: string): Promise<void> {
+        await this.execute('UPDATE usuarios SET password = ? WHERE id = ?', [hashedPassword, id]);
+    }
 }

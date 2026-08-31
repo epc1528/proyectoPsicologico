@@ -48,7 +48,7 @@ export default function MisCartillas() {
                                 <div className="absolute top-0 right-0 w-2 h-full bg-pink-400 dark:bg-pink-600"></div>
                                 <div className="w-full h-40 bg-slate-100 dark:bg-slate-800 rounded-2xl mb-6 flex items-center justify-center relative overflow-hidden shadow-sm p-2 border border-slate-200 dark:border-slate-700/50">
                                     <img
-                                        src={cartilla.id === 1 ? '/covers/adulto.jpeg' : cartilla.id === 2 ? '/covers/adolescentes.jpeg' : '/covers/infancia.jpeg'}
+                                        src={cartilla.id === 1 ? '/covers/adulto.jpeg' : cartilla.id === 2 ? '/covers/adolescente.jpeg' : '/covers/infancia.jpeg'}
                                         alt={`Portada ${cartilla.titulo}`}
                                         className="w-full h-full object-cover rounded-xl shadow-sm transition-transform group-hover:scale-105 duration-700"
                                     />

@@ -54,4 +54,24 @@ export class AuthController {
             res.status(500).json({ error: 'Error interno' });
         }
     };
+
+    resetPassword = async (req: Request, res: Response): Promise<void> => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            res.status(400).json({ error: 'Datos de restablecimiento inválidos' });
+            return;
+        }
+        const { token, password } = req.body as { token: string; password: string };
+        if (!token || !password) {
+            res.status(400).json({ error: 'Token y contraseña requeridos' });
+            return;
+        }
+        try {
+            await this.authService.resetPassword(token, password);
+            res.json({ message: 'Contraseña restablecida exitosamente' });
+        } catch (err: any) {
+            console.error(err);
+            res.status(err.statusCode ?? 500).json({ error: err.message ?? 'Error al restablecer la contraseña' });
+        }
+    };
 }
