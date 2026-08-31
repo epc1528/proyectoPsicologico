@@ -225,10 +225,18 @@ export default function InteractiveWorkbook() {
 
                                 {pagina.tipo === 'portada' && (
                                     <div className="text-center space-y-8 animate-in zoom-in-95 duration-500 py-6">
-                                        <div className={`w-32 h-32 mx-auto rounded-full bg-gradient-to-br ${cartilla.colorTema} flex items-center justify-center text-6xl shadow-xl shadow-current/20`}>
-                                            {pagina.imagen}
-                                        </div>
-                                        <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                        {pagina.imagen_url ? (
+                                            <img
+                                                src={pagina.imagen_url}
+                                                alt="Portada Bitácora Oficial"
+                                                className="w-64 md:w-80 h-auto max-h-[420px] object-cover mx-auto rounded-[2rem] shadow-2xl border-4 border-white dark:border-slate-800 transition-transform hover:scale-105 duration-500"
+                                            />
+                                        ) : (
+                                            <div className={`w-32 h-32 mx-auto rounded-full bg-gradient-to-br ${cartilla.colorTema} flex items-center justify-center text-6xl shadow-xl shadow-current/20`}>
+                                                {pagina.imagen}
+                                            </div>
+                                        )}
+                                        <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
                                             {pagina.titulo}
                                         </h1>
                                         <div className={`inline-block px-6 py-2.5 rounded-full bg-gradient-to-r ${cartilla.colorTema} text-white font-black tracking-widest text-lg shadow-lg`}>
@@ -240,9 +248,9 @@ export default function InteractiveWorkbook() {
                                         <div className="pt-4">
                                             <button
                                                 onClick={() => setPaginaActual(1)}
-                                                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all hover:scale-105"
+                                                className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all hover:scale-105"
                                             >
-                                                Comenzar Bitácora →
+                                                Comenzar Bitácora Interactiva →
                                             </button>
                                         </div>
                                     </div>
@@ -258,30 +266,38 @@ export default function InteractiveWorkbook() {
                                                 {pagina.contenido}
                                             </p>
                                         </div>
-                                        <div className="p-6 bg-emerald-50 dark:bg-emerald-950/40 rounded-2xl border-l-4 border-emerald-500">
-                                            <p className="italic text-emerald-900 dark:text-emerald-200 font-medium">"El autoconocimiento es el primer paso hacia el bienestar. Tómate tu tiempo para reflexionar en cada respuesta."</p>
-                                        </div>
+                                        {pagina.frase && (
+                                            <div className="p-6 bg-indigo-50 dark:bg-indigo-950/40 rounded-2xl border-l-4 border-indigo-500">
+                                                <p className="italic text-indigo-900 dark:text-indigo-200 font-medium">"{pagina.frase}"</p>
+                                            </div>
+                                        )}
                                     </div>
                                 )}
 
                                 {pagina.tipo === 'ejercicio' && (
-                                    <div className="max-w-3xl mx-auto w-full space-y-8 animate-in slide-in-from-right-8 duration-500 py-4">
+                                    <div className="max-w-3xl mx-auto w-full space-y-6 animate-in slide-in-from-right-8 duration-500 py-4">
                                         <div className="inline-flex items-center gap-3">
                                             <span className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${cartilla.colorTema} text-white flex items-center justify-center font-bold text-2xl shadow-lg`}>✍️</span>
                                             <div>
                                                 <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white" style={{ fontFamily: "'Playfair Display', serif" }}>{pagina.titulo}</h2>
-                                                <p className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold uppercase tracking-wider">Ejercicio Interactivo</p>
+                                                <p className="text-xs text-indigo-600 dark:text-indigo-400 font-semibold uppercase tracking-wider">Ejercicio Interactivo</p>
                                             </div>
                                         </div>
 
-                                        <p className="text-xl text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
+                                        {pagina.frase && (
+                                            <div className="p-5 rounded-2xl bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/60 dark:to-purple-950/60 border-l-4 border-indigo-500 text-indigo-950 dark:text-indigo-200 font-medium italic text-lg shadow-sm">
+                                                “{pagina.frase}”
+                                            </div>
+                                        )}
+
+                                        <p className="text-xl text-slate-700 dark:text-slate-300 leading-relaxed font-normal whitespace-pre-line">
                                             {pagina.instruccion}
                                         </p>
 
                                         <div className="relative group">
                                             <textarea
-                                                className="relative w-full h-64 border border-slate-300 dark:border-slate-700 rounded-2xl p-6 outline-none resize-none text-slate-800 dark:text-slate-100 leading-relaxed bg-slate-50 dark:bg-slate-950 shadow-inner text-lg font-medium focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
-                                                placeholder={pagina.placeholder || "Escribe tu reflexión detallada aquí..."}
+                                                className="relative w-full h-64 border border-slate-300 dark:border-slate-700 rounded-2xl p-6 outline-none resize-none text-slate-800 dark:text-slate-100 leading-relaxed bg-slate-50 dark:bg-slate-950 shadow-inner text-lg font-medium focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                                                placeholder={pagina.placeholder || "Escribe tu respuesta o reflexión aquí..."}
                                                 value={respuestas[paginaActual] || ''}
                                                 onChange={(e) => handleRespuestaChange(e.target.value)}
                                             ></textarea>
@@ -295,7 +311,7 @@ export default function InteractiveWorkbook() {
                                             </label>
                                             <input
                                                 type="range" min="1" max="10"
-                                                className="w-full h-3 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-600"
+                                                className="w-full h-3 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-600"
                                                 value={energia} onChange={(e) => setEnergia(e.target.value)}
                                             />
                                         </div>
