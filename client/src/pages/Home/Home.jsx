@@ -359,12 +359,14 @@ export default function Home() {
 
                     <div className="grid lg:grid-cols-3 gap-10">
                         {/* Bitácora Infantil */}
-                        <div className="bg-slate-50 dark:bg-slate-900 rounded-[2rem] p-6 md:p-10 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col group opacity-90">
+                        <div className="bg-white dark:bg-slate-900 rounded-[2rem] p-6 md:p-10 shadow-lg border border-slate-200 dark:border-slate-800 hover:border-sky-400 dark:hover:border-sky-500/60 flex flex-col group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 relative">
                             <div className="flex justify-between items-center mb-4">
-                                <span className="px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 text-xs font-bold">🔒 En Edición</span>
+                                <span className="px-3.5 py-1 rounded-full bg-sky-100 dark:bg-sky-900/60 text-sky-800 dark:text-sky-300 text-xs font-black tracking-wide flex items-center gap-1 shadow-sm">
+                                    <span>✨</span> MUESTRA GRATUITA
+                                </span>
                             </div>
-                            <div className="w-full h-64 bg-slate-100 dark:bg-slate-800 rounded-2xl mb-6 flex items-center justify-center relative overflow-hidden border border-slate-200 dark:border-slate-700/50 p-4">
-                                <img src="/covers/infancia.jpeg" alt="Bitácora Infantil" className="w-full h-full object-contain rounded-xl shadow-md opacity-80" />
+                            <div className="w-full h-64 bg-slate-100 dark:bg-slate-800 rounded-2xl mb-6 flex items-center justify-center relative overflow-hidden border border-slate-200 dark:border-slate-700/50 p-4 transform group-hover:-translate-y-1 transition-transform duration-500">
+                                <img src="/covers/infancia.jpeg" alt="Bitácora Infantil" className="w-full h-full object-contain rounded-xl shadow-md" />
                             </div>
                             <h3 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>Bitácora Infantil</h3>
                             <p className="text-rose-600 dark:text-pink-400 text-lg font-bold italic mb-6">"Aprendo a conocer lo que siento"</p>
@@ -372,16 +374,16 @@ export default function Home() {
                             <p className="text-slate-600 dark:text-slate-400 flex-grow font-light mb-8 text-base leading-relaxed">
                                 Actividades lúdicas para desarrollar inteligencia emocional, autoestima, empatía y habilidades para expresar sentimientos.
                             </p>
-                            <div className="w-full text-center bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400 px-6 py-4 rounded-xl font-bold text-sm">
-                                Próximamente (En Edición)
-                            </div>
+                            <Link to="/cartilla/3" className="w-full text-center bg-sky-600 hover:bg-sky-700 text-white px-6 py-4 rounded-xl font-bold transition-all shadow-md hover:shadow-lg">
+                                Explorar Muestra Gratuita →
+                            </Link>
                         </div>
 
                         {/* Bitácora Adolescentes (OFICIAL DISPONIBLE) */}
                         <div className="bg-white dark:bg-slate-900 rounded-[2rem] p-6 md:p-10 shadow-xl border-2 border-emerald-400 dark:border-emerald-500 flex flex-col group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 relative">
                             <div className="flex justify-between items-center mb-4">
                                 <span className="px-3.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 text-xs font-black tracking-wide flex items-center gap-1 shadow-sm">
-                                    <span>✨</span> OFICIAL DISPONIBLE
+                                    <span>✨</span> MUESTRA GRATUITA
                                 </span>
                             </div>
                             <div className="w-full h-64 bg-slate-100 dark:bg-slate-800 rounded-2xl mb-6 flex items-center justify-center relative overflow-hidden border border-slate-200 dark:border-slate-700/50 p-4 transform group-hover:-translate-y-1 transition-transform duration-500">
@@ -393,18 +395,20 @@ export default function Home() {
                             <p className="text-slate-600 dark:text-slate-400 flex-grow font-light mb-8 text-base leading-relaxed">
                                 Herramientas para manejar la ansiedad, fortalecer la identidad, mejorar las relaciones y construir autoconfianza.
                             </p>
-                            <Link to="/cartillas" className="w-full text-center bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-4 rounded-xl font-bold transition-all shadow-md hover:shadow-lg">
-                                Explorar Bitácora Oficial →
+                            <Link to="/cartilla/2" className="w-full text-center bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-4 rounded-xl font-bold transition-all shadow-md hover:shadow-lg">
+                                Explorar Muestra Gratuita →
                             </Link>
                         </div>
 
                         {/* Bitácora Adultos */}
-                        <div className="bg-slate-50 dark:bg-slate-900 rounded-[2rem] p-6 md:p-10 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col group opacity-90">
+                        <div className="bg-white dark:bg-slate-900 rounded-[2rem] p-6 md:p-10 shadow-lg border border-slate-200 dark:border-slate-800 hover:border-teal-400 dark:hover:border-teal-500/60 flex flex-col group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 relative">
                             <div className="flex justify-between items-center mb-4">
-                                <span className="px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 text-xs font-bold">🔒 En Edición</span>
+                                <span className="px-3.5 py-1 rounded-full bg-teal-100 dark:bg-teal-900/60 text-teal-800 dark:text-teal-300 text-xs font-black tracking-wide flex items-center gap-1 shadow-sm">
+                                    <span>✨</span> MUESTRA GRATUITA
+                                </span>
                             </div>
-                            <div className="w-full h-64 bg-slate-100 dark:bg-slate-800 rounded-2xl mb-6 flex items-center justify-center relative overflow-hidden border border-slate-200 dark:border-slate-700/50 p-4">
-                                <img src="/covers/adulto.jpeg" alt="Bitácora Adultos" className="w-full h-full object-contain rounded-xl shadow-md opacity-80" />
+                            <div className="w-full h-64 bg-slate-100 dark:bg-slate-800 rounded-2xl mb-6 flex items-center justify-center relative overflow-hidden border border-slate-200 dark:border-slate-700/50 p-4 transform group-hover:-translate-y-1 transition-transform duration-500">
+                                <img src="/covers/adulto.jpeg" alt="Bitácora Adultos" className="w-full h-full object-contain rounded-xl shadow-md" />
                             </div>
                             <h3 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>Bitácora Adultos</h3>
                             <p className="text-rose-600 dark:text-pink-400 text-lg font-bold italic mb-6">"Reconectando con mi esencia"</p>
@@ -412,9 +416,9 @@ export default function Home() {
                             <p className="text-slate-600 dark:text-slate-400 flex-grow font-light mb-8 text-base leading-relaxed">
                                 Ejercicios creativos que conecten con el amor propio, para sanar heridas, establecer límites sanos y reducir el estrés propio de la edad.
                             </p>
-                            <div className="w-full text-center bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400 px-6 py-4 rounded-xl font-bold text-sm">
-                                Próximamente (En Edición)
-                            </div>
+                            <Link to="/cartilla/1" className="w-full text-center bg-teal-600 hover:bg-teal-700 text-white px-6 py-4 rounded-xl font-bold transition-all shadow-md hover:shadow-lg">
+                                Explorar Muestra Gratuita →
+                            </Link>
                         </div>
                     </div>
                 </div>

@@ -3,13 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../app/providers/AuthProvider';
 import { getCartillas } from '../../features/cartillas/api/cartillas.api';
 import { getMisCompras, comprarCartilla } from '../../features/compras/api/compras.api';
+import { abrirModalCompraNequi } from '../../services/compraWhatsApp';
+import { CONTACT_CONFIG } from '../../config/constants';
 import Swal from 'sweetalert2';
 
 const CARTILLAS_DEFAULT = [
     {
         id: 1,
         titulo: 'Bitácora Adultos',
-        descripcion: 'Ejercicios creativos que conectan para el amor propio, sanar heridas, establecer limites sanos y reducir el estres propio de la edad.',
+        descripcion: 'Ejercicios creativos que conectan para el amor propio, sanar heridas, establecer límites sanos y reducir el estrés propio de la edad.',
         precio: 12000,
         imagen_url: '/covers/adulto.jpeg'
     },
@@ -55,43 +57,7 @@ export default function Cartillas() {
         }
     }, [user]);
 
-    const handleIngresar = async (cartilla) => {
-        // Solo la bitácora id: 2 (Adolescentes) está lista y publicada oficialmente
-        if (cartilla.id !== 2) {
-            Swal.fire({
-                title: '<strong>Bitácora en Edición</strong>',
-                icon: 'info',
-                html: `
-                    <div style="font-size: 1rem; color: #475569; line-height: 1.6; text-align: left;">
-                        <p style="margin-bottom: 12px;">La <strong>${cartilla.titulo}</strong> se encuentra en proceso de actualización con su nueva versión oficial.</p>
-                        <div style="background: #fff1f2; border: 1px solid #fecdd3; padding: 12px; border-radius: 12px; color: #be123c; font-size: 0.9rem;">
-                            ✨ La <strong>Bitácora de Adolescentes</strong> ya está 100% terminada, lista para usar y descargar.
-                        </div>
-                    </div>
-                `,
-                confirmButtonColor: '#e11d48',
-                confirmButtonText: 'Ver Bitácora Adolescentes'
-            }).then((res) => {
-                if (res.isConfirmed) {
-                    const adol = cartillas.find(c => c.id === 2);
-                    if (adol) handleIngresar(adol);
-                }
-            });
-            return;
-        }
-
-        if (!user) {
-            navigate('/login');
-            return;
-        }
-        if (!compradas.includes(cartilla.id) && user.role !== 'admin') {
-            try {
-                await comprarCartilla(cartilla.id);
-                setCompradas((prev) => [...prev, cartilla.id]);
-            } catch {
-                // Si falla o ya estaba comprada
-            }
-        }
+    const handleIngresarMuestra = (cartilla) => {
         navigate(`/cartilla/${cartilla.id}`);
     };
 
@@ -100,11 +66,13 @@ export default function Cartillas() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
                     <div className="inline-block px-4 py-1.5 rounded-full bg-pink-50 dark:bg-pink-900/30 border border-pink-100 dark:border-pink-800/50 text-pink-600 dark:text-pink-400 text-sm font-semibold mb-6 shadow-sm">
-                        Catálogo Oficial
+                        Catálogo Oficial & Muestras Gratuitas
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>Nuestras Bitácoras Emocionales</h2>
+                    <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>
+                        Nuestras Bitácoras Emocionales
+                    </h2>
                     <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-light leading-relaxed">
-                        Herramientas diseñadas clínicamente para acompañarte en tu proceso.
+                        Explora gratis las primeras 3 páginas de cada bitácora y adquiere la versión completa guiada por la especialista con pago inmediato vía Nequi.
                     </p>
                 </div>
 
@@ -116,27 +84,17 @@ export default function Cartillas() {
                 ) : (
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
                         {cartillas.map((cartilla, index) => {
-                            const isAdolescente = cartilla.id === 2;
+                            const precio = (cartilla.precio === 120000 ? 12000 : (cartilla.precio || 12000));
                             return (
                                 <div
                                     key={cartilla.id}
-                                    className={`bg-white dark:bg-slate-900 rounded-[2rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] border transition-all duration-300 flex flex-col group relative overflow-hidden ${
-                                        isAdolescente
-                                            ? 'border-emerald-300 dark:border-emerald-700/60 ring-2 ring-emerald-400/30 hover:-translate-y-2'
-                                            : 'border-slate-200 dark:border-slate-800 opacity-90'
-                                    }`}
+                                    className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-slate-200 dark:border-slate-800 hover:border-emerald-400 dark:hover:border-emerald-600/60 transition-all duration-300 flex flex-col group relative overflow-hidden hover:-translate-y-2"
                                     style={{ animationDelay: `${index * 150}ms` }}
                                 >
                                     <div className="flex justify-between items-center mb-4">
-                                        {isAdolescente ? (
-                                            <span className="px-3.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300 text-xs font-black tracking-wide flex items-center gap-1.5 shadow-sm">
-                                                <span>✨</span> OFICIAL DISPONIBLE
-                                            </span>
-                                        ) : (
-                                            <span className="px-3.5 py-1 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 text-xs font-bold tracking-wide flex items-center gap-1.5">
-                                                <span>🔒</span> PRÓXIMAMENTE (EN EDICIÓN)
-                                            </span>
-                                        )}
+                                        <span className="px-3.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300 text-xs font-black tracking-wide flex items-center gap-1.5 shadow-sm">
+                                            <span>✨</span> MUESTRA GRATUITA (PÁGS 1-3)
+                                        </span>
                                     </div>
 
                                     <div className="w-full h-56 bg-slate-100 dark:bg-slate-800 rounded-2xl mb-6 flex items-center justify-center relative overflow-hidden border border-slate-200 dark:border-slate-700/50 p-2">
@@ -146,24 +104,41 @@ export default function Cartillas() {
                                             className="w-full h-full object-cover rounded-xl shadow-md transition-transform group-hover:scale-105 duration-700"
                                         />
                                     </div>
-                                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3 line-clamp-1" style={{ fontFamily: "'Playfair Display', serif" }}>{cartilla.titulo}</h3>
-                                    <p className="text-slate-600 dark:text-slate-400 mb-6 flex-grow font-light leading-relaxed line-clamp-3">{cartilla.descripcion}</p>
-                                    <div className="flex items-center justify-between mt-auto pt-6 border-t border-slate-100 dark:border-slate-800 relative z-10">
+
+                                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3 line-clamp-1" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                        {cartilla.titulo}
+                                    </h3>
+                                    <p className="text-slate-600 dark:text-slate-400 mb-6 flex-grow font-light leading-relaxed line-clamp-3">
+                                        {cartilla.descripcion}
+                                    </p>
+
+                                    <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100 dark:border-slate-800">
                                         <div>
-                                            <p className="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1 font-semibold">Inversión</p>
+                                            <p className="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-0.5 font-semibold">Valor Completa</p>
                                             <div className="text-rose-600 dark:text-pink-400 font-extrabold text-2xl">
-                                                ${(cartilla.precio === 120000 ? 12000 : cartilla.precio).toLocaleString('es-CO')} <span className="text-sm font-medium opacity-70">COP</span>
+                                                ${precio.toLocaleString('es-CO')} <span className="text-xs font-medium opacity-70">COP</span>
                                             </div>
                                         </div>
+                                        <div className="text-right">
+                                            <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1.5 rounded-lg border border-emerald-200 dark:border-emerald-800">
+                                                📱 Nequi & WhatsApp
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    {/* Botones de Acción Dual */}
+                                    <div className="flex flex-col gap-2.5">
                                         <button
-                                            onClick={() => handleIngresar(cartilla)}
-                                            className={`px-6 py-3 rounded-xl font-bold transition-all shadow-md flex items-center gap-2 cursor-pointer ${
-                                                isAdolescente
-                                                    ? 'bg-emerald-600 hover:bg-emerald-700 text-white hover:shadow-lg'
-                                                    : 'bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-700'
-                                            }`}
+                                            onClick={() => handleIngresarMuestra(cartilla)}
+                                            className="w-full bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-white text-white font-bold py-3.5 px-4 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.02]"
                                         >
-                                            {isAdolescente ? 'Ingresar →' : 'En Edición 🔒'}
+                                            <span>📖</span> Ver Muestra Gratuita (Págs 1-3)
+                                        </button>
+                                        <button
+                                            onClick={() => abrirModalCompraNequi(cartilla)}
+                                            className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold py-3 px-4 rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 text-sm cursor-pointer hover:scale-[1.02]"
+                                        >
+                                            <span>💬</span> Comprar Completa por WhatsApp
                                         </button>
                                     </div>
                                 </div>

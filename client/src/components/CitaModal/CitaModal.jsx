@@ -95,7 +95,7 @@ export default function CitaModal({ isOpen, onClose, especialidadInicial = ESPEC
                 motivo: motivoConModalidad
             });
 
-            const numTelDoctor = '573000000000';
+            const numTelDoctor = '573044701482';
             const mensajeWa = encodeURIComponent(`Hola, acabo de solicitar una cita médica en la especialidad de *${espObj.nombre}* para el día *${formData.fecha_cita}* (${formData.modalidad}). Mi nombre es ${formData.nombre_cliente}.`);
 
             Swal.fire({

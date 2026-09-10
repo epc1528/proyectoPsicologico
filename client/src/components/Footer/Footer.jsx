@@ -16,7 +16,7 @@ export default function Footer({ onOpenCitaModal }) {
                         <li><strong>Soporte Técnico:</strong> Escríbenos directamente a <a href="mailto:soporte@psicocartillas.com" style="color: #e11d48; font-weight: bold;">soporte@psicocartillas.com</a></li>
                     </ul>
                     <div style="background: #fdf2f8; border: 1px solid #fbcfe8; padding: 12px; border-radius: 12px; color: #9d174d;">
-                        💬 Atención prioritaria vía WhatsApp: +57 300 000 0000
+                        💬 Atención prioritaria vía WhatsApp: +57 304 470 1482
                     </div>
                 </div>
             `,
@@ -27,7 +27,7 @@ export default function Footer({ onOpenCitaModal }) {
             cancelButtonText: 'Cerrar'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.open('https://wa.me/573000000000?text=Hola,%20necesito%20ayuda%20con%20la%20plataforma%20PsicoBitacoras', '_blank');
+                window.open('https://wa.me/573044701482?text=Hola,%20necesito%20ayuda%20con%20la%20plataforma%20PsicoBitacoras', '_blank');
             }
         });
     };
@@ -40,7 +40,7 @@ export default function Footer({ onOpenCitaModal }) {
                 <div style="text-align: left; font-size: 0.95rem; color: #475569; line-height: 1.6;">
                     <p style="margin-bottom: 10px;">📍 <strong>Consultorio Médico:</strong> Sede Principal</p>
                     <p style="margin-bottom: 10px;">📧 <strong>Correo Electrónico:</strong> contacto@psicocartillas.com</p>
-                    <p style="margin-bottom: 10px;">📞 <strong>Teléfono de Atención:</strong> +57 300 000 0000</p>
+                    <p style="margin-bottom: 10px;">📞 <strong>Teléfono de Atención:</strong> +57 304 470 1482</p>
                     <p style="margin-bottom: 10px;">⏰ <strong>Horarios:</strong> Lunes a Viernes (8:00 AM - 6:00 PM)</p>
                 </div>
             `,
@@ -51,7 +51,7 @@ export default function Footer({ onOpenCitaModal }) {
             cancelButtonText: 'Entendido'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.open('https://wa.me/573000000000?text=Hola,%20quisiera%20recibir%20más%20información%20sobre%20sus%20servicios', '_blank');
+                window.open('https://wa.me/573044701482?text=Hola,%20quisiera%20recibir%20más%20información%20sobre%20sus%20servicios', '_blank');
             }
         });
     };
@@ -72,7 +72,7 @@ export default function Footer({ onOpenCitaModal }) {
                             {[
                                 { name: 'Facebook', icon: '📘', url: 'https://facebook.com' },
                                 { name: 'Instagram', icon: '📸', url: 'https://instagram.com' },
-                                { name: 'WhatsApp', icon: '💬', url: 'https://wa.me/573000000000' },
+                                { name: 'WhatsApp', icon: '💬', url: 'https://wa.me/573044701482' },
                                 { name: 'YouTube', icon: '▶️', url: 'https://youtube.com' }
                             ].map((social, i) => (
                                 <a
