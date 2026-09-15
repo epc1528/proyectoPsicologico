@@ -5,6 +5,14 @@ import Swal from 'sweetalert2';
 
 const ESPECIALIDADES = [
     {
+        id: 'Psicología Clínica',
+        nombre: 'Dra. Milagros Bolaño Romero',
+        doctora: 'Psicóloga Clínica Especialista',
+        img: '/doctoras/dra_milagros.jpg',
+        icon: '🩺',
+        badge: 'Psicología Clínica'
+    },
+    {
         id: 'Dra. Rosa Fontalvo Morales (Psiquiatría & Salud Mental)',
         nombre: 'Dra. Rosa Fontalvo Morales',
         doctora: 'Médica Psiquiatra & Docente Universitaria',
@@ -13,36 +21,28 @@ const ESPECIALIDADES = [
         badge: 'Psiquiatría & Salud Mental'
     },
     {
-        id: 'Psicología Clínica',
-        nombre: 'Psicología Clínica',
-        doctora: 'Dra. Milagros Bolaño Romero (Psicóloga Clínica)',
-        img: '/doctoras/dra_milagros.jpg',
-        icon: '🩺',
-        badge: 'Psicología Clínica'
+        id: 'Dra. Maribel Orozco (Suicidología)',
+        nombre: 'Dra. Maribel Orozco',
+        doctora: 'Psicóloga Clínica & Suicidóloga',
+        img: '/doctoras/dra_maribel.jpg',
+        icon: '💛',
+        badge: 'Suicidología & Gestión de Crisis'
+    },
+    {
+        id: 'Dra. María Fernanda (Neuropsicología)',
+        nombre: 'Dra. María Fernanda',
+        doctora: 'Neuropsicóloga • Evaluación y Rehabilitación',
+        img: '/doctoras/neuropsicologia.jpg',
+        icon: '🧠',
+        badge: 'Neuropsicología'
     },
     {
         id: 'Dra. Johana Barrios Chinchilla (Salud Integral & Mindfulness)',
         nombre: 'Dra. Johana Barrios Chinchilla',
-        doctora: 'Médica • Mindfulness • Psicología Positiva',
+        doctora: 'Médica • Psicología Positiva & Mindfulness',
         img: '/doctoras/dra_johana_hero.jpg',
         icon: '🌿',
-        badge: 'Salud Integral & Emocional'
-    },
-    {
-        id: 'Neuropsicología',
-        nombre: 'Neuropsicología',
-        doctora: 'Evaluación y Rehabilitación Cognitiva',
-        img: '/doctoras/neuropsicologia.jpg',
-        icon: '🧠',
-        badge: 'Neurociencias'
-    },
-    {
-        id: 'Psicología Clínica & Suicidología',
-        nombre: 'Psicología & Suicidología',
-        doctora: 'Prevención del Suicidio & Gestión de Crisis',
-        img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80',
-        icon: '💛',
-        badge: 'Prevención & Crisis'
+        badge: 'Salud Integral & Psicología Positiva'
     }
 ];
 

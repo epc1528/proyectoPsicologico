@@ -5,19 +5,6 @@ import CitaModal from '../../components/CitaModal/CitaModal';
 
 const ESPECIALISTAS_DETALLE = [
     {
-        id: 'johana',
-        nombre: 'Dra. Johana Barrios Chinchilla',
-        cargoBreve: 'Médica • Mindfulness • Psicología Positiva',
-        tituloEspecialidad: 'Dra. Johana Barrios Chinchilla (Salud Integral & Mindfulness)',
-        badge: '🩺 MÉDICA • MINDFULNESS • PSICOLOGÍA POSITIVA',
-        frase: '“Somos una conversación constante entre cerebro, cuerpo, emociones y entorno; comprender esa conexión es también comprender nuestra salud.💛”',
-        imagen: '/doctoras/dra_johana_quote.jpg',
-        parrafos: [
-            'Médica con amplia experiencia clínica en promoción y prevención de la salud. Título Superior Universitario en Mindfulness y Gestión Emocional, formación en Psicología Positiva, Coaching en Salud y Neurociencias.',
-            'Integra la medicina con una mirada integral del bienestar físico, mental y emocional.'
-        ]
-    },
-    {
         id: 'milagros',
         nombre: 'Dra. Milagros Bolaño Romero',
         cargoBreve: 'Psicóloga Clínica Especialista',
@@ -45,38 +32,51 @@ const ESPECIALISTAS_DETALLE = [
         ]
     },
     {
+        id: 'suicidologia',
+        nombre: 'Dra. Maribel Orozco',
+        cargoBreve: 'Psicóloga Clínica & Suicidóloga',
+        tituloEspecialidad: 'Dra. Maribel Orozco (Suicidología)',
+        badge: '💛 SUICIDOLOGÍA • PREVENCIÓN DEL SUICIDIO & GESTIÓN DE CRISIS',
+        frase: '"Preservar la vida, ofrecer un refugio de escucha sin juicio y brindar esperanza en los momentos de mayor vulnerabilidad."',
+        imagen: '/doctoras/dra_maribel.jpg',
+        parrafos: [
+            'Psicóloga clínica y suicidóloga especializada en prevención del suicidio, intervención en crisis emocionales complejas y abordaje de conductas de autolesión.',
+            'Proporciona una atención altamente sensible, humana y confidencial, estructurando planes de seguridad, contención afectiva y reconstrucción del sentido de vida.'
+        ]
+    },
+    {
         id: 'neuropsicologia',
-        nombre: 'Neuropsicología',
-        cargoBreve: 'Evaluación & Rehabilitación Cognitiva',
-        tituloEspecialidad: 'Neuropsicología',
+        nombre: 'Dra. María Fernanda',
+        cargoBreve: 'Neuropsicóloga • Evaluación & Rehabilitación Cognitiva',
+        tituloEspecialidad: 'Dra. María Fernanda (Neuropsicología)',
         badge: '🧠 NEUROPSICOLOGÍA • EVALUACIÓN Y REHABILITACIÓN COGNITIVA',
         frase: '"Comprender el funcionamiento cerebral es la clave para potenciar nuestras habilidades y superar desafíos cognitivos."',
         imagen: '/doctoras/neuropsicologia.jpg',
         parrafos: [
-            'Evaluación neuropsicológica detallada y programas personalizados de rehabilitación cognitiva para optimizar la memoria, la atención, las funciones ejecutivas y el aprendizaje.',
+            'Neuropsicóloga especializada en evaluación neuropsicológica y programas personalizados de rehabilitación cognitiva para optimizar la memoria, la atención, las funciones ejecutivas y el aprendizaje.',
             'Diagnóstico especializado de funciones cerebrales superiores para diseñar estrategias terapéuticas eficaces orientadas a potenciar las capacidades mentales.',
             'Acompañamiento especializado a niños, jóvenes y adultos en procesos de desarrollo neuropsicológico y recuperación funcional con un enfoque humano y científico.'
         ]
     },
     {
-        id: 'suicidologia',
-        nombre: 'Psicología Clínica & Suicidología',
-        cargoBreve: 'Prevención del Suicidio & Gestión de Crisis',
-        tituloEspecialidad: 'Psicología Clínica & Suicidología',
-        badge: '💛 PREVENCIÓN DEL SUICIDIO • GESTIÓN DE CRISIS & SALUD MENTAL',
-        frase: '"Preservar la vida, ofrecer un refugio de escucha sin juicio y brindar esperanza en los momentos de mayor vulnerabilidad."',
-        imagen: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80',
+        id: 'johana',
+        nombre: 'Dra. Johana Barrios Chinchilla',
+        cargoBreve: 'Médica • Especialista en Psicología Positiva & Mindfulness',
+        tituloEspecialidad: 'Dra. Johana Barrios Chinchilla (Salud Integral & Mindfulness)',
+        badge: '🩺 MÉDICA • PSICOLOGÍA POSITIVA & MINDFULNESS',
+        frase: '“Somos una conversación constante entre cerebro, cuerpo, emociones y entorno; comprender esa conexión es también comprender nuestra salud.💛”',
+        imagen: '/doctoras/dra_johana_quote.jpg',
         parrafos: [
-            'Psicóloga clínica especializada en prevención del suicidio, intervención en crisis emocionales complejas y abordaje de conductas de autolesión.',
-            'Proporciona una atención altamente sensible, humana y confidencial, estructurando planes de seguridad, contención afectiva y reconstrucción del sentido de vida.'
+            'Médica con amplia experiencia clínica en promoción y prevención de la salud. Especialista en Psicología Positiva, Título Superior Universitario en Mindfulness y Gestión Emocional, formación en Coaching en Salud y Neurociencias.',
+            'Integra la medicina con una mirada integral del bienestar físico, mental y emocional.'
         ]
     }
 ];
 
 export default function Home() {
     const [isCitaModalOpen, setIsCitaModalOpen] = useState(false);
-    const [selectedEspecialidad, setSelectedEspecialidad] = useState('Dra. Rosa Fontalvo Morales (Psiquiatría & Salud Mental)');
-    const [selectedEspecialistaId, setSelectedEspecialistaId] = useState('johana');
+    const [selectedEspecialidad, setSelectedEspecialidad] = useState('Psicología Clínica');
+    const [selectedEspecialistaId, setSelectedEspecialistaId] = useState('milagros');
 
     const especialistaActual = ESPECIALISTAS_DETALLE.find(e => e.id === selectedEspecialistaId) || ESPECIALISTAS_DETALLE[0];
 
@@ -440,41 +440,7 @@ export default function Home() {
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-                        {/* 1. Dra. Rosa Fontalvo Morales (Psiquiatría) */}
-                        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
-                            <div>
-                                <div className="relative mb-6 mx-auto w-20 h-20">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&q=80"
-                                        alt="Dra. Rosa Fontalvo Morales - Psiquiatría"
-                                        className="w-20 h-20 rounded-full object-cover shadow-md border-4 border-rose-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
-                                    />
-                                    <span className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs shadow-md">
-                                        🩺
-                                    </span>
-                                </div>
-                                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
-                                    Dra. Rosa Fontalvo M.
-                                </h3>
-                                <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-3">
-                                    Médica Psiquiatra
-                                </p>
-                                <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed font-light mb-6">
-                                    Atención integral de salud mental, docencia universitaria y cuidado del adulto mayor.
-                                </p>
-                            </div>
-                            <button
-                                onClick={() => {
-                                    setSelectedEspecialidad('Dra. Rosa Fontalvo Morales (Psiquiatría & Salud Mental)');
-                                    setIsCitaModalOpen(true);
-                                }}
-                                className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-2xl transition-all shadow-md hover:shadow-xl text-center text-sm"
-                            >
-                                Solicitar Cita
-                            </button>
-                        </div>
-
-                        {/* 2. Psicología Clínica (Dra. Milagros Bolaño Romero) */}
+                        {/* 1. Dra. Milagros Bolaño Romero (Psicología Clínica) */}
                         <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
                             <div>
                                 <div className="relative mb-6 mx-auto w-20 h-20">
@@ -508,7 +474,109 @@ export default function Home() {
                             </button>
                         </div>
 
-                        {/* 3. Dra. Johana Barrios Chinchilla (Médico, Mindfulness, Psicología Positiva) */}
+                        {/* 2. Dra. Rosa Fontalvo Morales (Médica Psiquiatra) */}
+                        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+                            <div>
+                                <div className="relative mb-6 mx-auto w-20 h-20">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&q=80"
+                                        alt="Dra. Rosa Fontalvo Morales - Psiquiatría"
+                                        className="w-20 h-20 rounded-full object-cover shadow-md border-4 border-rose-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
+                                    />
+                                    <span className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs shadow-md">
+                                        🩺
+                                    </span>
+                                </div>
+                                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                    Dra. Rosa Fontalvo M.
+                                </h3>
+                                <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-3">
+                                    Médica Psiquiatra
+                                </p>
+                                <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed font-light mb-6">
+                                    Atención integral de salud mental, docencia universitaria y cuidado del adulto mayor.
+                                </p>
+                            </div>
+                            <button
+                                onClick={() => {
+                                    setSelectedEspecialidad('Dra. Rosa Fontalvo Morales (Psiquiatría & Salud Mental)');
+                                    setIsCitaModalOpen(true);
+                                }}
+                                className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-2xl transition-all shadow-md hover:shadow-xl text-center text-sm"
+                            >
+                                Solicitar Cita
+                            </button>
+                        </div>
+
+                        {/* 3. Dra. Maribel Orozco (Suicidología) */}
+                        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+                            <div>
+                                <div className="relative mb-6 mx-auto w-20 h-20">
+                                    <img
+                                        src="/doctoras/dra_maribel.jpg"
+                                        alt="Dra. Maribel Orozco - Suicidología"
+                                        className="w-20 h-20 rounded-full object-cover shadow-md border-4 border-amber-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
+                                    />
+                                    <span className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs shadow-md">
+                                        💛
+                                    </span>
+                                </div>
+                                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                    Dra. Maribel Orozco
+                                </h3>
+                                <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-3">
+                                    Suicidóloga • Prevención & Crisis
+                                </p>
+                                <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed font-light mb-6">
+                                    Atención psicológica experta en prevención del suicidio y contención en situaciones de crisis.
+                                </p>
+                            </div>
+                            <button
+                                onClick={() => {
+                                    setSelectedEspecialidad('Dra. Maribel Orozco (Suicidología)');
+                                    setIsCitaModalOpen(true);
+                                }}
+                                className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-2xl transition-all shadow-md hover:shadow-xl text-center text-sm"
+                            >
+                                Solicitar Cita
+                            </button>
+                        </div>
+
+                        {/* 4. Dra. María Fernanda (Neuropsicología) */}
+                        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+                            <div>
+                                <div className="relative mb-6 mx-auto w-20 h-20">
+                                    <img
+                                        src="/doctoras/neuropsicologia.jpg"
+                                        alt="Dra. María Fernanda - Neuropsicóloga"
+                                        className="w-20 h-20 rounded-full object-cover shadow-md border-4 border-purple-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
+                                    />
+                                    <span className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs shadow-md">
+                                        🧠
+                                    </span>
+                                </div>
+                                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                    Dra. María Fernanda
+                                </h3>
+                                <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-3">
+                                    Neuropsicóloga • Cognición
+                                </p>
+                                <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed font-light mb-6">
+                                    Evaluación y rehabilitación cognitiva basada en la neurociencia y la conducta.
+                                </p>
+                            </div>
+                            <button
+                                onClick={() => {
+                                    setSelectedEspecialidad('Dra. María Fernanda (Neuropsicología)');
+                                    setIsCitaModalOpen(true);
+                                }}
+                                className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-2xl transition-all shadow-md hover:shadow-xl text-center text-sm"
+                            >
+                                Solicitar Cita
+                            </button>
+                        </div>
+
+                        {/* 5. Dra. Johana Barrios Chinchilla (Médico, Psicología Positiva, Mindfulness) */}
                         <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 shadow-sm border-2 border-rose-200 dark:border-pink-800/60 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 relative">
                             <span className="absolute -top-3 bg-gradient-to-r from-pink-500 to-rose-600 text-white text-[9px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full shadow-md">
                                 Salud Integral
@@ -528,7 +596,7 @@ export default function Home() {
                                     Dra. Johana Barrios C.
                                 </h3>
                                 <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-3">
-                                    Médico • Mindfulness
+                                    Médica • Psicología Positiva
                                 </p>
                                 <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed font-light mb-6">
                                     Consulta médica en salud integral, auto-liderazgo y desarrollo del bienestar consciente.
@@ -540,74 +608,6 @@ export default function Home() {
                                     setIsCitaModalOpen(true);
                                 }}
                                 className="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-4 rounded-2xl transition-all shadow-md hover:shadow-xl text-center text-sm"
-                            >
-                                Solicitar Cita
-                            </button>
-                        </div>
-
-                        {/* 4. Neuropsicología */}
-                        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
-                            <div>
-                                <div className="relative mb-6 mx-auto w-20 h-20">
-                                    <img
-                                        src="/doctoras/neuropsicologia.jpg"
-                                        alt="Neuropsicología"
-                                        className="w-20 h-20 rounded-full object-cover shadow-md border-4 border-purple-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
-                                    />
-                                    <span className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs shadow-md">
-                                        🧠
-                                    </span>
-                                </div>
-                                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
-                                    Neuropsicología
-                                </h3>
-                                <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-3">
-                                    Evaluación & Rehabilitación
-                                </p>
-                                <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed font-light mb-6">
-                                    Evaluación y rehabilitación cognitiva basada en la neurociencia y la conducta.
-                                </p>
-                            </div>
-                            <button
-                                onClick={() => {
-                                    setSelectedEspecialidad('Neuropsicología');
-                                    setIsCitaModalOpen(true);
-                                }}
-                                className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-2xl transition-all shadow-md hover:shadow-xl text-center text-sm"
-                            >
-                                Solicitar Cita
-                            </button>
-                        </div>
-
-                        {/* 5. Psicología Clínica & Suicidología */}
-                        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between items-center text-center group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
-                            <div>
-                                <div className="relative mb-6 mx-auto w-20 h-20">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
-                                        alt="Psicología Clínica & Suicidología"
-                                        className="w-20 h-20 rounded-full object-cover shadow-md border-4 border-amber-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
-                                    />
-                                    <span className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs shadow-md">
-                                        💛
-                                    </span>
-                                </div>
-                                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
-                                    Suicidología
-                                </h3>
-                                <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-3">
-                                    Prevención & Crisis
-                                </p>
-                                <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed font-light mb-6">
-                                    Atención psicológica experta en prevención del suicidio y contención en situaciones de crisis.
-                                </p>
-                            </div>
-                            <button
-                                onClick={() => {
-                                    setSelectedEspecialidad('Psicología Clínica & Suicidología');
-                                    setIsCitaModalOpen(true);
-                                }}
-                                className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-2xl transition-all shadow-md hover:shadow-xl text-center text-sm"
                             >
                                 Solicitar Cita
                             </button>
