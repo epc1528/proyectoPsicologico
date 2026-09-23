@@ -46,9 +46,9 @@ const ESPECIALISTAS_DETALLE = [
     },
     {
         id: 'neuropsicologia',
-        nombre: 'Dra. María Fernanda',
+        nombre: 'Dra. María Fernanda Leon',
         cargoBreve: 'Neuropsicóloga • Evaluación & Rehabilitación Cognitiva',
-        tituloEspecialidad: 'Dra. María Fernanda (Neuropsicología)',
+        tituloEspecialidad: 'Dra. María Fernanda Leon (Neuropsicología)',
         badge: '🧠 NEUROPSICOLOGÍA • EVALUACIÓN Y REHABILITACIÓN COGNITIVA',
         frase: '"Comprender el funcionamiento cerebral es la clave para potenciar nuestras habilidades y superar desafíos cognitivos."',
         imagen: '/doctoras/neuropsicologia.jpg',
@@ -346,7 +346,7 @@ export default function Home() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-4xl mx-auto mb-20 space-y-6">
                         <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white" style={{ fontFamily: "'Playfair Display', serif", lineHeight: '1.2' }}>
-                            Con dedicarte solo 15 minutos al día transformará la forma en que vives tus emociones.
+                            15 minutos al día para reencontrarte y restaurar  tu bienestar emocional
                         </h2>
                         <p className="text-xl text-slate-600 dark:text-slate-400 font-light leading-relaxed">
                             Nuestras bitácoras fueron creadas para acompañarte paso a paso, con actividades sencillas, reflexiones y herramientas psicológicas que puedes aplicar en tu vida diaria.
@@ -548,7 +548,7 @@ export default function Home() {
                                 <div className="relative mb-6 mx-auto w-20 h-20">
                                     <img
                                         src="/doctoras/neuropsicologia.jpg"
-                                        alt="Dra. María Fernanda - Neuropsicóloga"
+                                        alt="Dra. María Fernanda Leon - Neuropsicóloga"
                                         className="w-20 h-20 rounded-full object-cover shadow-md border-4 border-purple-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
                                     />
                                     <span className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs shadow-md">
@@ -556,7 +556,7 @@ export default function Home() {
                                     </span>
                                 </div>
                                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
-                                    Dra. María Fernanda
+                                    Dra. María Fernanda Leon
                                 </h3>
                                 <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-3">
                                     Neuropsicóloga • Cognición
@@ -567,7 +567,7 @@ export default function Home() {
                             </div>
                             <button
                                 onClick={() => {
-                                    setSelectedEspecialidad('Dra. María Fernanda (Neuropsicología)');
+                                    setSelectedEspecialidad('Dra. María Fernanda Leon (Neuropsicología)');
                                     setIsCitaModalOpen(true);
                                 }}
                                 className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-2xl transition-all shadow-md hover:shadow-xl text-center text-sm"
