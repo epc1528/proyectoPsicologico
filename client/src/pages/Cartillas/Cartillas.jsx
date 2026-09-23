@@ -12,21 +12,21 @@ const CARTILLAS_DEFAULT = [
         id: 1,
         titulo: 'Bitácora Adultos',
         descripcion: 'Ejercicios creativos que conectan para el amor propio, sanar heridas, establecer límites sanos y reducir el estrés propio de la edad.',
-        precio: 12000,
+        precio: 15000,
         imagen_url: '/covers/adulto.jpeg'
     },
     {
         id: 2,
         titulo: 'Bitácora Adolescentes',
         descripcion: 'Herramientas para manejar la ansiedad, fortalecer la identidad, mejorar las relaciones y construir autoconfianza.',
-        precio: 12000,
+        precio: 15000,
         imagen_url: '/covers/adolescente.jpeg'
     },
     {
         id: 3,
         titulo: 'Bitácora Infantil',
         descripcion: 'Actividades lúdicas para desarrollar inteligencia emocional, autoestima, empatía y habilidades para expresar sentimientos.',
-        precio: 12000,
+        precio: 15000,
         imagen_url: '/covers/infancia.jpeg'
     }
 ];

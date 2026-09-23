@@ -22,7 +22,7 @@ export default function PoliticaPrivacidad() {
                                 1. Compromiso con tu Confidencialidad
                             </h2>
                             <p>
-                                En <strong>PsicoCartillas / PsicoBitácoras</strong>, entendemos la sensibilidad e importancia de la salud emocional y clínica. Nos comprometemos a proteger la privacidad y seguridad de toda la información personal y reflexiones registradas en nuestra plataforma.
+                                En <strong>PsicoBitácoras</strong>, entendemos la sensibilidad e importancia de la salud emocional y clínica. Nos comprometemos a proteger la privacidad y seguridad de toda la información personal y reflexiones registradas en nuestra plataforma.
                             </p>
                         </section>
 

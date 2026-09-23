@@ -16,7 +16,7 @@ const ESPECIALIDADES = [
         id: 'Dra. Rosa Fontalvo Morales (Psiquiatría & Salud Mental)',
         nombre: 'Dra. Rosa Fontalvo Morales',
         doctora: 'Médica Psiquiatra & Docente Universitaria',
-        img: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&q=80',
+        img: '/doctoras/psiquiatra.jpeg',
         icon: '🩺',
         badge: 'Psiquiatría & Salud Mental'
     },

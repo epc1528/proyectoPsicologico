@@ -13,9 +13,9 @@ const ESPECIALISTAS_DETALLE = [
         frase: '"Tener una autoestima sana y paz mental te permite construir una vida con propósito."',
         imagen: '/doctoras/dra_milagros.jpg',
         parrafos: [
-            'Psicóloga Clínica con amplia trayectoria en acompañamiento psicoterapéutico, evaluación psicológica y regulación emocional para niños, adolescentes y adultos.',
-            'Especializada en el diseño de bitácoras terapéuticas y herramientas de autoconocimiento, guiando a cada paciente a comprender sus emociones y fortalecer su resiliencia.',
-            'Su enfoque integra técnicas basadas en evidencia científica, psicoeducación y terapia cognitivo-conductual para transformar patrones de pensamiento y fomentar el bienestar integral.'
+            'Psicóloga clínica /psicoterapeuta psicoanalista, MBA en administración y dirección de Empresa, ESP. Coaching y PNL, ESP. Gerencia en seguridad y salud en el trabajo.',
+            'Soy psicóloga apasionada por el bienestar emocional, acompaña a personas, familias y organizaciones en procesos de transformación y crecimiento.',
+            'Coautora de "Dale un click a tus emociones" una iniciativa que promueve el cuidado de la salud mental desde la educación emocional, trabajo para acercar la salud mental a la vida cotidiana, promoviendo herramientas que transforman emociones en oportunidades de crecimiento, mi propósito profesional es inspirar a más personas a cuidar su salud mental y construir una vida con mayor bienestar.'
         ]
     },
     {
@@ -25,7 +25,7 @@ const ESPECIALISTAS_DETALLE = [
         tituloEspecialidad: 'Dra. Rosa Fontalvo Morales (Psiquiatría & Salud Mental)',
         badge: '🩺 MÉDICA PSIQUIATRA • DOCENTE UNIVERSITARIA',
         frase: '"La atención integral de la salud mental promueve un envejecimiento saludable, lleno de dignidad y serenidad."',
-        imagen: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=80',
+        imagen: '/doctoras/psiquiatra.jpeg',
         parrafos: [
             'Médica Psiquiatra y Docente Universitaria, con especial interés en la atención integral de la salud mental de las personas mayores y en la promoción de un envejecimiento saludable.',
             'Su enfoque combina una sólida práctica clínica con la docencia académica, brindando tratamientos médicos éticos, diagnósticos precisos y acompañamiento continuo a pacientes y sus familias.'
@@ -33,7 +33,7 @@ const ESPECIALISTAS_DETALLE = [
     },
     {
         id: 'suicidologia',
-        nombre: 'Dra. Maribel Orozco',
+        nombre: 'Dra. Maribel Orozco Vega',
         cargoBreve: 'Psicóloga Clínica & Suicidóloga',
         tituloEspecialidad: 'Dra. Maribel Orozco (Suicidología)',
         badge: '💛 SUICIDOLOGÍA • PREVENCIÓN DEL SUICIDIO & GESTIÓN DE CRISIS',
@@ -323,7 +323,7 @@ export default function Home() {
                     <div className="md:w-2/3 grid sm:grid-cols-2 gap-6 text-base font-medium">
                         <div className="flex items-start gap-3">
                             <span className="text-pink-200 text-xl font-black mt-1">✔</span>
-                            <p>Elaboradas por la Dra. Johana Barrios Chinchilla, la Dra. Rosa Fontalvo Morales y la Dra. Milagros Bolaño Romero.</p>
+                            <p>Elaboradas por la Dra. Milagros Bolaño Romero y la Dra. María Fernanda leon.</p>
                         </div>
                         <div className="flex items-start gap-3">
                             <span className="text-pink-200 text-xl font-black mt-1">✔</span>
@@ -346,7 +346,7 @@ export default function Home() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-4xl mx-auto mb-20 space-y-6">
                         <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white" style={{ fontFamily: "'Playfair Display', serif", lineHeight: '1.2' }}>
-                            Dedicarte solo 15 minutos al día transformará la forma en que vives tus emociones.
+                            Con dedicarte solo 15 minutos al día transformará la forma en que vives tus emociones.
                         </h2>
                         <p className="text-xl text-slate-600 dark:text-slate-400 font-light leading-relaxed">
                             Nuestras bitácoras fueron creadas para acompañarte paso a paso, con actividades sencillas, reflexiones y herramientas psicológicas que puedes aplicar en tu vida diaria.
@@ -479,7 +479,7 @@ export default function Home() {
                             <div>
                                 <div className="relative mb-6 mx-auto w-20 h-20">
                                     <img
-                                        src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&q=80"
+                                        src="/doctoras/psiquiatra.jpeg"
                                         alt="Dra. Rosa Fontalvo Morales - Psiquiatría"
                                         className="w-20 h-20 rounded-full object-cover shadow-md border-4 border-rose-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
                                     />

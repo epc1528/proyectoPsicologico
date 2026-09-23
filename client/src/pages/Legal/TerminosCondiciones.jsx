@@ -22,7 +22,7 @@ export default function TerminosCondiciones() {
                                 1. Aceptación de los Términos
                             </h2>
                             <p>
-                                Al acceder y utilizar la plataforma <strong>PsicoCartillas</strong>, aceptas cumplir con estos Términos y Condiciones. Si no estás de acuerdo con alguna parte de los términos, te sugerimos abstenerte de utilizar la plataforma.
+                                Al acceder y utilizar la plataforma <strong>PsicoBitacoras</strong>, aceptas cumplir con estos Términos y Condiciones. Si no estás de acuerdo con alguna parte de los términos, te sugerimos abstenerte de utilizar la plataforma.
                             </p>
                         </section>
 
@@ -31,7 +31,7 @@ export default function TerminosCondiciones() {
                                 2. Alcance del Servicio
                             </h2>
                             <p>
-                                PsicoCartillas ofrece herramientas digitales complementarias (bitácoras emocionales interactivas) diseñadas por la <strong>Dra. Johana Barrios</strong> y la <strong>Dra. Milagros Bolaño</strong> para apoyar el autoconocimiento, la inteligencia emocional y la gestión del bienestar.
+                                PsicoBitacoras ofrece herramientas digitales complementarias (bitácoras emocionales interactivas) diseñadas por la <strong>Dra. Milagros Bolaño Romero</strong> y la <strong>Dra. Maria Fernanda Leon</strong> para apoyar el autoconocimiento, la inteligencia emocional y la gestión del bienestar.
                             </p>
                             <p className="mt-2 text-rose-600 dark:text-pink-400 font-medium">
                                 ⚠️ Importante: El uso de las bitácoras no reemplaza la atención psiquiátrica o médica de emergencia. En caso de una crisis severa o emergencia de salud mental, acude inmediatamente al servicio de emergencias médica más cercano.
