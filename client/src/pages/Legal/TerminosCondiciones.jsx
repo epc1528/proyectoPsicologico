@@ -5,7 +5,7 @@ export default function TerminosCondiciones() {
     return (
         <div className="bg-slate-50 dark:bg-slate-950 min-h-screen py-20 transition-colors duration-300">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 sm:p-12 shadow-xl border border-slate-100 dark:border-slate-800">
+                <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 sm:p-12 shadow-xl border border-slate-100 dark:border-slate-800 text-justify">
                     <div className="text-center mb-12">
                         <div className="inline-block px-4 py-1.5 rounded-full bg-pink-50 dark:bg-pink-900/30 border border-pink-100 dark:border-pink-800 text-pink-600 dark:text-pink-400 text-sm font-semibold mb-4">
                             Términos Legales de Uso

@@ -6,8 +6,8 @@ export const CONTACT_CONFIG = {
     whatsappDisplay: '+57 304 470 1482',
     nequiPhone: '304 470 1482',
     nequiRaw: '3044701482',
-    precioCartilla: 12000,
-    precioCartillaFormateado: '$12.000 COP',
+    precioCartilla: 15000,
+    precioCartillaFormateado: '$15.000 COP',
     soporteEmail: 'soporte@psicocartillas.com'
 };
 

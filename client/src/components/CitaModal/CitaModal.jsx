@@ -29,8 +29,8 @@ const ESPECIALIDADES = [
         badge: 'Suicidología & Gestión de Crisis'
     },
     {
-        id: 'Dra. María Fernanda Leon (Neuropsicología)',
-        nombre: 'Dra. María Fernanda Leon',
+        id: 'Dra. María Fernanda De Leon (Neuropsicología)',
+        nombre: 'Dra. María Fernanda De Leon',
         doctora: 'Neuropsicóloga • Evaluación y Rehabilitación',
         img: '/doctoras/neuropsicologia.jpg',
         icon: '🧠',

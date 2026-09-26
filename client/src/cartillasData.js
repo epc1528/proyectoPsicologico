@@ -6,7 +6,7 @@ export const cartillasData = {
     colorTema: "from-emerald-400 to-teal-500",
     colorFondo: "bg-emerald-50/50 dark:bg-emerald-950/40",
     colorBoton: "bg-emerald-600 hover:bg-emerald-700",
-    precio: 12000,
+    precio: 15000,
     paginas: [
       {
         tipo: "portada",
@@ -45,7 +45,7 @@ export const cartillasData = {
     colorTema: "from-indigo-500 to-violet-600",
     colorFondo: "bg-slate-50 dark:bg-slate-950",
     colorBoton: "bg-indigo-600 hover:bg-indigo-700",
-    precio: 12000,
+    precio: 15000,
     paginas: [
       {
         tipo: "portada",
@@ -83,7 +83,7 @@ export const cartillasData = {
     colorTema: "from-sky-400 to-blue-500",
     colorFondo: "bg-sky-50/50 dark:bg-sky-950/40",
     colorBoton: "bg-sky-600 hover:bg-sky-700",
-    precio: 12000,
+    precio: 15000,
     paginas: [
       {
         tipo: "portada",

@@ -194,7 +194,7 @@ export default function InteractiveWorkbook() {
                                 onClick={() => abrirModalCompraNequi(cartilla)}
                                 className="shrink-0 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2.5 rounded-xl text-xs sm:text-sm shadow-sm transition-all cursor-pointer flex items-center gap-2"
                             >
-                                <span>💬</span> Adquirir PDF ($12.000 COP)
+                                <span>💬</span> Adquirir PDF ($15.000 COP)
                             </button>
                         </div>
 
@@ -381,7 +381,7 @@ export default function InteractiveWorkbook() {
                                                     <span className="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
                                                     <span className="text-xs uppercase tracking-widest text-fuchsia-200 font-bold">Pago Inmediato con Nequi</span>
                                                 </div>
-                                                <span className="text-2xl font-black text-emerald-400">$12.000 COP</span>
+                                                <span className="text-2xl font-black text-emerald-400">$15.000 COP</span>
                                             </div>
 
                                             <p className="text-xs text-purple-200 mb-2 font-medium">NÚMERO DE CUENTA NEQUI:</p>
@@ -408,20 +408,20 @@ export default function InteractiveWorkbook() {
                                             </div>
 
                                             <p className="text-xs text-purple-200/90 leading-relaxed">
-                                                ✨ Envía $12.000 COP a Nequi y presiona el botón abajo para adjuntar tu comprobante en WhatsApp y recibir el documento completo de inmediato.
+                                                ✨ Envía $15.000 COP a Nequi y presiona el botón abajo para adjuntar tu comprobante en WhatsApp y recibir el documento completo de inmediato.
                                             </p>
                                         </div>
 
                                         {/* Botón WhatsApp */}
                                         <div className="pt-2">
                                             <a
-                                                href={getWhatsAppLink(`¡Hola! He completado la muestra gratuita de la *${cartilla.titulo}* y deseo adquirir la versión completa ($12.000 COP). Ya tengo listo el comprobante de Nequi.`)}
+                                                href={getWhatsAppLink(`¡Hola! He completado la muestra gratuita de la *${cartilla.titulo}* y deseo adquirir la versión completa ($15.000 COP). Ya tengo listo el comprobante de Nequi.`)}
                                                 target="_blank"
                                                 rel="noreferrer"
                                                 className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-extrabold px-8 py-5 rounded-2xl text-lg sm:text-xl shadow-xl hover:shadow-2xl transition-all transform hover:scale-[1.02] cursor-pointer"
                                             >
                                                 <span className="text-2xl">💬</span>
-                                                <span>Comprar Cartilla Completa por WhatsApp ($12.000 COP)</span>
+                                                <span>Comprar Cartilla Completa por WhatsApp ($15.000 COP)</span>
                                             </a>
                                         </div>
                                     </div>
@@ -448,7 +448,7 @@ export default function InteractiveWorkbook() {
                                         onClick={() => abrirModalCompraNequi(cartilla)}
                                         className="px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold text-white transition-all shadow-lg hover:shadow-xl hover:scale-105 bg-gradient-to-r from-emerald-500 to-green-600 text-sm sm:text-base cursor-pointer flex items-center gap-2"
                                     >
-                                        <span>💬</span> Comprar por WhatsApp ($12.000)
+                                        <span>💬</span> Comprar por WhatsApp ($15.000)
                                     </button>
                                 ) : (
                                     <button

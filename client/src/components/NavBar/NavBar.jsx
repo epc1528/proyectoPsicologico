@@ -17,7 +17,7 @@ export default function NavBar({ onOpenCitaModal }) {
                 <Link to="/" className="flex items-center gap-3 shrink-0 group z-50 mr-6 lg:mr-12">
                     <img
                         src={logoClick}
-                        alt="Logo PsicoCartillas"
+                        alt="Logo PsicoBitacoras"
                         className="w-11 h-11 rounded-full object-cover shadow-sm group-hover:scale-105 transition-transform duration-300 border border-purple-100"
                     />
                     <span
@@ -26,7 +26,7 @@ export default function NavBar({ onOpenCitaModal }) {
                     >
                         {/* En pantallas xl se muestra completo, en medianas muestra PsicoCartillas */}
                         <span className="hidden xl:inline">Dale un click a tus emociones</span>
-                        <span className="xl:hidden inline">PsicoCartillas</span>
+                        <span className="xl:hidden inline">PsicoBitacoras</span>
                     </span>
                 </Link>
 

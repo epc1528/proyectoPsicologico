@@ -13,7 +13,7 @@ export default function AdminDashboard() {
     const [citas, setCitas] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
-    const [formData, setFormData] = useState({ titulo: '', descripcion: '', precio: 12000, imagen_url: '' });
+    const [formData, setFormData] = useState({ titulo: '', descripcion: '', precio: 15000, imagen_url: '' });
 
     const handleCreateCartilla = (e) => {
         e.preventDefault();
@@ -26,7 +26,7 @@ export default function AdminDashboard() {
                     confirmButtonColor: '#14b8a6'
                 });
                 setShowForm(false);
-                setFormData({ titulo: '', descripcion: '', precio: 12000, imagen_url: '' });
+                setFormData({ titulo: '', descripcion: '', precio: 15000, imagen_url: '' });
             }).catch(console.error);
     };
 

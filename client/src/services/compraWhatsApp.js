@@ -7,7 +7,7 @@ import { CONTACT_CONFIG, getWhatsAppLink } from '../config/constants';
  */
 export const abrirModalCompraNequi = (cartilla) => {
     const titulo = cartilla?.titulo || 'Bitácora Oficial';
-    const precio = cartilla?.precio ? (cartilla.precio === 120000 ? 12000 : cartilla.precio) : CONTACT_CONFIG.precioCartilla;
+    const precio = cartilla?.precio ? (cartilla.precio === 150000 ? 15000 : cartilla.precio) : CONTACT_CONFIG.precioCartilla;
     const precioFormateado = `$${precio.toLocaleString('es-CO')} COP`;
 
     const mensajeWhatsApp = `¡Hola! Me interesa adquirir la versión completa de la *${titulo}* (${precioFormateado}). Ya tengo lista la transferencia por Nequi para el envío de la bitácora en PDF.`;

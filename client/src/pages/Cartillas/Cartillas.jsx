@@ -84,7 +84,7 @@ export default function Cartillas() {
                 ) : (
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
                         {cartillas.map((cartilla, index) => {
-                            const precio = (cartilla.precio === 120000 ? 12000 : (cartilla.precio || 12000));
+                            const precio = (cartilla.precio === 150000 ? 15000 : (cartilla.precio || 15000));
                             return (
                                 <div
                                     key={cartilla.id}

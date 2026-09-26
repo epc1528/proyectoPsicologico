@@ -15,7 +15,7 @@ const ESPECIALISTAS_DETALLE = [
         parrafos: [
             'Psicóloga clínica /psicoterapeuta psicoanalista, MBA en administración y dirección de Empresa, ESP. Coaching y PNL, ESP. Gerencia en seguridad y salud en el trabajo.',
             'Soy psicóloga apasionada por el bienestar emocional, acompaña a personas, familias y organizaciones en procesos de transformación y crecimiento.',
-            'Coautora de "Dale un click a tus emociones" una iniciativa que promueve el cuidado de la salud mental desde la educación emocional, trabajo para acercar la salud mental a la vida cotidiana, promoviendo herramientas que transforman emociones en oportunidades de crecimiento, mi propósito profesional es inspirar a más personas a cuidar su salud mental y construir una vida con mayor bienestar.'
+            'Autora de "Dale un click a tus emociones" una iniciativa que promueve el cuidado de la salud mental desde la educación emocional, trabajo para acercar la salud mental a la vida cotidiana, promoviendo herramientas que transforman emociones en oportunidades de crecimiento, mi propósito profesional es inspirar a más personas a cuidar su salud mental y construir una vida con mayor bienestar.'
         ]
     },
     {
@@ -46,9 +46,9 @@ const ESPECIALISTAS_DETALLE = [
     },
     {
         id: 'neuropsicologia',
-        nombre: 'Dra. María Fernanda Leon',
+        nombre: 'Dra. María Fernanda De Leon',
         cargoBreve: 'Neuropsicóloga • Evaluación & Rehabilitación Cognitiva',
-        tituloEspecialidad: 'Dra. María Fernanda Leon (Neuropsicología)',
+        tituloEspecialidad: 'Dra. María Fernanda De Leon (Neuropsicología)',
         badge: '🧠 NEUROPSICOLOGÍA • EVALUACIÓN Y REHABILITACIÓN COGNITIVA',
         frase: '"Comprender el funcionamiento cerebral es la clave para potenciar nuestras habilidades y superar desafíos cognitivos."',
         imagen: '/doctoras/neuropsicologia.jpg',
@@ -291,7 +291,7 @@ export default function Home() {
                                 {especialistaActual.frase}
                             </p>
                             {especialistaActual.parrafos.map((parrafo, idx) => (
-                                <p key={idx} className="text-slate-700 dark:text-slate-300 text-base md:text-lg leading-relaxed font-light">
+                                <p key={idx} className="text-slate-700 dark:text-slate-300 text-base md:text-lg leading-relaxed font-light text-justify">
                                     {parrafo}
                                 </p>
                             ))}
@@ -323,7 +323,7 @@ export default function Home() {
                     <div className="md:w-2/3 grid sm:grid-cols-2 gap-6 text-base font-medium">
                         <div className="flex items-start gap-3">
                             <span className="text-pink-200 text-xl font-black mt-1">✔</span>
-                            <p>Elaboradas por la Dra. Milagros Bolaño Romero y la Dra. María Fernanda leon.</p>
+                            <p>Elaboradas por la Dra. Milagros Bolaño Romero y la Dra. María Fernanda De Leon.</p>
                         </div>
                         <div className="flex items-start gap-3">
                             <span className="text-pink-200 text-xl font-black mt-1">✔</span>
@@ -548,7 +548,7 @@ export default function Home() {
                                 <div className="relative mb-6 mx-auto w-20 h-20">
                                     <img
                                         src="/doctoras/neuropsicologia.jpg"
-                                        alt="Dra. María Fernanda Leon - Neuropsicóloga"
+                                        alt="Dra. María Fernanda De Leon - Neuropsicóloga"
                                         className="w-20 h-20 rounded-full object-cover shadow-md border-4 border-purple-100 dark:border-slate-700 group-hover:scale-105 transition-transform"
                                     />
                                     <span className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs shadow-md">
@@ -556,7 +556,7 @@ export default function Home() {
                                     </span>
                                 </div>
                                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
-                                    Dra. María Fernanda Leon
+                                    Dra. María Fernanda De Leon
                                 </h3>
                                 <p className="text-xs font-bold text-rose-600 dark:text-pink-400 uppercase tracking-wider mb-3">
                                     Neuropsicóloga • Cognición
@@ -567,7 +567,7 @@ export default function Home() {
                             </div>
                             <button
                                 onClick={() => {
-                                    setSelectedEspecialidad('Dra. María Fernanda Leon (Neuropsicología)');
+                                    setSelectedEspecialidad('Dra. María Fernanda De Leon (Neuropsicología)');
                                     setIsCitaModalOpen(true);
                                 }}
                                 className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-2xl transition-all shadow-md hover:shadow-xl text-center text-sm"
