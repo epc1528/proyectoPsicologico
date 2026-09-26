@@ -31,7 +31,7 @@ export default function TerminosCondiciones() {
                                 2. Alcance del Servicio
                             </h2>
                             <p>
-                                PsicoBitacoras ofrece herramientas digitales complementarias (bitácoras emocionales interactivas) diseñadas por la <strong>Dra. Milagros Bolaño Romero</strong> y la <strong>Dra. Maria Fernanda Leon</strong> para apoyar el autoconocimiento, la inteligencia emocional y la gestión del bienestar.
+                                PsicoBitacoras ofrece herramientas digitales complementarias (bitácoras emocionales interactivas) diseñadas por la <strong>Dra. Milagros Bolaño Romero</strong> y la <strong>Dra. Maria Fernanda De Leon</strong> para apoyar el autoconocimiento, la inteligencia emocional y la gestión del bienestar.
                             </p>
                             <p className="mt-2 text-rose-600 dark:text-pink-400 font-medium">
                                 ⚠️ Importante: El uso de las bitácoras no reemplaza la atención psiquiátrica o médica de emergencia. En caso de una crisis severa o emergencia de salud mental, acude inmediatamente al servicio de emergencias médica más cercano.
